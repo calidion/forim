@@ -155,5 +155,12 @@
 </div>
 <% } %>
 
+<script type="text/javascript">
+  // 百度有很多 8080 的链接
+  if (location.port == 8080) {
+    location.port = 80
+  }
+</script>
+
 </body>
 </html>

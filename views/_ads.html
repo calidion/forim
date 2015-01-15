@@ -1,0 +1,62 @@
+<%
+  var ads = [
+    {
+      href: 'http://www.jpush.cn',
+      label: 'jpush',
+      img_src: '//dn-cnode.qbox.me/Fsj9VwwFHTZmO6hGawkEEjbovmjR',
+    },
+    {
+      href: 'https://talk.ai/?s=cnodejs',
+      label: 'teambition',
+      img_src: '//dn-cnode.qbox.me/FsJ2QW9zAHLvrPgC767PvuMWBkRQ',
+    },
+    {
+      href: 'https://cnodejs.org/topic/55a77e2f93ce02cd25985916',
+      label: 'guangyin',
+      img_src: '//dn-cnode.qbox.me/FphIGf6l1QKaEzhnlLHvw49GIv_P',
+    },
+    {
+      href: 'https://cnodejs.org/topic/5655fbfcf811b9734d550687',
+      label: 'tingyun',
+      img_src: '//dn-cnode.qbox.me/FuPfruyRxKWcB1_cywYVXMk3IzYV',
+    },
+    {
+      href: 'http://www.qcloud.com/event/20151221/sale?utm_source=CNODE1&utm_medium=sale&utm_campaign=CNODE',
+      label: 'oliver',
+      img_src: '//dn-cnode.qbox.me/FoSPVHAca00ICB03typk-zs2Z6R1',
+    },
+    {
+      href: 'https://mos.meituan.com/activity1512?site=cnode&location=homepage&campaign=20151214sales',
+      label: 'meituan',
+      img_src: '//dn-cnode.qbox.me/Fko4LpZG3Imn7j_NmuJGDZBkbRma',
+    },
+    {
+      href: 'http://100offer.com/join/cnode71?utm_source=cnode71&utm_medium=dis&utm_campaign=cnode71',
+      label: '100offer',
+      img_src: '//dn-cnode.qbox.me/FojExpHUPJ_1iG7qDOJvnRQ7RmnX',
+    },
+    {
+      href: 'https://www.wilddog.com/',
+      label: 'wilddog',
+      img_src: '//dn-cnode.qbox.me/FgF7oZaTe70WOGoM-FB9r_f4kRPH',
+    },
+  ];
+
+    var randomNum = (new Date()).getMinutes() % ads.length;
+
+    ads = ads.slice(randomNum).concat(ads.slice(0, randomNum));
+%>
+<div class='panel'>
+  <div class='inner ads'>
+
+    <% ads.forEach(function (adObj, idx) { %>
+      <% if (idx !== 0) { %>
+        <div class="sep10"></div>
+      <% } %>
+      <a href="<%-adObj.href%>" target="_blank" class="banner sponsor_outlink"
+    data-label="<%=adObj.label%>">
+        <img src="<%- staticFile(adObj.img_src) %>">
+      </a>
+    <% }) %>
+  </div>
+</div>
