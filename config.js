@@ -92,7 +92,7 @@ var config = {
     callbackURL: process.env.NWF_GITHUB_CALLBACK_URL  || 'http://forum.node-weixin.com/auth/github/callback'
   },
   // 是否允许直接注册（否则只能走 github 的方式）
-  allow_sign_up: process.env.NWF_SIGN_UP_ENABLE || true,
+  allow_sign_up: process.env.NWF_SIGN_UP_ENABLE || false,
 
   // oneapm 是个用来监控网站性能的服务
   oneapm_key: process.env.NWF_ONEAPM_KEY || '',
@@ -110,15 +110,12 @@ var config = {
 
   // 版块
   tabs: [
-    ['auth', 'auth'],
-    ['oauth', 'oauth'],
-    ['pay', '支付'],
-    ['jssdk', 'JSSDK'],
-    ['menu', '菜单'],
-    ['user', '用户'],
-    ['media', '多媒体'],
-    ['link', '传播'],
-    ['message', '消息']
+    ['share', '分享'],
+    ['origin', '原创'],
+    ['api', 'node-weixin-api'],
+    ['express', 'node-weixin-express'],
+    ['theory', '原理'],
+    ['jssdk', 'js前端']
   ],
 
   // 极光推送
