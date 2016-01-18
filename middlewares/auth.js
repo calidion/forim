@@ -91,7 +91,7 @@ exports.authUser = function (req, res, next) {
     }));
   });
 
-  if (req.session.user) {
+  if (req.session && req.session.user) {
     ep.emit('get_user', req.session.user);
   } else {
     var auth_token = req.signedCookies[config.auth_cookie_name];

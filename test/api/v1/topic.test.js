@@ -4,6 +4,7 @@ var app = require('../../../app');
 var request = require('supertest')(app);
 var should = require('should');
 var support = require('../../support/support');
+var config = require('../../../config');
 
 
 describe('test/api/v1/topic.test.js', function () {
@@ -59,7 +60,7 @@ describe('test/api/v1/topic.test.js', function () {
         .send({
           accesstoken: mockUser.accessToken,
           title: '我是 api 测试小助手',
-          tab: 'share',
+          tab: config.tabs[0][0],
           content: '我也是 api 测试小助手',
         })
         .end(function (err, res) {

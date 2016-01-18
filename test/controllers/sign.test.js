@@ -130,7 +130,7 @@ describe('test/controllers/sign.test.js', function () {
       request.post('/signout')
       .set('Cookie', config.auth_cookie_name + ':something;')
       .expect(302, function (err, res) {
-        res.headers['set-cookie'].should.eql([ 'node_club=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT' ]);
+        res.headers['set-cookie'].should.eql([ config.auth_cookie_name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT' ]);
         done(err);
       });
     });
@@ -182,9 +182,9 @@ describe('test/controllers/sign.test.js', function () {
     it('should update search pass', function (done) {
       done = pedding(done, 2);
       mm(mailService, 'sendMail', function (data) {
-        data.from.should.equal('Nodeclub <club@126.com>');
+        data.from.should.equal(config.name + ' ' + '<' + config.mail_opts.auth.user + '>');
         data.to.should.match(new RegExp(loginname));
-        data.subject.should.equal('Nodeclub社区密码重置');
+        data.subject.should.equal(config.name + '密码重置');
         data.html.should.match(new RegExp('<p>您好：' + loginname));
         resetKey = data.html.match(/key=(.+?)&/)[1];
         done();
@@ -224,7 +224,7 @@ describe('test/controllers/sign.test.js', function () {
       });
     });
 
-    it('should update passwork', function (done) {
+    it('should update password', function (done) {
       request.post('/reset_pass')
       .send({
         psw: 'jkljkljkl',

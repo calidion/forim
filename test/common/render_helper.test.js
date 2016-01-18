@@ -7,6 +7,8 @@ var _ = require('lodash');
 var pedding = require('pedding');
 var multiline = require('multiline');
 var renderHelper = require('../../common/render_helper');
+var config = require('../../config');
+
 
 describe('test/common/render_helper.test.js', function () {
   describe('#markdown', function () {
@@ -61,8 +63,8 @@ var a = 1;
 
   describe('#tabName', function () {
     it('should translate', function () {
-      renderHelper.tabName('share')
-        .should.equal('分享')
+      renderHelper.tabName(config.tabs[0][0])
+        .should.equal(config.tabs[0][1])
     })
   })
 

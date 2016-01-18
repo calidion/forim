@@ -6,6 +6,8 @@ var support = require('../support/support');
 var mm = require('mm');
 var store = require('../../common/store');
 var pedding = require('pedding');
+var config = require('../../config');
+
 
 describe('test/controllers/topic.test.js', function () {
 
@@ -54,7 +56,7 @@ describe('test/controllers/topic.test.js', function () {
       request.post('/topic/create')
       .send({
         title: '',
-        tab: 'share',
+        tab: config.tabs[0][0],
         t_content: '木耳敲回车',
       })
       .set('Cookie', support.normalUserCookie)
@@ -82,7 +84,7 @@ describe('test/controllers/topic.test.js', function () {
       request.post('/topic/create')
       .send({
         title: '呵呵复呵呵',
-        tab: 'share',
+        tab: config.tabs[0][0],
         t_content: '',
       })
       .set('Cookie', support.normalUserCookie)
@@ -96,7 +98,7 @@ describe('test/controllers/topic.test.js', function () {
       request.post('/topic/create')
       .send({
         title: '呵呵复呵呵' + new Date(),
-        tab: 'share',
+        tab: config.tabs[0][0],
         t_content: '木耳敲回车',
       })
       .set('Cookie', support.normalUserCookie)

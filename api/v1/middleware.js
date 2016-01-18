@@ -20,7 +20,6 @@ var auth = function (req, res, next) {
     req.user = user;
     next();
   }));
-
 };
 
 exports.auth = auth;

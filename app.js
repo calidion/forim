@@ -94,10 +94,7 @@ app.use(require('cookie-parser')(config.session_secret));
 app.use(compress());
 app.use(session({
   secret: config.session_secret,
-  store: new RedisStore({
-    port: config.redis_port,
-    host: config.redis_host,
-  }),
+  store: new RedisStore(config.redis),
   resave: true,
   saveUninitialized: true,
 }));
@@ -169,11 +166,9 @@ if (config.debug) {
 }
 
 if (!module.parent) {
-  app.listen(config.port, function () {
-    logger.info('NodeClub listening on port', config.port);
-    logger.info('God bless love....');
-    logger.info('You can debug your app with http://' + config.hostname + ':' + config.port);
-    logger.info('');
+  app.listen(config.port, config.ip, function () {
+    logger.info('Server listening on port', config.port);
+    logger.info('Visit http://' + config.hostname + ':' + config.port);
   });
 }
 

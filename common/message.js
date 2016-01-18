@@ -2,7 +2,7 @@ var models       = require('../models');
 var eventproxy   = require('eventproxy');
 var Message      = models.Message;
 var User         = require('../proxy').User;
-var push         = require('../common/push');
+// var push         = require('../common/push');
 var messageProxy = require('../proxy/message');
 var _            = require('lodash');
 
@@ -20,7 +20,7 @@ exports.sendReplyMessage = function (master_id, author_id, topic_id, reply_id, c
 
   message.save(ep.done('message_saved'));
   ep.all('message_saved', function (msg) {
-    push.send(message.type, author_id, master_id, topic_id);
+    //push.send(message.type, author_id, master_id, topic_id);
     callback(null, msg);
   });
 };
@@ -39,7 +39,7 @@ exports.sendAtMessage = function (master_id, author_id, topic_id, reply_id, call
 
   message.save(ep.done('message_saved'));
   ep.all('message_saved', function (msg) {
-    push.send(message.type, author_id, master_id, topic_id);
+    //push.send(message.type, author_id, master_id, topic_id);
     callback(null, msg);
   });
 };
