@@ -3,9 +3,10 @@ var Redis = require('ioredis');
 var logger = require('./logger')
 
 var client = new Redis({
-  port: config.redis_port,
-  host: config.redis_host,
-  db: config.redis_db,
+  port: config.redis.port,
+  host: config.redis.host,
+  db: config.redis.db,
+  password: config.redis.pass,
 });
 
 client.on('error', function (err) {
