@@ -1,4 +1,5 @@
-# Node Weixin Forum [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+# Node Weixin Forum 
+[![NPM version][npm-image]][npm-url]  [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 
 Node Weixin Forum
 
@@ -22,7 +23,6 @@ Node Weixin Forum 是基于[node club](https://github.com/cnodejs/nodeclub)裁�
 6. `$ node app.js`
 7. visit `http://localhost:3000`
 8. done!
-```
 
 ## 测试
 
