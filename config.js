@@ -39,7 +39,7 @@ var config = {
   // redis 配置，默认是本地
   redis: {
     host: process.env.NWF_REDIS_HOST || '127.0.0.1',
-    port: process.env.NWF_REDIS_PORT || 6379,
+    port: (process.env.NWF_REDIS_PORT - 0) || 6379,
     db: (process.env.NWF_REDIS_DB - 0) || 0,
     pass: process.env.NWF_REDIS_PASSWORD || ''
 },
