@@ -1,5 +1,6 @@
-# Node Weixin Forum 
-[![NPM version][npm-image]][npm-url]  [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+# Node Weixin Forum   
+[![Build Status][travis-image]][travis-url]  [![Dependency Status][david-image]][david-url]  [![Coverage percentage][coverage-image]][coverage-url] [![node version][node-image]][node-url]
+
 
 Node Weixin Forum
 
@@ -50,15 +51,9 @@ MIT
 
 [travis-image]:https://img.shields.io/travis/node-weixin/nodeweixinforum.svg
 [travis-url]: https://travis-ci.org/node-weixin/nodeweixinforum
-
 [coverage-image]: https://img.shields.io/coveralls/node-weixin/nodeweixinforum.svg
-
 [coverage-url]: https://coveralls.io/r/node-weixin/nodeweixinforum?branch=master
-
 [david-image]: https://img.shields.io/david/node-weixin/nodeweixinforum.svg
-
 [david-url]: https://david-dm.org/node-weixin/nodeweixinforum
-
 [node-image]: https://img.shields.io/badge/node.js-%3E=_4.2-green.svg?style=flat-square
-
 [node-url]: http://nodejs.org/download/
