@@ -46,7 +46,7 @@ $ make test-cov
 
 ## License
 
-GPL v3
+MIT
 
 [travis-image]:https://img.shields.io/travis/node-weixin/nodeweixinforum.svg
 [travis-url]: https://travis-ci.org/node-weixin/nodeweixinforum

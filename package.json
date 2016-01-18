@@ -69,7 +69,8 @@
     "supertest": "1.1.0"
   },
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "start": "node server.js"
   },
   "main": "app.js"
 }
