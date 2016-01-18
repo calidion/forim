@@ -111,6 +111,7 @@ var config = {
   // 版块
   tabs: [
     ['share', '分享'],
+    ['water', '其它'],
     ['origin', '原创'],
     ['api', 'node-weixin-api'],
     ['express', 'node-weixin-express'],
