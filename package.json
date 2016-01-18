@@ -70,6 +70,6 @@
   },
   "scripts": {
     "test": "make test"
-  }
+  },
   "main": "app.js"
 }
