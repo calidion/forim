@@ -87,12 +87,12 @@ var config = {
 
   // github 登陆的配置
   GITHUB_OAUTH: {
-    clientID: process.env.NWF_GITHUB_CLIENT_ID || '',
-    clientSecret: process.env.NWF_GITHUB_CLIENT_SECRET || '',
-    callbackURL: process.env.NWF_GITHUB_CALLBACK_URL  || ''
+    clientID: process.env.NWF_GITHUB_CLIENT_ID || 'your GITHUB_CLIENT_ID',
+    clientSecret: process.env.NWF_GITHUB_CLIENT_SECRET || 'your GITHUB_CLIENT_SECRET',
+    callbackURL: process.env.NWF_GITHUB_CALLBACK_URL  || 'http://cnodejs.org/auth/github/callback'
   },
   // 是否允许直接注册（否则只能走 github 的方式）
-  allow_sign_up: process.env.NWF_SIGN_UP_ENABLE || false,
+  allow_sign_up: process.env.NWF_SIGN_UP_ENABLE === undefined || true,
 
   // oneapm 是个用来监控网站性能的服务
   oneapm_key: process.env.NWF_ONEAPM_KEY || '',
