@@ -87,9 +87,9 @@ var config = {
 
   // github 登陆的配置
   GITHUB_OAUTH: {
-    clientID: process.env.NWF_GITHUB_CLIENT_ID || '778fd5c1e29501fe37fe',
-    clientSecret: process.env.NWF_GITHUB_CLIENT_SECRET || '1709e138a4e6548e308e80e1d008330d538f2f24',
-    callbackURL: process.env.NWF_GITHUB_CALLBACK_URL  || 'http://forum.node-weixin.com/auth/github/callback'
+    clientID: process.env.NWF_GITHUB_CLIENT_ID || '',
+    clientSecret: process.env.NWF_GITHUB_CLIENT_SECRET || '',
+    callbackURL: process.env.NWF_GITHUB_CALLBACK_URL  || ''
   },
   // 是否允许直接注册（否则只能走 github 的方式）
   allow_sign_up: process.env.NWF_SIGN_UP_ENABLE || false,
