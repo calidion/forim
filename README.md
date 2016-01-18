@@ -1,18 +1,15 @@
-# nodeweixinfourm [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+# Node Weixin Forum [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 
-node weixin forum
-
+Node Weixin Forum
 
 ## 介绍
 
-node weixin forum 是基于node club裁剪的社区系统。
+Node Weixin Forum 是基于[node club](https://github.com/cnodejs/nodeclub)裁剪的社区系统。
 布署在[forum.node-weixin.com](http://forum.node-weixin.com)
 
 1. 修改后的版本引入了config文件，你只要修改一下config文件的参数就可以基本上部署成功
 2. 修改了测试用例，使你的定制不会出现问题
-
 3. 却除了广告，系统更加的纯粹
-
 4. 删除了部分非开源的软件。如JPUSH的代码。
 
 
@@ -49,7 +46,7 @@ $ make test-cov
 
 ## License
 
-MIT
+GPL v3
 
 [travis-image]:https://img.shields.io/travis/node-weixin/nodeweixinforum.svg
 [travis-url]: https://travis-ci.org/node-weixin/nodeweixinforum
