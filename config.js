@@ -16,7 +16,7 @@ var config = {
 
   // 添加到 html head 中的信息
   site_headers: [
-    '<meta name="author" content="EDP@TAOBAO" />'
+    '<meta name="author" content="calidion@gmail.com" />'
   ],
   site_logo: process.env.NWF_LOGO || '/public/images/cnodejs_light.svg', // default is `name`
   site_icon: process.env.NWF_ICON || '/public/images/cnode_icon_32.png', // 默认没有 favicon, 这里填写网址
@@ -112,11 +112,8 @@ var config = {
   tabs: [
     ['share', '分享'],
     ['water', '其它'],
-    ['origin', '原创'],
-    ['api', 'node-weixin-api'],
-    ['express', 'node-weixin-express'],
-    ['theory', '原理'],
-    ['jssdk', 'js前端']
+    ['question', '问题'],
+    ['projects', '项目']
   ],
 
   // 极光推送

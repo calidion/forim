@@ -87,8 +87,13 @@ app.use('/agent', proxyMiddleware.proxy);
 // 通用的中间件
 app.use(require('response-time')());
 app.use(helmet.frameguard('sameorigin'));
-app.use(bodyParser.json({limit: '1mb'}));
-app.use(bodyParser.urlencoded({ extended: true, limit: '1mb' }));
+app.use(bodyParser.json({
+  limit: '1mb'
+}));
+app.use(bodyParser.urlencoded({
+  extended: true,
+  limit: '1mb'
+}));
 app.use(require('method-override')());
 app.use(require('cookie-parser')(config.session_secret));
 app.use(compress());
@@ -103,10 +108,10 @@ app.use(session({
 app.use(passport.initialize());
 
 // github oauth
-passport.serializeUser(function (user, done) {
+passport.serializeUser(function(user, done) {
   done(null, user);
 });
-passport.deserializeUser(function (user, done) {
+passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 passport.use(new GitHubStrategy(config.GITHUB_OAUTH, githubStrategyMiddleware));
@@ -116,7 +121,7 @@ app.use(auth.authUser);
 app.use(auth.blockUser());
 
 if (!config.debug) {
-  app.use(function (req, res, next) {
+  app.use(function(req, res, next) {
     if (req.path === '/api' || req.path.indexOf('/api') === -1) {
       csurf()(req, res, next);
       return;
@@ -140,7 +145,7 @@ _.extend(app.locals, {
 
 app.use(errorPageMiddleware.errorPage);
 _.extend(app.locals, require('./common/render_helper'));
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
   next();
 });
@@ -152,21 +157,28 @@ app.use(busboy({
 }));
 
 // routes
-app.use('/api/v1', cors(), apiRouterV1);
+app.use('/api/v1', function(req, res, next) {
+  if (req.headers.origin) {
+    res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+  }
+  next();
+}, apiRouterV1);
+
 app.use('/', webRouter);
 
 // error handler
 if (config.debug) {
   app.use(errorhandler());
 } else {
-  app.use(function (err, req, res, next) {
+  app.use(function(err, req, res, next) {
     logger.error(err);
     return res.status(500).send('500 status');
   });
 }
 
 if (!module.parent) {
-  app.listen(config.port, config.ip, function () {
+  app.listen(config.port, config.ip, function() {
     logger.info('Server listening on port', config.port);
     logger.info('Visit http://' + config.hostname + ':' + config.port);
   });
