@@ -1,13 +1,36 @@
-# Node Weixin Forum   
+# Node Forum Im
 [![Build Status][travis-image]][travis-url]  [![Dependency Status][david-image]][david-url]  [![Coverage percentage][coverage-image]][coverage-url] [![node version][node-image]][node-url]
 
 
-Node Weixin Forum
+Node Forum IM
 
 ## 介绍
 
-Node Weixin Forum 是基于[node club](https://github.com/cnodejs/nodeclub)裁剪的社区系统。
-布署在[forum.node-weixin.com](http://forum.node-weixin.com)
+Node Forum Im 是基于[node club](https://github.com/cnodejs/nodeclub)修改的社区即时通讯系统。
+实例布署在[forum.node-weixin.com](http://forum.node-weixin.com)
+
+## 目标
+
+一个只提供API的论坛IM系统，支持cors，支持多客户端访问，支持Socket.io。
+
+1. 支持个人与个人的交流
+2. 支持围绕话题讨论,即标签化话题，去中心化
+3. 支持订阅自己喜欢的话题
+4. 开发者可以自己维护
+
+## 技术栈
+
+服务器： Node.js, C/C++
+客户端：
+  1. Web: angular 2.x+
+  2. 手机： PhoneGap/Cordova + Web
+  3. 桌面： Electron.js + Web
+
+## 支持与交流
+
+QQ群：312685910
+
+## 最新改进
 
 1. 修改后的版本引入了config文件，你只要修改一下config文件的参数就可以基本上部署成功
 2. 修改了测试用例，使你的定制不会出现问题
