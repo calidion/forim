@@ -72,11 +72,11 @@ $ make test-cov
 
 MIT
 
-[travis-image]:https://img.shields.io/travis/node-weixin/nodeweixinforum.svg
-[travis-url]: https://travis-ci.org/node-weixin/nodeweixinforum
-[coverage-image]: https://img.shields.io/coveralls/node-weixin/nodeweixinforum.svg
-[coverage-url]: https://coveralls.io/r/node-weixin/nodeweixinforum?branch=master
-[david-image]: https://img.shields.io/david/node-weixin/nodeweixinforum.svg
-[david-url]: https://david-dm.org/node-weixin/nodeweixinforum
+[travis-image]:https://img.shields.io/travis/calidion/forim.svg
+[travis-url]: https://travis-ci.org/calidion/forim
+[coverage-image]: https://img.shields.io/coveralls/calidion/forim.svg
+[coverage-url]: https://coveralls.io/r/calidion/forim?branch=master
+[david-image]: https://img.shields.io/david/calidion/forim.svg
+[david-url]: https://david-dm.org/calidion/forim
 [node-image]: https://img.shields.io/badge/node.js-%3E=_4.2-green.svg?style=flat-square
 [node-url]: http://nodejs.org/download/
