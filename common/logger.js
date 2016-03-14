@@ -7,11 +7,12 @@ var log4js = require('log4js');
 log4js.configure({
   appenders: [
     { type: 'console' },
-    { type: 'file', filename: 'logs/cheese.log', category: 'cheese' }
+    { type: 'file', filename: 'logs/cheese.log', category: 'cheese', maxLogSize: config.log.size, backups: config.log.backups}
   ]
 });
 
 var logger = log4js.getLogger('cheese');
-logger.setLevel(config.debug && env !== 'test' ? 'DEBUG' : 'ERROR')
+var level = config.debug ? 'DEBUG' : 'ERROR';
+logger.setLevel(level);
 
 module.exports = logger;

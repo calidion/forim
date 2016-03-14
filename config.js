@@ -6,7 +6,12 @@ var path = require('path');
 
 var config = {
   // debug 为 true 时，用于本地调试
-  debug: true,
+  debug: process.env.NWF_DEBUG || true,
+  log : {
+    size: process.env.NWF_LOG_SIZE || 20480,
+    backups: process.env.NWF_LOG_BACKUPS || 2
+  },
+  self_vote: process.env.NWF_SELF_VOTE || true,
 
   get mini_assets() { return !this.debug; }, // 是否启用静态文件的合并压缩，详见视图中的Loader
 

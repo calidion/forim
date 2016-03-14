@@ -19,6 +19,7 @@ desktop.ini
 
 .idea
 public/upload/*
+logs
 
 *.sublime-project
 *.sublime-workspace
