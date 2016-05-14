@@ -1,0 +1,86 @@
+[2016-03-14 15:44:03.776] [ERROR] cheese - connect to redis error, check your redis config { [Error: connect ECONNREFUSED 127.0.0.1:6379]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 6379 }
+Error: connect ECONNREFUSED 127.0.0.1:6379
+  at Object.exports._errnoException (util.js:874:11)
+  at exports._exceptionWithHostPort (util.js:897:20)
+  at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1063:14)
+
+[2016-03-14 15:48:11.468] [ERROR] cheese - connect to redis error, check your redis config { [Error: connect ECONNREFUSED 127.0.0.1:6379]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 6379 }
+Error: connect ECONNREFUSED 127.0.0.1:6379
+  at Object.exports._errnoException (util.js:874:11)
+  at exports._exceptionWithHostPort (util.js:897:20)
+  at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1063:14)
+
+[2016-03-14 15:49:37.905] [ERROR] cheese - connect to mongodb://127.0.0.1/nodeforum error:  connect ECONNREFUSED 127.0.0.1:27017
+[2016-03-14 15:53:19.439] [ERROR] cheese - connect to mongodb://127.0.0.1/nodeforum error:  connect ECONNREFUSED 127.0.0.1:27017
+[2016-03-14 15:54:39.969] [ERROR] cheese - connect to mongodb://127.0.0.1/nodeforum error:  connect ECONNREFUSED 127.0.0.1:27017
+[2016-03-14 16:56:57.985] [ERROR] cheese - connect to mongodb://127.0.0.1/nodeforum error:  connect ECONNREFUSED 127.0.0.1:27017
+[2016-03-14 17:07:52.503] [ERROR] cheese - connect to mongodb://127.0.0.1/nodeforum error:  connect ECONNREFUSED 127.0.0.1:27017
+[2016-03-14 17:19:22.927] [ERROR] cheese - connect to mongodb://127.0.0.1/nodeforum error:  connect ECONNREFUSED 127.0.0.1:27017
+[2016-03-14 17:54:08.362] [ERROR] cheese - connect to mongodb://127.0.0.1/nodeforum error:  connect ECONNREFUSED 127.0.0.1:27017
+[2016-05-14 15:36:19.367] [ERROR] cheese - connect to mongodb://127.0.0.1/nodeforum error:  connect ECONNREFUSED 127.0.0.1:27017
+[2016-05-14 15:37:21.677] [ERROR] cheese - connect to mongodb://127.0.0.1/nodeforum error:  connect ECONNREFUSED 127.0.0.1:27017
+[2016-05-15 02:20:21.169] [INFO] cheese - 
+
+Started 2016-05-14T18:20:21.168Z GET / ::ffff:127.0.0.1
+[2016-05-15 02:20:21.237] [DEBUG] cheese - [35mMONGO[39m topics.[34mfind[39m {"conditions":{"deleted":false},"options":{"skip":0,"limit":20,"sort":{"top":-1,"last_reply_at":-1},"fields":{}},"collectionName":"topics"} [32m53ms[39m
+[2016-05-15 02:20:21.246] [DEBUG] cheese - [35mMONGO[39m topics.[34mfind[39m {"conditions":{"deleted":false,"tab":{"$ne":"job"},"reply_count":0},"options":{"limit":5,"sort":{"create_at":-1},"fields":{}},"collectionName":"topics"} [32m50ms[39m
+[2016-05-15 02:20:21.248] [DEBUG] cheese - Cache set no_reply_topics [32m1ms[39m
+[2016-05-15 02:20:21.252] [DEBUG] cheese - Cache set {"deleted":false}pages [32m0ms[39m
+[2016-05-15 02:20:21.254] [DEBUG] cheese - [35mMONGO[39m users.[34mfind[39m {"conditions":{"is_block":false},"options":{"limit":10,"sort":{"score":-1}},"collectionName":"users"} [32m62ms[39m
+[2016-05-15 02:20:21.255] [DEBUG] cheese - Cache set tops [32m0ms[39m
+[2016-05-15 02:20:21.291] [INFO] cheese - Render view index [32m(35ms)[39m
+[2016-05-15 02:20:21.302] [INFO] cheese - Completed 200 [32m(134ms)[39m
+[2016-05-15 02:20:51.755] [INFO] cheese - 
+
+Started 2016-05-14T18:20:51.754Z GET / ::ffff:127.0.0.1
+[2016-05-15 02:20:51.789] [DEBUG] cheese - [35mMONGO[39m topics.[34mfind[39m {"conditions":{"deleted":false},"options":{"skip":0,"limit":20,"sort":{"top":-1,"last_reply_at":-1},"fields":{}},"collectionName":"topics"} [32m19ms[39m
+[2016-05-15 02:20:51.795] [DEBUG] cheese - Cache set {"deleted":false}pages [32m2ms[39m
+[2016-05-15 02:20:51.797] [DEBUG] cheese - [35mMONGO[39m topics.[34mfind[39m {"conditions":{"deleted":false,"tab":{"$ne":"job"},"reply_count":0},"options":{"limit":5,"sort":{"create_at":-1},"fields":{}},"collectionName":"topics"} [32m14ms[39m
+[2016-05-15 02:20:51.797] [DEBUG] cheese - [35mMONGO[39m users.[34mfind[39m {"conditions":{"is_block":false},"options":{"limit":10,"sort":{"score":-1}},"collectionName":"users"} [32m16ms[39m
+[2016-05-15 02:20:51.798] [DEBUG] cheese - Cache set no_reply_topics [32m0ms[39m
+[2016-05-15 02:20:51.798] [DEBUG] cheese - Cache set tops [32m0ms[39m
+[2016-05-15 02:20:51.821] [INFO] cheese - Render view index [32m(22ms)[39m
+[2016-05-15 02:20:51.834] [INFO] cheese - Completed 200 [32m(80ms)[39m
+[2016-05-15 03:04:23.494] [INFO] cheese - 
+
+Started 2016-05-14T19:04:23.492Z GET / ::ffff:127.0.0.1
+[2016-05-15 03:04:23.540] [DEBUG] cheese - undefined 'topics.undefined {"conditions":{"deleted":false},"options":{"skip":0,"limit":20,"sort":{"top":-1,"last_reply_at":-1},"fields":{}},"collectionName":"topics"} '
+[2016-05-15 03:04:23.544] [DEBUG] cheese - undefined 'users.undefined {"conditions":{"is_block":false},"options":{"limit":10,"sort":{"score":-1}},"collectionName":"users"} '
+[2016-05-15 03:04:23.545] [DEBUG] cheese - undefined 'topics.undefined {"conditions":{"deleted":false,"tab":{"$ne":"job"},"reply_count":0},"options":{"limit":5,"sort":{"create_at":-1},"fields":{}},"collectionName":"topics"} '
+[2016-05-15 03:04:23.546] [DEBUG] cheese - Cache set tops undefined
+[2016-05-15 03:04:23.546] [DEBUG] cheese - Cache set no_reply_topics undefined
+[2016-05-15 03:04:23.548] [DEBUG] cheese - Cache set {"deleted":false}pages undefined
+[2016-05-15 03:04:23.578] [INFO] cheese - Render view index undefined
+[2016-05-15 03:04:23.587] [INFO] cheese - Completed 200 undefined
+[2016-05-15 03:04:54.317] [INFO] cheese - 
+
+Started 2016-05-14T19:04:54.317Z GET / ::ffff:127.0.0.1
+[2016-05-15 03:04:54.356] [DEBUG] cheese - undefined 'topics.undefined {"conditions":{"deleted":false},"options":{"skip":0,"limit":20,"sort":{"top":-1,"last_reply_at":-1},"fields":{}},"collectionName":"topics"} '
+[2016-05-15 03:04:54.359] [DEBUG] cheese - undefined 'users.undefined {"conditions":{"is_block":false},"options":{"limit":10,"sort":{"score":-1}},"collectionName":"users"} '
+[2016-05-15 03:04:54.361] [DEBUG] cheese - Cache set tops undefined
+[2016-05-15 03:04:54.362] [DEBUG] cheese - Cache set {"deleted":false}pages undefined
+[2016-05-15 03:04:54.364] [DEBUG] cheese - undefined 'topics.undefined {"conditions":{"deleted":false,"tab":{"$ne":"job"},"reply_count":0},"options":{"limit":5,"sort":{"create_at":-1},"fields":{}},"collectionName":"topics"} '
+[2016-05-15 03:04:54.366] [DEBUG] cheese - Cache set no_reply_topics undefined
+[2016-05-15 03:04:54.388] [INFO] cheese - Render view index undefined
+[2016-05-15 03:04:54.399] [INFO] cheese - Completed 200 undefined
+[2016-05-15 03:50:30.219] [INFO] cheese - 
+
+Started 2016-05-14T19:50:30.218Z GET / ::ffff:127.0.0.1
+[2016-05-15 03:50:30.317] [DEBUG] cheese - Cache set {"deleted":false}pages undefined
+[2016-05-15 03:50:30.347] [DEBUG] cheese - undefined 'users.undefined {"conditions":{"is_block":false},"options":{"limit":10,"sort":{"score":-1}},"collectionName":"users"} '
+[2016-05-15 03:50:30.353] [DEBUG] cheese - Cache set tops undefined
+[2016-05-15 03:50:30.385] [DEBUG] cheese - undefined 'topics.undefined {"conditions":{"deleted":false},"options":{"skip":0,"limit":20,"sort":{"top":-1,"last_reply_at":-1},"fields":{}},"collectionName":"topics"} '
+[2016-05-15 03:50:30.387] [DEBUG] cheese - undefined 'topics.undefined {"conditions":{"deleted":false,"tab":{"$ne":"job"},"reply_count":0},"options":{"limit":5,"sort":{"create_at":-1},"fields":{}},"collectionName":"topics"} '
+[2016-05-15 03:50:30.388] [DEBUG] cheese - Cache set no_reply_topics undefined
+[2016-05-15 03:50:30.420] [INFO] cheese - Render view index undefined
+[2016-05-15 03:50:30.428] [INFO] cheese - Completed 200 undefined

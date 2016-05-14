@@ -1,6 +1,6 @@
 var request = require('supertest');
-var app = require('../app');
-var config = require('../config');
+var app = require('../lib/app');
+var config = require('../lib/config');
 
 var assert = require('assert');
 
