@@ -75,6 +75,7 @@ $ gulp coveralls
 ## License
 
 Apache-2.0 © [calidion](blog.3gcneta.com)
+MIT (旧代码)
 
 
 [npm-image]: https://badge.fury.io/js/forim.svg
