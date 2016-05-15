@@ -46,12 +46,11 @@
 </div>
 
 <!-- markdown editor -->
-<%- Loader('/public/editor.min.js')
-.js('/public/libs/editor/editor.js')
-.js('/public/libs/webuploader/webuploader.withoutimage.js')
-.js('/public/libs/editor/ext.js')
-.done(assets, config.site_static_host, config.mini_assets)
-%>
+<script src="/public/editor.min.js"></script>
+<script src="/public/libs/editor/editor.js"></script>
+<script src="/public/libs/webuploader/webuploader.withoutimage.js"></script>
+<script src="/public/libs/editor/ext.js"></script>
+<script src="/public/libs/editor/ext.js"></script>
 <script>
   (function () {
     var editor = new Editor();

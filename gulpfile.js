@@ -8,6 +8,13 @@ var istanbul = require('gulp-istanbul');
 var nsp = require('gulp-nsp');
 var plumber = require('gulp-plumber');
 var coveralls = require('gulp-coveralls');
+var less = require('gulp-less');
+
+gulp.task('less', function() {
+  gulp.src('public/**/*.less')
+    .pipe(less())
+    .pipe(gulp.dest('public/'));
+});
 
 gulp.task('static', function() {
   return gulp.src('lib/**/*.js')
@@ -16,30 +23,30 @@ gulp.task('static', function() {
       "rules": {
         "camelcase": 0,
         "space-before-function-paren": 0,
-        "object-curly-spacing":0,
+        "object-curly-spacing": 0,
         "no-multi-spaces": 0,
-        "new-cap" :0,
-        "handle-callback-err" : 0,
-        "spaced-comment":0,
-        "no-else-return":0,
-        "padded-blocks":0,
+        "new-cap": 0,
+        "handle-callback-err": 0,
+        "spaced-comment": 0,
+        "no-else-return": 0,
+        "padded-blocks": 0,
         "no-multiple-empty-lines": 0,
         "comma-dangle": 0,
         "no-unused-vars": 0,
-        "indent":0,
-        "brace-style":0,
+        "indent": 0,
+        "brace-style": 0,
         "no-extra-semi": 0,
-        "quote-props":0,
-        "array-bracket-spacing":0,
+        "quote-props": 0,
+        "array-bracket-spacing": 0,
         "semi": 0,
-        "no-redeclare":0,
-        "dot-notation":0,
-        "no-use-before-define":0,
-        "no-warning-comments":0,
-        "key-spacing":0,
+        "no-redeclare": 0,
+        "dot-notation": 0,
+        "no-use-before-define": 0,
+        "no-warning-comments": 0,
+        "key-spacing": 0,
         "no-negated-condition": 0,
-        "no-unneeded-ternary":0,
-        "no-regex-spaces":0
+        "no-unneeded-ternary": 0,
+        "no-regex-spaces": 0
       }
     }))
     .pipe(eslint.format())
@@ -92,4 +99,4 @@ gulp.task('coveralls', ['test'], function() {
 });
 
 gulp.task('prepublish', ['nsp']);
-gulp.task('default', ['static', 'test', 'coveralls']);
+gulp.task('default', ['less', 'static', 'test', 'coveralls']);
