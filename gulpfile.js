@@ -100,4 +100,7 @@ gulp.task('coveralls', ['test'], function() {
 
 // gulp.task('prepublish', ['nsp']);
 gulp.task('prepublish');
-gulp.task('default', ['less', 'static', 'test', 'coveralls']);
+gulp.task('default', ['less', 'static', 'test', 'coveralls'], function() {
+  console.log('force to exit');
+  process.exit();
+});
