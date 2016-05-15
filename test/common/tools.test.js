@@ -7,7 +7,7 @@
 /**
  * Module dependencies.
  */
-var tools = require('../../common/tools');
+var tools = require('../../lib/common/tools');
 
 describe('test/common/tools.test.js', function () {
   it('should format date', function () {

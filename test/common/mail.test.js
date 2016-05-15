@@ -1,4 +1,4 @@
-var mail = require('../../common/mail');
+var mail = require('../../lib/common/mail');
 
 describe('test/common/mail.test.js', function () {
   describe('sendActiveMail', function () {

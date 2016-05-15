@@ -1,5 +1,5 @@
 var request = require('supertest');
-var app = require('../../app');
+var app = require('../../lib/app');
 var support = require('../support/support');
 
 describe('test/controllers/message.test.js', function () {

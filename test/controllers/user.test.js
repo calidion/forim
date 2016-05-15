@@ -9,14 +9,14 @@
  */
 
 var should = require('should');
-var app = require('../../app');
+var app = require('../../lib/app');
 var request = require('supertest')(app);
 var mm = require('mm');
 var support = require('../support/support');
 var _ = require('lodash');
 var pedding = require('pedding');
-var UserProxy = require('../../proxy/user');
-var ReplyModel = require('../../models').Reply;
+var UserProxy = require('../../lib/proxy/user');
+var ReplyModel = require('../../lib/models').Reply;
 
 describe('test/controllers/user.test.js', function () {
   var testUser;

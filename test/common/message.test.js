@@ -1,14 +1,14 @@
 var should = require('should');
-var app = require('../../app');
+var app = require('../../lib/app');
 var request = require('supertest')(app);
 var mm = require('mm');
 var support = require('../support/support');
 var _ = require('lodash');
 var pedding = require('pedding');
 var multiline = require('multiline');
-var MessageService = require('../../common/message');
+var MessageService = require('../../lib/common/message');
 var eventproxy = require('eventproxy');
-var ReplyProxy = require('../../proxy').Reply;
+var ReplyProxy = require('../../lib/proxy').Reply;
 
 describe('test/common/message.test.js', function () {
   var atUser;

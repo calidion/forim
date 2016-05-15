@@ -5,8 +5,8 @@ var support = require('../support/support');
 var eventproxy = require('eventproxy');
 var _ = require('lodash');
 
-var at = require('../../common/at');
-var message = require('../../common/message');
+var at = require('../../lib/common/at');
+var message = require('../../lib/common/message');
 var multiline = require('multiline');
 var pedding = require('pedding');
 

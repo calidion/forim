@@ -9,8 +9,8 @@
  */
 
 var should = require('should');
-var config = require('../../config');
-var app = require('../../app');
+var config = require('../../lib/config');
+var app = require('../../lib/app');
 var request = require('supertest')(app);
 
 

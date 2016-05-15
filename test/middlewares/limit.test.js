@@ -1,5 +1,5 @@
-var limitMiddleware = require('../../middlewares/limit');
-var app = require('../../app');
+var limitMiddleware = require('../../lib/middlewares/limit');
+var app = require('../../lib/app');
 var supertest;
 var support = require('../support/support');
 var pedding = require('pedding');

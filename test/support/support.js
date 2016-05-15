@@ -1,10 +1,10 @@
-var User = require('../../proxy/user');
-var Topic = require('../../proxy/topic');
-var Reply = require('../../proxy/reply');
+var User = require('../../lib/proxy/user');
+var Topic = require('../../lib/proxy/topic');
+var Reply = require('../../lib/proxy/reply');
 var ready = require('ready');
 var eventproxy = require('eventproxy');
 var utility = require('utility');
-var tools = require('../../common/tools');
+var tools = require('../../lib/common/tools');
 
 function randomInt() {
   return (Math.random() * 10000).toFixed(0);
@@ -70,6 +70,3 @@ ep.all('reply', function (reply) {
   exports.testReply = reply;
   exports.ready(true);
 });
-
-
-

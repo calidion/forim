@@ -1,7 +1,7 @@
-var app = require('../../app');
+var app = require('../../lib/app');
 var request = require('supertest')(app);
 var support = require('../support/support');
-var ReplyProxy = require('../../proxy/reply');
+var ReplyProxy = require('../../lib/proxy/reply');
 
 describe('test/controllers/reply.test.js', function () {
   before(function (done) {
@@ -147,4 +147,3 @@ describe('test/controllers/reply.test.js', function () {
     });
   });
 });
-

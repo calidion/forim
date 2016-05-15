@@ -1,10 +1,10 @@
-var app = require('../../app');
+var app = require('../../lib/app');
 var request = require('supertest')(app);
 var mm = require('mm');
-var github = require('../../controllers/github');
-var Models = require('../../models');
+var github = require('../../lib/controllers/github');
+var Models = require('../../lib/models');
 var User = Models.User;
-var config = require('../../config');
+var config = require('../../lib/config');
 var support = require('../support/support');
 
 describe('test/controllers/github.test.js', function () {

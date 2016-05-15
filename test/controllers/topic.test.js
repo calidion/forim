@@ -1,12 +1,12 @@
 
 var should = require('should');
-var app = require('../../app');
+var app = require('../../lib/app');
 var request = require('supertest')(app);
 var support = require('../support/support');
 var mm = require('mm');
-var store = require('../../common/store');
+var store = require('../../lib/common/store');
 var pedding = require('pedding');
-var config = require('../../config');
+var config = require('../../lib/config');
 
 
 describe('test/controllers/topic.test.js', function () {

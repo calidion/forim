@@ -9,8 +9,8 @@
  */
 
 var request = require('supertest');
-var app = require('../../app');
-var config = require('../../config');
+var app = require('../../lib/app');
+var config = require('../../lib/config');
 
 describe('test/controllers/rss.test.js', function () {
 
@@ -45,7 +45,7 @@ describe('test/controllers/rss.test.js', function () {
     });
 
     describe('mock `topic.getTopicsByQuery()` error', function () {
-      var topic = require('../../proxy').Topic;
+      var topic = require('../../lib/proxy').Topic;
       var getTopicsByQuery = topic.getTopicsByQuery;
       before(function () {
         topic.getTopicsByQuery = function () {

@@ -1,10 +1,10 @@
 
 
-var app = require('../../../app');
+var app = require('../../../lib/app');
 var request = require('supertest')(app);
 var should = require('should');
 var support = require('../../support/support');
-var config = require('../../../config');
+var config = require('../../../lib/config');
 
 
 describe('test/api/v1/topic.test.js', function () {

@@ -1,4 +1,4 @@
-var Message = require('../../proxy/message');
+var Message = require('../../lib/proxy/message');
 var should = require('should');
 
 describe('test/proxy/message.test.js', function () {

@@ -1,7 +1,7 @@
 var path = require('path');
 var fs = require('fs');
-var storeLocal = require('../../common/store_local');
-var config = require('../../config');
+var storeLocal = require('../../lib/common/store_local');
+var config = require('../../lib/config');
 
 describe('test/common/store_local.test.js', function () {
   it('should upload a file', function (done) {

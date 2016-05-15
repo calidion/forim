@@ -1,13 +1,13 @@
 var should = require('should');
-var app = require('../../app');
+var app = require('../../lib/app');
 var request = require('supertest')(app);
 var mm = require('mm');
 var support = require('../support/support');
 var _ = require('lodash');
 var pedding = require('pedding');
 var multiline = require('multiline');
-var renderHelper = require('../../common/render_helper');
-var config = require('../../config');
+var renderHelper = require('../../lib/common/render_helper');
+var config = require('../../lib/config');
 
 
 describe('test/common/render_helper.test.js', function () {

@@ -1,4 +1,4 @@
-var Reply = require('../../proxy/reply');
+var Reply = require('../../lib/proxy/reply');
 var support = require('../support/support');
 var should = require('should');
 

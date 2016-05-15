@@ -1,6 +1,6 @@
 
 
-var app = require('../../../app');
+var app = require('../../../lib/app');
 var request = require('supertest')(app);
 var support = require('../../support/support');
 var should = require('should');

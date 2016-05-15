@@ -1,15 +1,15 @@
-var app = require('../../app');
+var app = require('../../lib/app');
 var request = require('supertest')(app);
 var mm = require('mm');
-var config = require('../../config');
+var config = require('../../lib/config');
 var passport = require('passport');
-var configMiddleware = require('../../middlewares/conf');
+var configMiddleware = require('../../lib/middlewares/conf');
 var should = require('should');
-var UserProxy = require('../../proxy/user');
-var mailService = require('../../common/mail');
+var UserProxy = require('../../lib/proxy/user');
+var mailService = require('../../lib/common/mail');
 var pedding = require('pedding');
 var utility = require('utility');
-var tools = require('../../common/tools');
+var tools = require('../../lib/common/tools');
 
 describe('test/controllers/sign.test.js', function () {
   var now = +new Date();

@@ -1,4 +1,4 @@
-var cache = require('../../common/cache');
+var cache = require('../../lib/common/cache');
 var should = require('should');
 
 describe('test/common/cache.test.js', function () {

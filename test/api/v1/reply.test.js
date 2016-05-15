@@ -1,4 +1,4 @@
-var app = require('../../../app');
+var app = require('../../../lib/app');
 var request = require('supertest')(app);
 var pedding = require('pedding');
 var support =  require('../../support/support');

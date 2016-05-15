@@ -12,5 +12,4 @@ describe('test/app.test.js', function () {
       done();
     });
   });
-
 });

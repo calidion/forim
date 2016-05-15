@@ -1,5 +1,5 @@
-var conf = require('../../middlewares/conf');
-var config = require('../../config');
+var conf = require('../../lib/middlewares/conf');
+var config = require('../../lib/config');
 
 describe('test/middlewares/conf.test.js', function () {
   it('should alert no github oauth', function (done) {

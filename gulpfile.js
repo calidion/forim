@@ -38,7 +38,8 @@ gulp.task('static', function() {
         "no-warning-comments":0,
         "key-spacing":0,
         "no-negated-condition": 0,
-        "no-unneeded-ternary":0
+        "no-unneeded-ternary":0,
+        "no-regex-spaces":0
       }
     }))
     .pipe(eslint.format())
@@ -63,13 +64,14 @@ gulp.task('pre-test', function() {
 gulp.task('test', ['pre-test'], function(cb) {
   var mochaErr;
 
-  gulp.src('test/**/*.js')
+  gulp.src(['test/**/*.js', 'test/**/*.test.js'])
     .pipe(plumber())
     .pipe(mocha({
       reporter: 'spec'
     }))
     .on('error', function(err) {
       mochaErr = err;
+      throw err;
     })
     .pipe(istanbul.writeReports())
     .on('end', function() {
@@ -85,7 +87,6 @@ gulp.task('coveralls', ['test'], function() {
   if (!process.env.CI) {
     return;
   }
-
   return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
     .pipe(coveralls());
 });
