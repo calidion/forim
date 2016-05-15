@@ -8,3 +8,6 @@ node_js:
   - v4
   - '0.12'
   - '0.10'
+
+env:
+  -TRAVIS_ENV=1
