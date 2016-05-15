@@ -31,11 +31,11 @@ QQ群：312685910
 
 ## 最新改进
 
-1. 修改后的版本引入了config文件，你只要修改一下config文件的参数就可以基本上部署成功
-2. 修改了测试用例，使你的定制不会出现问题
-3. 却除了广告，系统更加的纯粹
-4. 删除了部分非开源的软件。如JPUSH的代码。
-
+使用gulp取代Makefile
+删除Loader，使用gulp-less来生成结果文件
+重新组织了目录结构
+添加代码覆盖率
+优化了代码，添加ESLINT
 
 ## 安装部署
 
@@ -69,12 +69,11 @@ $ gulp coveralls
 
 ## 说明
 
-由于差异过大，本项目的源代码可能不会再与原项目合并，
-
+由于差异过大，本项目的源代码可能不会再与原项目合并
 
 ## License
 
-Apache-2.0 © [calidion](blog.3gcneta.com)
+Apache-2.0 © [calidion](blog.3gcneta.com)  
 MIT (旧代码)
 
 
