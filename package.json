@@ -1,6 +1,6 @@
 {
   "name": "forim",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "一个基于node的论坛,im系统,简称forim",
   "homepage": "http://forum.node-weixin.com",
   "author": {
@@ -49,6 +49,7 @@
   "dependencies": {
     "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.1",
+    "bytes": "^2.3.0",
     "colors": "^1.1.2",
     "compression": "^1.6.2",
     "connect-busboy": "0.0.2",
