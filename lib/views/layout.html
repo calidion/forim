@@ -54,7 +54,7 @@
     <% } else if (typeof(pageTitle) !== 'undefined') { %>
       <title><%= pageTitle %>
         -
-        <%= config.name %></title>
+        <%= config.title %></title>
     <% } else { %>
       <title><%= config.description %></title>
     <% } %>
@@ -67,7 +67,7 @@
       <div class='navbar-inner'>
         <div class='container'>
           <a class='brand' href='/'>
-            Node Weixin
+            <%= config.title %>
           </a>
 
           <form id='search_form' class='navbar-search' action="/search">
