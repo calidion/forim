@@ -18,6 +18,8 @@ Node Forum Im 是基于[node club](https://github.com/cnodejs/nodeclub)修改的
 4. 开发者可以自己维护
 5. 全面的API设计
 6. 支持命令行运行
+7. 去除所有原有的非开源服务
+8. 考虑广告链接可配置
 
 ## 技术栈
 
