@@ -31,11 +31,14 @@ QQ群：312685910
 
 ## 最新改进
 
-使用gulp取代Makefile
-删除Loader，使用gulp-less来生成结果文件
-重新组织了目录结构
-添加代码覆盖率
-优化了代码，添加ESLINT
+使用gulp取代Makefile  
+删除Loader，使用gulp-less来生成结果文件  
+重新组织了目录结构  
+添加代码覆盖率  
+优化了代码，添加ESLINT  
+
+## 支持Nodejs版本
+全部正式版本(V6,V5,V4,V0.12,V0.10)
 
 ## 安装部署
 
