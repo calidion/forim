@@ -6,7 +6,7 @@ Node Forum IM
 ## 介绍
 
 Node Forum Im 是基于[node club](https://github.com/cnodejs/nodeclub)修改的社区即时通讯系统。
-实例布署在[forum.node-weixin.com](http://forum.node-weixin.com)
+实例布署在[forum.node-weixin.com](http://forum.webfullstack.me)
 
 ## 目标
 
@@ -16,6 +16,10 @@ Node Forum Im 是基于[node club](https://github.com/cnodejs/nodeclub)修改的
 2. 支持围绕话题讨论,即标签化话题，去中心化
 3. 支持订阅自己喜欢的话题
 4. 开发者可以自己维护
+5. 全面的API设计
+6. 支持命令行运行
+7. 去除所有原有的非开源服务
+8. 考虑广告链接可配置
 
 ## 技术栈
 
@@ -39,6 +43,7 @@ QQ群：312685910
 
 ## 支持Nodejs版本
 全部正式版本(V6,V5,V4,V0.12,V0.10)
+V0.10将慢慢不再支持。
 
 ## 安装部署
 
