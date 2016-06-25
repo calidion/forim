@@ -10,17 +10,17 @@ var plumber = require('gulp-plumber');
 var coveralls = require('gulp-coveralls');
 var less = require('gulp-less');
 
-gulp.task('less', function() {
+gulp.task('less', function () {
   gulp.src('public/**/*.less')
     .pipe(less())
     .pipe(gulp.dest('public/'));
 });
 
-gulp.task('static', function() {
+gulp.task('static', function () {
   return gulp.src('lib/**/*.js')
     .pipe(excludeGitignore())
     .pipe(eslint({
-      "rules": {
+      rules: {
         "camelcase": 0,
         "space-before-function-paren": 0,
         "object-curly-spacing": 0,
@@ -53,13 +53,13 @@ gulp.task('static', function() {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('nsp', function(cb) {
+gulp.task('nsp', function (cb) {
   nsp({
     package: path.resolve('package.json')
   }, cb);
 });
 
-gulp.task('pre-test', function() {
+gulp.task('pre-test', function () {
   return gulp.src('lib/**/*.js')
     .pipe(excludeGitignore())
     .pipe(istanbul({
@@ -68,7 +68,7 @@ gulp.task('pre-test', function() {
     .pipe(istanbul.hookRequire());
 });
 
-gulp.task('test', ['pre-test'], function(cb) {
+gulp.task('test', ['pre-test'], function (cb) {
   var mochaErr;
 
   gulp.src(['test/**/*.js', 'test/**/*.test.js'])
@@ -76,21 +76,21 @@ gulp.task('test', ['pre-test'], function(cb) {
     .pipe(mocha({
       reporter: 'spec'
     }))
-    .on('error', function(err) {
+    .on('error', function (err) {
       mochaErr = err;
       throw err;
     })
     .pipe(istanbul.writeReports())
-    .on('end', function() {
+    .on('end', function () {
       cb(mochaErr);
     });
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', function () {
   gulp.watch(['lib/**/*.js', 'test/**'], ['test']);
 });
 
-gulp.task('coveralls', ['test'], function() {
+gulp.task('coveralls', ['test'], function () {
   if (!process.env.CI) {
     return;
   }
@@ -100,6 +100,6 @@ gulp.task('coveralls', ['test'], function() {
 
 // gulp.task('prepublish', ['nsp']);
 gulp.task('prepublish');
-gulp.task('default', ['less', 'static', 'test', 'coveralls'], function() {
+gulp.task('default', ['less', 'static', 'test', 'coveralls'], function () {
   process.exit();
 });
