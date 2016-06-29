@@ -1,16 +1,41 @@
 var http = require('supertest');
 var assert = require('assert');
+var user = require('../../../lib/v2/routers/user');
 var app = require('../../../lib/app');
-var v2 = require('../../../lib/v2');
-var config = require('../../../lib/config');
 
 describe('v2 users', function () {
-  it('should init waterline', function (done) {
-    v2(config.waterline, app, function (error, ontology) {
-      assert(!error);
-      assert(ontology.collections.user);
-      done();
-    });
+  var id = 1;
+  it('should allCallback', function (done) {
+    var allCallback = user.allCallback;
+    var res = {
+      errorize: function (error, data) {
+        assert(error === 'hood');
+        assert(data.error);
+        assert(data.data === undefined);
+        done();
+      },
+      errors: {
+        Failed: 'hood'
+      }
+    };
+    var cb = allCallback(res);
+    cb(true);
+  });
+
+  it('should failed', function (done) {
+    var failed = user.failed;
+    var res = {
+      errorize: function (error, data) {
+        assert(error === 'hood');
+        assert(data);
+        done();
+      },
+      errors: {
+        Failed: 'hood'
+      }
+    };
+    var cb = failed(res);
+    cb(true);
   });
 
   it('should get user list', function (done) {
@@ -25,17 +50,33 @@ describe('v2 users', function () {
         assert(data.page >= 0);
         assert(data.count >= 0);
         assert(data.results.length >= 0);
+        if (data.results.length >= 1) {
+          id = data.results[0].id;
+        }
         done();
       });
   });
 
-  it('should get user 1', function (done) {
+  it('should get user info', function (done) {
     var req = http(app);
-    req.get('/v2/users/1')
+    req.get('/v2/users/' + id)
       .end(function (error, res) {
         assert(!error);
         var body = res.body;
-        console.log(body);
+        assert(body.code === 0);
+        assert(body.data);
+        done();
+      });
+  });
+
+  it('should not get user', function (done) {
+    var req = http(app);
+    req.get('/v2/users/100000')
+      .end(function (error, res) {
+        assert(!error);
+        var body = res.body;
+        assert(body.name === 'NotFound');
+        assert(!body.data);
         done();
       });
   });

@@ -5,15 +5,12 @@ var app = require('../../../lib/app');
 var v2 = require('../../../lib/v2');
 
 describe('v2 waterline', function () {
-  it('should not init waterline', function (done) {
-    waterline({}, function (error, ontology) {
-      assert(!error);
-      assert(ontology.collections.user);
-      done();
-    });
+  it('should exe error', function () {
+    var cb = waterline.callback(null);
+    cb(true);
   });
 
-  it('should not init waterline', function (done) {
+  it('should init waterline', function (done) {
     v2(config.waterline, app, function (error, ontology) {
       assert(!error);
       assert(ontology.collections.user);
