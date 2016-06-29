@@ -13,7 +13,5 @@ var models = require('./models/user.test');
 
 
 describe('forim', function () {
-  // it('should have unit test!', function () {
-  //   assert(false, 'we expected this package author to add actual unit tests.');
-  // });
+
 });
