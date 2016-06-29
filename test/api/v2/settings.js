@@ -1,12 +1,12 @@
 var http = require('supertest');
 var assert = require('assert');
-var user = require('../../../lib/v2/routers/user');
+var settings = require('../../../lib/v2/routers/settings');
 var app = require('../../../lib/app');
 
-describe('v2 users', function () {
+describe('v2 settings', function () {
   var id = 1;
   it('should allCallback', function (done) {
-    var allCallback = user.allCallback;
+    var allCallback = settings.allCallback;
     var res = {
       errorize: function (error, data) {
         assert(error === 'hood');
@@ -23,7 +23,7 @@ describe('v2 users', function () {
   });
 
   it('should failed', function (done) {
-    var failed = user.failed;
+    var failed = settings.failed;
     var res = {
       errorize: function (error, data) {
         assert(error === 'hood');
@@ -38,10 +38,10 @@ describe('v2 users', function () {
     cb(true);
   });
 
-  it('should get user list', function (done) {
+  it('should get settings list', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 1;
     var req = http(app);
-    req.get('/v2/users?limit=10&page=1')
+    req.get('/v2/settings?limit=10&page=1')
       .end(function (error, res) {
         assert(!error);
         var body = res.body;
@@ -58,23 +58,37 @@ describe('v2 users', function () {
       });
   });
 
-  it('should get user info', function (done) {
-    process.env.FORIM_BY_PASS_POLICIES = 1;
-    var req = http(app);
-    req.get('/v2/users/' + id)
-      .end(function (error, res) {
-        assert(!error);
-        var body = res.body;
-        assert(body.code === 0);
-        assert(body.data);
-        done();
-      });
-  });
+  // it('should get settings info', function (done) {
+  //   process.env.FORIM_BY_PASS_POLICIES = 1;
+  //   var req = http(app);
+  //   req.get('/v2/settings/' + id)
+  //     .end(function (error, res) {
+  //       assert(!error);
+  //       var body = res.body;
+  //       assert(body.code === 0);
+  //       assert(body.data);
+  //       done();
+  //     });
+  // });
 
-  it('should not get user', function (done) {
+  // it('should get settings info', function (done) {
+  //   process.env.FORIM_BY_PASS_POLICIES = 1;
+  //   var req = http(app);
+  //   req.get('/v2/settings/' + id)
+  //     .end(function (error, res) {
+  //       assert(!error);
+  //       var body = res.body;
+  //       assert(body.code === 0);
+  //       assert(body.data);
+  //       done();
+  //     });
+  // });
+
+
+  it('should not get settings', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 1;
     var req = http(app);
-    req.get('/v2/users/100000')
+    req.get('/v2/settings/100000')
       .end(function (error, res) {
         assert(!error);
         var body = res.body;
@@ -87,7 +101,7 @@ describe('v2 users', function () {
   it('should get 404', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 0;
     var req = http(app);
-    req.get('/v2/users/100000')
+    req.get('/v2/settings/100000')
       .expect(404)
       .end(done);
   });
