@@ -32,7 +32,6 @@ gulp.task('static', function () {
         "padded-blocks": 0,
         "no-multiple-empty-lines": 0,
         "comma-dangle": 0,
-        "no-unused-vars": 0,
         "indent": 0,
         "brace-style": 0,
         "no-extra-semi": 0,

@@ -14,4 +14,5 @@ describe('forim', function () {
   require('./v2/waterline');
   require('./v2/user');
   require('./v2/settings');
+  require('./v2/express');
 });
