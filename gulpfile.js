@@ -36,7 +36,6 @@ gulp.task('static', function () {
         "indent": 0,
         "brace-style": 0,
         "no-extra-semi": 0,
-        "quote-props": 0,
         "array-bracket-spacing": 0,
         "semi": 0,
         "no-redeclare": 0,
