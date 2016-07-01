@@ -37,11 +37,6 @@
     </div>
   </div>
   <% } %>
-
-  <% if (!current_user || !current_user.isAdvanced) { %>
-    <%- partial('./_ads') %>
-  <% } %>
-
   <% if (typeof(no_reply_topics) !== 'undefined') { %>
   <div class='panel'>
     <div class='header'>
