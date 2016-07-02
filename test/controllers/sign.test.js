@@ -6,7 +6,7 @@ var passport = require('passport');
 var configMiddleware = require('../../lib/middlewares/conf');
 var should = require('should');
 var UserProxy = require('../../lib/proxy/user');
-var mailService = require('../../lib/common/mail');
+var mail2 = require('../../lib/v2/util/mailer');
 var pedding = require('pedding');
 var utility = require('utility');
 var tools = require('../../lib/common/tools');
@@ -44,8 +44,10 @@ describe('test/controllers/sign.test.js', function () {
     it('should sign up a user', function (done) {
       done = pedding(done, 2);
 
-      mm(mailService, 'sendMail', function (data) {
-        data.to.should.match(new RegExp(loginname + '@gmail\\.com'));
+      mm(mail2.user, 'activate', function (to, token, user, cb) {
+        to.should.match(new RegExp(loginname + '@gmail\\.com'));
+        resetKey = token;
+        cb();
         done();
       });
       request.post('/signup')
@@ -102,7 +104,7 @@ describe('test/controllers/sign.test.js', function () {
       request.post('/signin')
       .send({
         name: loginname,
-        pass: '',
+        pass: ''
       })
       .end(function (err, res) {
         res.status.should.equal(422);
@@ -115,9 +117,10 @@ describe('test/controllers/sign.test.js', function () {
       request.post('/signin')
       .send({
         name: loginname,
-        pass: pass,
+        pass: pass
       })
       .end(function (err, res) {
+        console.log(err, res.body);
         res.status.should.equal(403);
         res.text.should.containEql('此帐号还没有被激活，激活链接已发送到');
         done(err);
@@ -181,12 +184,10 @@ describe('test/controllers/sign.test.js', function () {
 
     it('should update search pass', function (done) {
       done = pedding(done, 2);
-      mm(mailService, 'sendMail', function (data) {
-        data.from.should.equal(config.name + ' ' + '<' + config.mail_opts.auth.user + '>');
-        data.to.should.match(new RegExp(loginname));
-        data.subject.should.equal(config.name + '密码重置');
-        data.html.should.match(new RegExp('<p>您好：' + loginname));
-        resetKey = data.html.match(/key=(.+?)&/)[1];
+      mm(mail2.user.password, 'reset', function (to, token, username, cb) {
+        console.log(to, token, username);
+        resetKey = token;
+        cb();
         done();
       });
 
