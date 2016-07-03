@@ -46,6 +46,7 @@
   },
   "repository": "calidion/forim",
   "scripts": {
+    "start": "node lib/index.js",
     "prepublish": "gulp prepublish",
     "test": "gulp"
   },
