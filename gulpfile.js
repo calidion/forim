@@ -76,7 +76,7 @@ gulp.task('test', ['pre-test'], function (cb) {
     .pipe(plumber())
     .pipe(mocha({
       reporter: 'spec',
-      timeout: 10000
+      timeout: 100000
     }))
     .on('error', function (err) {
       mochaErr = err;
