@@ -1,4 +1,5 @@
 'use strict';
+
 var path = require('path');
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
@@ -76,7 +77,7 @@ gulp.task('test', ['pre-test'], function (cb) {
     .pipe(plumber())
     .pipe(mocha({
       reporter: 'spec',
-      timeout: 100000
+      timeout: 10000
     }))
     .on('error', function (err) {
       mochaErr = err;
