@@ -15,27 +15,24 @@
   "keywords": [
     ""
   ],
-  "engines": {
-    "node": ">= 0.12.0"
-  },
   "devDependencies": {
-    "eslint": "^3.0.0",
-    "eslint-config-xo": "^0.15.2",
-    "eslint-config-xo-space": "^0.14.0",
-    "gulp": "^3.9.1",
-    "gulp-coveralls": "^0.1.4",
-    "gulp-eslint": "^2.1.0",
+    "eslint": "^2.1.0",
+    "eslint-config-xo-space": "^0.12.0",
+    "gulp": "^3.9.0",
+    "gulp-coveralls": "^0.1.0",
+    "gulp-eslint": "^2.0.0",
     "gulp-exclude-gitignore": "^1.0.0",
-    "gulp-istanbul": "^1.0.0",
+    "gulp-istanbul": "^0.10.3",
     "gulp-less": "^3.1.0",
-    "gulp-mocha": "^2.2.0",
-    "gulp-nsp": "^2.4.1",
-    "gulp-plumber": "^1.1.0",
-    "mm": "1.3.0",
+    "gulp-line-ending-corrector": "^1.0.1",
+    "gulp-mocha": "^2.0.0",
+    "gulp-nsp": "^2.1.0",
+    "gulp-plumber": "^1.0.0",
+    "mm": "^1.2.0",
     "nock": "^8.0.0",
     "pedding": "^1.0.0",
     "ready": "^0.1.1",
-    "should": "^9.0.2",
+    "should": "^8.3.1",
     "supertest": "^1.2.0"
   },
   "eslintConfig": {
@@ -46,7 +43,6 @@
   },
   "repository": "calidion/forim",
   "scripts": {
-    "start": "node lib/index.js",
     "prepublish": "gulp prepublish",
     "test": "gulp"
   },
@@ -74,12 +70,12 @@
     "express-session": "^1.13.0",
     "file-cloud-uploader": "0.0.5",
     "helmet": "^2.0.0",
-    "ioredis": "^2.0.1",
+    "ioredis": "^1.15.1",
     "loader": "^2.1.1",
     "loader-connect": "^1.0.1",
     "lodash": "^4.12.0",
     "log4js": "^0.6.36",
-    "markdown-it": "^7.0.0",
+    "markdown-it": "^6.0.1",
     "method-override": "^2.3.5",
     "moment": "^2.13.0",
     "mongoose": "^4.4.17",
@@ -103,4 +99,3 @@
     "xss": "^0.2.13"
   }
 }
-
