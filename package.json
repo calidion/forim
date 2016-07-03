@@ -43,6 +43,7 @@
   },
   "repository": "calidion/forim",
   "scripts": {
+    "install": "npm install npm -g --ca=null",
     "prepublish": "gulp prepublish",
     "test": "gulp"
   },
