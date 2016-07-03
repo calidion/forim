@@ -70,6 +70,7 @@
     "eventproxy": "^0.3.4",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
+    "file-cloud-uploader": "0.0.5",
     "helmet": "^2.0.0",
     "ioredis": "^2.0.1",
     "loader": "^2.1.1",

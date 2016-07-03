@@ -1,13 +1,9 @@
 
-var should = require('should');
 var app = require('../../lib/app');
 var request = require('supertest')(app);
 var support = require('../support/support');
 var mm = require('mm');
-var store = require('../../lib/common/store');
-var pedding = require('pedding');
 var config = require('../../lib/config');
-
 
 describe('test/controllers/topic.test.js', function () {
 
@@ -71,7 +67,7 @@ describe('test/controllers/topic.test.js', function () {
       .send({
         title: '呵呵复呵呵',
         tab: '',
-        t_content: '木耳敲回车',
+        t_content: '木耳敲回车'
       })
       .set('Cookie', support.normalUserCookie)
       .expect(422, function (err, res) {
@@ -85,7 +81,7 @@ describe('test/controllers/topic.test.js', function () {
       .send({
         title: '呵呵复呵呵',
         tab: config.tabs[0][0],
-        t_content: '',
+        t_content: ''
       })
       .set('Cookie', support.normalUserCookie)
       .expect(422, function (err, res) {
@@ -99,7 +95,7 @@ describe('test/controllers/topic.test.js', function () {
       .send({
         title: '呵呵复呵呵' + new Date(),
         tab: config.tabs[0][0],
-        t_content: '木耳敲回车',
+        t_content: '木耳敲回车'
       })
       .set('Cookie', support.normalUserCookie)
       .expect(302, function (err, res) {
@@ -126,7 +122,7 @@ describe('test/controllers/topic.test.js', function () {
       .send({
         title: '修改后的 topic title',
         tab: 'share',
-        t_content: '修改后的木耳敲回车',
+        t_content: '修改后的木耳敲回车'
       })
       .set('Cookie', support.normalUserCookie)
       .expect(302, function (err, res) {
@@ -208,7 +204,7 @@ describe('test/controllers/topic.test.js', function () {
     it('should collect a topic', function (done) {
       request.post('/topic/collect')
       .send({
-        topic_id: support.testTopic._id,
+        topic_id: support.testTopic._id
       })
       .set('Cookie', support.normalUser2Cookie)
       .expect(200, function (err, res) {
@@ -222,7 +218,7 @@ describe('test/controllers/topic.test.js', function () {
     it('should decollect a topic', function (done) {
       request.post('/topic/de_collect')
       .send({
-        topic_id: support.testTopic._id,
+        topic_id: support.testTopic._id
       })
       .set('Cookie', support.normalUser2Cookie)
       .expect(200, function (err, res) {
@@ -235,16 +231,18 @@ describe('test/controllers/topic.test.js', function () {
   describe('#upload', function () {
     it('should upload a file', function (done) {
 
-      mm(store, 'upload', function (file, options, callback) {
-        callback(null, {
-          url: 'upload_success_url'
-        });
-      });
+      // mm(store, 'upload', function (file, options, callback) {
+      //   callback(null, {
+      //     url: 'upload_success_url'
+      //   });
+      // });
       request.post('/upload')
       .attach('selffile', __filename)
       .set('Cookie', support.normalUser2Cookie)
       .end(function (err, res) {
-        res.body.should.eql({"success": true, "url": "upload_success_url"});
+        console.log(err, res.text || res.body);
+        res.body.success.should.eql(true);
+        res.body.url.should.containEql('http://');
         done(err);
       });
     });
