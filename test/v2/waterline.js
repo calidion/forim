@@ -11,7 +11,7 @@ describe('v2 waterline', function () {
   });
 
   it('should init waterline', function (done) {
-    v2(config.waterline, app, function (error, ontology) {
+    v2(config.waterline.dev, app, function (error, ontology) {
       assert(!error);
       assert(ontology.collections.user);
       done();

@@ -53,7 +53,7 @@ describe('v2 settings', function () {
       .end(function (error, res) {
         assert(!error);
         var body = res.body;
-        console.log(body.data);
+        console.log(body);
         assert(body.code === 0);
         assert(body.data);
         assert(body.data.id);
@@ -97,7 +97,7 @@ describe('v2 settings', function () {
           hello: 'world'
         })
       })
-      .expect(403)
+      .expect(302)
       .end(done);
   });
 
