@@ -42,7 +42,6 @@ gulp.task('static', function () {
         "no-extra-semi": 0,
         "array-bracket-spacing": 0,
         "semi": 0,
-        "no-redeclare": 0,
         "dot-notation": 0,
         "no-use-before-define": 0,
         "no-warning-comments": 0,

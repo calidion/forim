@@ -53,7 +53,6 @@ describe('v2 settings', function () {
       .end(function (error, res) {
         assert(!error);
         var body = res.body;
-        console.log(body);
         assert(body.code === 0);
         assert(body.data);
         assert(body.data.id);
@@ -125,7 +124,6 @@ describe('v2 settings', function () {
         var body = res.body;
         assert(body.code === 0);
         var data = body.data;
-        console.log(data);
         assert(data.total >= 1);
         assert(data.page >= 1);
         assert(data.count >= 1);

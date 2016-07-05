@@ -6,7 +6,7 @@ var fs = require('fs');
 
 var filePath = path.resolve(__dirname, './fixtures/cert.p12');
 
-describe('v2 weixin', function () {
+describe('v2 weixin settings', function () {
   it('should set app config', function (done) {
     request(express)
       .post('/weixin/config/app')
@@ -55,7 +55,7 @@ describe('v2 weixin', function () {
       .expect(200)
       .end(function (error, res) {
         assert.equal(true, !error);
-        console.log(res.body);
+
         assert.equal(true, res.body.data.state === 'state');
         assert.equal(true, res.body.data.scope === 0);
         done();
@@ -68,7 +68,6 @@ describe('v2 weixin', function () {
       .expect(200)
       .end(function (error, res) {
         assert.equal(true, !error);
-        console.log(res.body);
         assert.equal(true, res.body.data !== null);
         assert.equal(true, res.body.data.state === 'state');
         assert.equal(true, res.body.data.scope === 0);
@@ -102,7 +101,7 @@ describe('v2 weixin', function () {
       .expect(200)
       .end(function (error, res) {
         assert.equal(true, !error);
-        console.log(res.body);
+
         assert.deepEqual({
           code: 0,
           name: 'Success',
@@ -122,7 +121,7 @@ describe('v2 weixin', function () {
       .expect(200)
       .end(function (error, res) {
         assert.equal(true, !error);
-        console.log(res.body);
+
         assert.deepEqual({
           code: 0,
           name: 'Success',
@@ -139,7 +138,7 @@ describe('v2 weixin', function () {
       .expect(200)
       .end(function (error, res) {
         assert.equal(true, !error);
-        console.log(res.body);
+
         assert.deepEqual({
           code: 0,
           name: 'Success',
@@ -160,7 +159,7 @@ describe('v2 weixin', function () {
       .expect(200)
       .end(function (error, res) {
         assert.equal(true, !error);
-        console.log(res.body);
+
         assert.deepEqual({
           code: 0,
           name: 'Success',
@@ -177,7 +176,7 @@ describe('v2 weixin', function () {
       .expect(200)
       .end(function (error, res) {
         assert.equal(true, !error);
-        console.log(res.body);
+
         assert.deepEqual({
           code: 0,
           name: 'Success',
@@ -197,7 +196,7 @@ describe('v2 weixin', function () {
       .expect(200)
       .end(function (error, res) {
         assert.equal(true, !error);
-        console.log(res.body);
+
         assert.deepEqual({
           code: 0,
           name: 'Success',
@@ -224,7 +223,7 @@ describe('v2 weixin', function () {
       .expect(200)
       .end(function (error, res) {
         assert.equal(true, !error);
-        console.log(res.body);
+
         assert.deepEqual({
           code: 0,
           name: 'Success',
@@ -253,7 +252,7 @@ describe('v2 weixin', function () {
       .end(function (error, res) {
         // var content = fs.readFileSync(__dirname + '/fixtures/cert.p12');
         assert.equal(true, !error);
-        console.log(res.body);
+
         assert.deepEqual({
           code: 0,
           name: 'Success',
@@ -273,7 +272,7 @@ describe('v2 weixin', function () {
       .end(function (error, res) {
         var content = fs.readFileSync(filePath);
         assert.equal(true, !error);
-        console.log(res.body);
+
         assert.deepEqual({
           code: 0,
           name: 'Success',
@@ -291,7 +290,7 @@ describe('v2 weixin', function () {
       .end(function (error, res) {
         var content = fs.readFileSync(filePath);
         assert.equal(true, !error);
-        console.log(res.body);
+
         assert.deepEqual({
           code: 0,
           name: 'Success',

@@ -120,7 +120,6 @@ describe('test/controllers/sign.test.js', function () {
         pass: pass
       })
       .end(function (err, res) {
-        console.log(err, res.body);
         res.status.should.equal(403);
         res.text.should.containEql('此帐号还没有被激活，激活链接已发送到');
         done(err);
@@ -185,7 +184,6 @@ describe('test/controllers/sign.test.js', function () {
     it('should update search pass', function (done) {
       done = pedding(done, 2);
       mm(mail2.user.password, 'reset', function (to, token, username, cb) {
-        console.log(to, token, username);
         resetKey = token;
         cb();
         done();

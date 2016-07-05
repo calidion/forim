@@ -240,7 +240,6 @@ describe('test/controllers/topic.test.js', function () {
       .attach('selffile', __filename)
       .set('Cookie', support.normalUser2Cookie)
       .end(function (err, res) {
-        console.log(err, res.text || res.body);
         res.body.success.should.eql(true);
         res.body.url.should.containEql('http://');
         done(err);
