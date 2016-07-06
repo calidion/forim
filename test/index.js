@@ -17,8 +17,8 @@ describe('forim', function () {
   require('./v2/express');
   require('./v2/mailer');
   require('./v2/weixin/settings');
-  require('./v2/weixin/api');
   require('./v2/weixin/pages');
+  require('./v2/weixin/api');
   require('./v2/weixin/settings.func');
 
 });

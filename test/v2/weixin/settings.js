@@ -3,10 +3,12 @@ var request = require('supertest');
 var assert = require('assert');
 var path = require('path');
 var fs = require('fs');
+var cache = require('./cache');
 
 var filePath = path.resolve(__dirname, './fixtures/cert.p12');
 
 describe('v2 weixin settings', function () {
+  var cookies;
   it('should set app config', function (done) {
     request(express)
       .post('/weixin/config/app')
@@ -17,6 +19,8 @@ describe('v2 weixin settings', function () {
       })
       .expect(200)
       .end(function (error, res) {
+        cookies = res.headers['set-cookie'];
+        cache.cookies = cookies;
         assert.equal(true, !error);
         assert.deepEqual({
           code: 0,
@@ -30,9 +34,11 @@ describe('v2 weixin settings', function () {
   });
 
   it('should get app config', function (done) {
-    request(express)
-      .get('/weixin/config/app')
-      .expect(200)
+    var req = request(express)
+      .get('/weixin/config/app');
+    req.cookies = cookies;
+
+    req.expect(200)
       .end(function (error, res) {
         assert.equal(true, !error);
         assert.deepEqual({
@@ -46,13 +52,13 @@ describe('v2 weixin settings', function () {
   });
 
   it('should set oauth config', function (done) {
-    request(express)
-      .post('/weixin/config/oauth')
-      .send({
-        state: 'state',
-        scope: 0
-      })
-      .expect(200)
+    var req = request(express)
+      .post('/weixin/config/oauth');
+    req.cookies = cookies;
+    req.send({
+      state: 'state',
+      scope: 0
+    }).expect(200)
       .end(function (error, res) {
         assert.equal(true, !error);
 
@@ -63,9 +69,10 @@ describe('v2 weixin settings', function () {
   });
 
   it('should get oauth config', function (done) {
-    request(express)
-      .get('/weixin/config/oauth')
-      .expect(200)
+    var req = request(express)
+      .get('/weixin/config/oauth');
+    req.cookies = cookies;
+    req.expect(200)
       .end(function (error, res) {
         assert.equal(true, !error);
         assert.equal(true, res.body.data !== null);
@@ -77,12 +84,13 @@ describe('v2 weixin settings', function () {
 
 
   it('should set merchant config', function (done) {
-    request(express)
-      .post('/weixin/config/merchant')
-      .send({
-        id: 'id',
-        key: 'key'
-      })
+    var req = request(express)
+      .post('/weixin/config/merchant');
+    req.cookies = cookies;
+    req.send({
+      id: 'id',
+      key: 'key'
+    })
       .expect(200)
       .end(function (error, res) {
         assert.equal(true, !error);
@@ -96,8 +104,10 @@ describe('v2 weixin settings', function () {
       });
   });
   it('should get merchant config', function (done) {
-    request(express)
-      .get('/weixin/config/merchant')
+    var req = request(express)
+      .get('/weixin/config/merchant');
+    req.cookies = cookies;
+    req
       .expect(200)
       .end(function (error, res) {
         assert.equal(true, !error);
@@ -113,8 +123,10 @@ describe('v2 weixin settings', function () {
   });
 
   it('should set message config', function (done) {
-    request(express)
-      .post('/weixin/config/message')
+    var req = request(express)
+      .post('/weixin/config/message');
+    req.cookies = cookies;
+    req
       .send({
         aes: 'aes'
       })
@@ -133,8 +145,10 @@ describe('v2 weixin settings', function () {
   });
 
   it('should get message config', function (done) {
-    request(express)
-      .get('/weixin/config/message')
+    var req = request(express)
+      .get('/weixin/config/message');
+    req.cookies = cookies;
+    req
       .expect(200)
       .end(function (error, res) {
         assert.equal(true, !error);
@@ -150,8 +164,10 @@ describe('v2 weixin settings', function () {
   });
 
   it('should set server config', function (done) {
-    request(express)
-      .post('/weixin/config/server')
+    var req = request(express)
+      .post('/weixin/config/server');
+    req.cookies = cookies;
+    req
       .send({
         host: 'localhost',
         prefix: 'weixin'
@@ -171,8 +187,10 @@ describe('v2 weixin settings', function () {
   });
 
   it('should get server config', function (done) {
-    request(express)
-      .get('/weixin/config/server')
+    var req = request(express)
+      .get('/weixin/config/server');
+    req.cookies = cookies;
+    req
       .expect(200)
       .end(function (error, res) {
         assert.equal(true, !error);
@@ -188,8 +206,10 @@ describe('v2 weixin settings', function () {
   });
 
   it('should set urls config', function (done) {
-    request(express)
-      .post('/weixin/config/urls')
+    var req = request(express)
+      .post('/weixin/config/urls');
+    req.cookies = cookies;
+    req
       .send({
         url: 'http://localhost/weixin'
       })
@@ -218,8 +238,10 @@ describe('v2 weixin settings', function () {
   });
 
   it('should get urls config', function (done) {
-    request(express)
-      .get('/weixin/config/urls')
+    var req = request(express)
+      .get('/weixin/config/urls');
+    req.cookies = cookies;
+    req
       .expect(200)
       .end(function (error, res) {
         assert.equal(true, !error);
@@ -245,8 +267,10 @@ describe('v2 weixin settings', function () {
   });
 
   it('should set certificate without pfx', function (done) {
-    request(express)
-      .post('/weixin/config/certificate')
+    var req = request(express)
+      .post('/weixin/config/certificate');
+    req.cookies = cookies;
+    req
       .field('pfxKey', 'key')
       .expect(200)
       .end(function (error, res) {
@@ -264,8 +288,10 @@ describe('v2 weixin settings', function () {
   });
 
   it('should set certificate config', function (done) {
-    request(express)
-      .post('/weixin/config/certificate')
+    var req = request(express)
+      .post('/weixin/config/certificate');
+    req.cookies = cookies;
+    req
       .field('pfxKey', 'key')
       .attach('pfx', filePath)
       .expect(200)
@@ -284,8 +310,10 @@ describe('v2 weixin settings', function () {
   });
 
   it('should get certificate config', function (done) {
-    request(express)
-      .get('/weixin/config/certificate')
+    var req = request(express)
+      .get('/weixin/config/certificate');
+    req.cookies = cookies;
+    req
       .expect(200)
       .end(function (error, res) {
         var content = fs.readFileSync(filePath);
@@ -297,6 +325,22 @@ describe('v2 weixin settings', function () {
           message: '成功！',
           data: { pfxKey: 'key', pfx: content.toString('base64') }
         }, res.body);
+        done();
+      });
+  });
+
+  it('should get setting id', function (done) {
+    var req = request(express).post('/v2/settings/user');
+    req.cookies = cookies;
+    req.field('action', 'id')
+      .field('key', '1')
+      .end(function (error, res) {
+        assert(!error);
+        var body = res.body;
+        console.log(body);
+        cache.id = body.data.id;
+        assert(body.code === 0);
+        assert(cache.id);
         done();
       });
   });

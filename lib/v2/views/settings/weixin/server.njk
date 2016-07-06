@@ -2,29 +2,27 @@
 
 {% block main %} 
 <h4 class="text-center">服务器设置</h4>
-{% if updated %}
-<div class="alert alert-success" role="alert" ng-show="updated">更新成功!</div>
-{% endif %}
-
+<div class="alert alert-success hidden" role="alert">更新成功!</div>
    <form class="form-horizontal server" method="post">
      <div class="form-group">
        <label for="host" class="col-sm-2 control-label">域名(如:weixin.qq.com)</label>
        <div class="col-sm-10">
-       <input type="text" name="host" ng-model="server.host" class="form-control" id="host"
-              value="http://localhost/"
+       <input type="text" name="host" class="form-control" id="host"
+              value="{{data.host}}"
               placeholder="请配置您的主机域名">
        </div>
      </div>
      <div class="form-group">
        <label for="prefix" class="col-sm-2 control-label">前缀</label>
        <div class="col-sm-10">
-       <input type="text" name="prefix" ng-model="server.prefix" class="form-control" id="host"
-              value="prefix"
+       <input type="text" name="prefix" class="form-control" id="host"
+              value="{{data.prefix}}"
               placeholder="请配置您的主机域名">
        </div>
      </div>
-     <button type="submit" class="btn btn-default btn-block btn-success"  ng-click="set('server')">提交</button>
-     <hr/>
+  <div class="text-center">
+      <button type="submit" class="btn btn-danger">提交</button>
+  </div>
    </form>
    
 {% endblock %}

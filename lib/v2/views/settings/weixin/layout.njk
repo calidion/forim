@@ -46,6 +46,50 @@
         {% block main %}
         <h3>功能尚未完成,请耐心等等待</h3>
         {% endblock %}
+        {% block js %}
+            <script>
+$('document').ready(function () {
+  console.log('ready');
+
+  $('form.{{type}}').submit(function (e) {
+    e.preventDefault();
+  });
+  $('button[type=submit]').click(function (e) {
+    e.preventDefault();
+    var url = '/weixin/config/{{type}}';
+    // var type = '{{type}}';
+    var form = $('form.{{type}}')[0];
+    var formData = new FormData(form);
+    $.ajax({
+      url: url,
+      type: 'post',
+      processData: false,
+      contentType: false,
+      data: formData,
+      dataType: 'json',
+      success: function (data) {
+        if (data.code) {
+          console.log('提交微信配置出错:' + data.message);
+          return;
+        }
+        console.log('提交成功');
+        $('div.alert[role=alert]').removeClass('hidden');
+        $('div.alert[role=alert]').show();
+        setTimeout(function() {
+          $('div.alert[role=alert]').hide();
+        }, 3000);
+      },
+      error: function (jXHR, textStatus, errorThrown) {
+        console.log(errorThrown);
+      }
+    });
+    return false;
+  });
+});
+
+
+            </script>
+        {% endblock %}
         </div>
       </div>
     </div>

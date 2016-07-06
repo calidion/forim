@@ -6,6 +6,21 @@ var app = require('../../lib/app');
 describe('v2 settings', function () {
   var id;
   var one;
+  it('should clear settings', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 1;
+    var req = http(app);
+    req.post('/v2/settings')
+      .send({
+        action: 'delete'
+      })
+      .end(function (error, res) {
+        assert(!error);
+        var body = res.body;
+        assert(body.code === 0);
+        done();
+      });
+  });
+
   it('should allCallback', function (done) {
     var allCallback = settings.settings.__allCallback;
     var res = {

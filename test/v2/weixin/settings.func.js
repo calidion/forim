@@ -1,4 +1,4 @@
-var settings = require('../../../lib/v2/weixin/settings');
+var settings = require('../../../lib/v2/weixin/settings.session');
 var assert = require('assert');
 
 describe('v2 weixin api', function () {
