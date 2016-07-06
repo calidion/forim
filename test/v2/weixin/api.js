@@ -3,7 +3,7 @@ var request = require('supertest');
 describe('v2 weixin api', function () {
   it('should be able to visit api', function (done) {
     request(express)
-      .get('/weixin/api/auth/ack')
+      .get('/weixin/api/123/auth/ack')
       .expect(200)
       .end(done);
   });
