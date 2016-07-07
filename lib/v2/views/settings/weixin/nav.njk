@@ -14,10 +14,10 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav"  style="visibility: hidden">
+      <ul class="nav navbar-nav" >
         <li><a href="/v2/settings/user?app=config">配置</a></li>
-        <li><a href="/v2/settings/user?app=pages">配置</a></li>
-        <li>
+        <li><a href="/v2/settings/user?app=pages">页面</a></li>
+        <li  style="visibility: hidden">
           <a href="/v2/weixin/{{user._id}}/pages/menu"
              class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             功能API
@@ -31,7 +31,7 @@
             <li><a href="/v2/weixin/{{user._id}}/pages/pay">支付</a></li>
           </ul>
         </li>
-        <li>
+        <li  style="visibility: hidden">
           <a href="/v2/settings/user/pages/index">移动页</a>
         </li>
       </ul>
