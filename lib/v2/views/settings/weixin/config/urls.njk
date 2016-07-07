@@ -1,0 +1,61 @@
+{% extends '../layout.njk' %}
+
+{% block main %} 
+<h4 class="text-center">URLs设置</h4>
+<div class="alert alert-success hidden" role="alert" ng-show="updated">更新成功!</div>
+   <form class="form-horizontal urls" method="post">
+     <div class="form-group">
+       <label for="url" class="col-sm-2 control-label">URL</label>
+       <div class="col-sm-10">
+         <input type="text" name="url" class="form-control" id="url"
+              value="{{data.base.url}}"
+              placeholder="请配置您的微信服务器URL">
+       </div>
+     </div>
+     <div class="form-group">
+       <label class="col-sm-2 control-label">服务器校验地址</label>
+       <div class="col-sm-10">
+         <p class="form-control-static"><a href="{{data.auth.ack}}" target="_blank">{{data.auth.ack}}</a></p>
+       </div>
+     </div>
+     <div class="form-group">
+       <label class="col-sm-2 control-label">JSSDK配置请求地址</label>
+       <div class="col-sm-10">
+         <p class="form-control-static"><a href="{{data.jssdk.config}}" target="_blank">{{data.jssdk.config}}</a></p>
+       </div>
+     </div>
+       <div class="form-group">
+         <label class="col-sm-2 control-label">Oauth访问地址</label>
+         <div class="col-sm-10">
+           <p class="form-control-static"><a href="{{data.oauth.access}}" target="_blank">{{data.oauth.access}}</a></p>
+         </div>
+       </div>
+     <div class="form-group">
+       <label class="col-sm-2 control-label">Oauth访问成功请求地址</label>
+       <div class="col-sm-10">
+         <p class="form-control-static"><a href="{{data.oauth.success}}" target="_blank">{{data.oauth.success}}</a></p>
+       </div>
+     </div>
+     <!-- <div class="form-group">
+       <label class="col-sm-2 control-label">Oauth成功重定向页面地址</label>
+       <div class="col-sm-10">
+         <p class="form-control-static"><a href="http://localhost/wx0cf777e00460d938/pages/oauth" target="_blank">http://localhost/wx0cf777e00460d938/pages/oauth</a></p>
+       </div>
+     </div> -->
+     <div class="form-group">
+       <label class="col-sm-2 control-label">支付回调地址</label>
+       <div class="col-sm-10">
+         <p class="form-control-static"><a href="{{data.pay.callback}}" target="_blank">{{data.pay.callback}}</a></p>
+       </div>
+     </div>
+     <!-- <div class="form-group">
+       <label class="col-sm-2 control-label">支付页面</label>
+       <div class="col-sm-10">
+         <p class="form-control-static"><a href="http://localhost/wx0cf777e00460d938/pages/pay" target="_blank">http://localhost/wx0cf777e00460d938/pages/pay</a></p>
+       </div>
+     </div> -->
+  <div class="text-center">
+      <button type="submit" class="btn btn-danger">提交</button>
+  </div>
+   </form>
+{% endblock %}

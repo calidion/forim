@@ -1,0 +1,32 @@
+{% extends '../layout.njk' %}
+
+{% block main %} 
+<h4 class="text-center">支付证书设置</h4>
+<div class="alert alert-success hidden" role="alert">更新成功!</div>
+
+   <form class="form-horizontal certificate" method="post" enctype="multipart/form-data">
+     <div class="form-group">
+       <label for="key" class="col-sm-2 control-label">Key(默认商户ID)</label>
+       <div class="col-sm-10">
+         <input type="text" name="pfxKey" ng-model="certificate.pfxKey" class="form-control" id="pfxKey" placeholder="请指定key" value="{{data.pfxKey}}">
+       </div>
+     </div>
+     <div class="form-group" ng-show="certificate.pfx">
+       <label for="key" class="col-sm-2 control-label">pfx文件Base64</label>
+       <div class="col-sm-10">
+         <textarea disable row="12">{{data.pfx}}</textarea>
+       </div>
+     </div>
+     <div class="form-group">
+       <label for="id" class="col-sm-2 control-label">私钥文件(p12)</label>
+       <div class="col-sm-10">
+         <input type="file" name="pfx" class="form-control" id="pfx" placeholder="请上传私钥文件">
+       </div>
+     </div>
+     <hr/>
+  <div class="text-center">
+      <button type="submit" class="btn btn-danger">提交</button>
+  </div>     <hr/>
+   </form>
+
+{% endblock %}
