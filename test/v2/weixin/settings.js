@@ -4,14 +4,18 @@ var assert = require('assert');
 var path = require('path');
 var fs = require('fs');
 var cache = require('./cache');
+var support = require('../../support/support');
 
 var filePath = path.resolve(__dirname, './fixtures/cert.p12');
 
 describe('v2 weixin settings', function () {
   var cookies;
   it('should set app config', function (done) {
-    request(express)
-      .post('/weixin/config/app')
+    cookies = support.normalUserCookie;
+    var req = request(express)
+      .post('/weixin/config/app');
+    req.cookies = cookies;
+    req
       .send({
         id: '1',
         token: 'token',
@@ -333,7 +337,6 @@ describe('v2 weixin settings', function () {
     var req = request(express).post('/v2/settings/user');
     req.cookies = cookies;
     req.field('action', 'id')
-      .field('key', '1')
       .end(function (error, res) {
         assert(!error);
         var body = res.body;
