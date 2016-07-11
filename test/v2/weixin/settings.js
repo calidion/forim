@@ -337,7 +337,6 @@ describe('v2 weixin settings', function () {
       .end(function (error, res) {
         assert(!error);
         var body = res.body;
-        console.log(body);
         cache.id = body.data.id;
         assert(body.code === 0);
         assert(cache.id);
