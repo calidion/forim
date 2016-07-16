@@ -5,38 +5,6 @@ var app = require('../../lib/app');
 
 describe('v2 users', function () {
   var id = 1;
-  it('should allCallback', function (done) {
-    var allCallback = user.allCallback;
-    var res = {
-      errorize: function (error, data) {
-        assert(error === 'hood');
-        assert(data.error);
-        assert(data.data === undefined);
-        done();
-      },
-      errors: {
-        Failed: 'hood'
-      }
-    };
-    var cb = allCallback(res);
-    cb(true);
-  });
-
-  it('should failed', function (done) {
-    var failed = user.failed;
-    var res = {
-      errorize: function (error, data) {
-        assert(error === 'hood');
-        assert(data);
-        done();
-      },
-      errors: {
-        Failed: 'hood'
-      }
-    };
-    var cb = failed(res);
-    cb(true);
-  });
 
   it('should get user list', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 1;
