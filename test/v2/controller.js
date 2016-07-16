@@ -1,5 +1,5 @@
 var assert = require('assert');
-var settings = require('../../lib/v2/controller/settings');
+var settings = require('../../lib/v2/controllers/settings');
 
 describe('v2 settings', function () {
   it('should send mailer user activate', function (done) {
