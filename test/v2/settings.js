@@ -21,39 +21,6 @@ describe('v2 settings', function () {
       });
   });
 
-  it('should allCallback', function (done) {
-    var allCallback = settings.settings.__allCallback;
-    var res = {
-      errorize: function (error, data) {
-        assert(error === 'hood');
-        assert(data.error);
-        assert(data.data === undefined);
-        done();
-      },
-      errors: {
-        Failed: 'hood'
-      }
-    };
-    var cb = allCallback(res);
-    cb(true);
-  });
-
-  it('should failed', function (done) {
-    var failed = settings.settings.__failed;
-    var res = {
-      errorize: function (error, data) {
-        assert(error === 'hood');
-        assert(data);
-        done();
-      },
-      errors: {
-        Failed: 'hood'
-      }
-    };
-    var cb = failed(res);
-    cb(true);
-  });
-
   it('should create a settings item', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 1;
     var req = http(app);
