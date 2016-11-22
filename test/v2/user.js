@@ -1,11 +1,19 @@
 var http = require('supertest');
 var assert = require('assert');
-var user = require('../../lib/v2/routers/user');
+// var user = require('../../lib/v2/routers/user');
 var app = require('../../lib/app');
+var v2 = require('../../lib/v2');
+var config = require('../../lib/config');
+
+var realConfig = config.waterline.dev;
 
 describe('v2 users', function () {
   var id = 1;
-
+  before(function (done) {
+    v2(realConfig, app, function () {
+      done();
+    });
+  });
   it('should get user list', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 1;
     var req = http(app);
