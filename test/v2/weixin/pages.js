@@ -1,9 +1,16 @@
-var express = require('../../../lib/app');
+var express = require('../app');
 var request = require('supertest');
 var assert = require('assert');
 var cache = require('./cache');
+var server = require('../app');
 
 describe('v2 weixin pages', function () {
+  before(function (done) {
+    server(function (data) {
+      express = data;
+      done();
+    });
+  });
   it('should be able to visit api', function (done) {
     var req = request(express)
       .get('/v2/settings/user?type=app');

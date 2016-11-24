@@ -1,11 +1,18 @@
 var http = require('supertest');
 var assert = require('assert');
-var settings = require('../../lib/v2/routers/settings');
-var app = require('../../lib/app');
+// var settings = require('../../lib/v2/routers/settings');
+var server = require('./app');
+var app;
 
 describe('v2 settings', function () {
   var id;
   var one;
+  before(function (done) {
+    server(function (data) {
+      app = data;
+      done();
+    });
+  });
   it('should clear settings', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 1;
     var req = http(app);
@@ -44,7 +51,7 @@ describe('v2 settings', function () {
       });
   });
 
-  it('should not create a settings item', function (done) {
+  it('should not create a settings item 1', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 1;
     var req = http(app);
     req.post('/v2/settings/user')
@@ -67,7 +74,7 @@ describe('v2 settings', function () {
       });
   });
 
-  it('should not create a settings item', function (done) {
+  it('should not create a settings item 2', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 0;
     var req = http(app);
     req.post('/v2/settings/user')
@@ -82,7 +89,7 @@ describe('v2 settings', function () {
       .end(done);
   });
 
-  it('should not create a settings item', function (done) {
+  it('should not create a settings item 3', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 1;
     var req = http(app);
     req.post('/v2/settings/user')

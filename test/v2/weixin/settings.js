@@ -1,4 +1,4 @@
-var express = require('../../../lib/app');
+// var express = require('../../../lib/app');
 var request = require('supertest');
 var assert = require('assert');
 var path = require('path');
@@ -7,9 +7,17 @@ var cache = require('./cache');
 var support = require('../../support/support');
 
 var filePath = path.resolve(__dirname, './fixtures/cert.p12');
+var server = require('../app');
+var express;
 
 describe('v2 weixin settings', function () {
   var cookies;
+  before(function (done) {
+    server(function (data) {
+      express = data;
+      done();
+    });
+  });
   it('should set app config', function (done) {
     cookies = support.normalUserCookie;
     var req = request(express)
@@ -30,7 +38,11 @@ describe('v2 weixin settings', function () {
           code: 0,
           name: 'Success',
           message: '成功！',
-          data: { id: '1', secret: 'secret', token: 'token' }
+          data: {
+            id: '1',
+            secret: 'secret',
+            token: 'token'
+          }
         }, res.body);
 
         done();
@@ -49,7 +61,11 @@ describe('v2 weixin settings', function () {
           code: 0,
           name: 'Success',
           message: '成功！',
-          data: { id: '1', secret: 'secret', token: 'token' }
+          data: {
+            id: '1',
+            secret: 'secret',
+            token: 'token'
+          }
         }, res.body);
         done();
       });
@@ -60,9 +76,9 @@ describe('v2 weixin settings', function () {
       .post('/weixin/config/oauth');
     req.cookies = cookies;
     req.send({
-      state: 'state',
-      scope: 0
-    }).expect(200)
+        state: 'state',
+        scope: 0
+      }).expect(200)
       .end(function (error, res) {
         assert.equal(true, !error);
 
@@ -92,9 +108,9 @@ describe('v2 weixin settings', function () {
       .post('/weixin/config/merchant');
     req.cookies = cookies;
     req.send({
-      id: 'id',
-      key: 'key'
-    })
+        id: 'id',
+        key: 'key'
+      })
       .expect(200)
       .end(function (error, res) {
         assert.equal(true, !error);
@@ -102,7 +118,10 @@ describe('v2 weixin settings', function () {
           code: 0,
           name: 'Success',
           message: '成功！',
-          data: { id: 'id', key: 'key' }
+          data: {
+            id: 'id',
+            key: 'key'
+          }
         }, res.body);
         done();
       });
@@ -120,7 +139,10 @@ describe('v2 weixin settings', function () {
           code: 0,
           name: 'Success',
           message: '成功！',
-          data: { id: 'id', key: 'key' }
+          data: {
+            id: 'id',
+            key: 'key'
+          }
         }, res.body);
         done();
       });
@@ -142,7 +164,9 @@ describe('v2 weixin settings', function () {
           code: 0,
           name: 'Success',
           message: '成功！',
-          data: { aes: 'aes' }
+          data: {
+            aes: 'aes'
+          }
         }, res.body);
         done();
       });
@@ -161,7 +185,9 @@ describe('v2 weixin settings', function () {
           code: 0,
           name: 'Success',
           message: '成功！',
-          data: { aes: 'aes' }
+          data: {
+            aes: 'aes'
+          }
         }, res.body);
         done();
       });
@@ -184,7 +210,10 @@ describe('v2 weixin settings', function () {
           code: 0,
           name: 'Success',
           message: '成功！',
-          data: { host: 'localhost', prefix: 'weixin' }
+          data: {
+            host: 'localhost',
+            prefix: 'weixin'
+          }
         }, res.body);
         done();
       });
@@ -203,7 +232,10 @@ describe('v2 weixin settings', function () {
           code: 0,
           name: 'Success',
           message: '成功！',
-          data: { host: 'localhost', prefix: 'weixin' }
+          data: {
+            host: 'localhost',
+            prefix: 'weixin'
+          }
         }, res.body);
         done();
       });
@@ -226,15 +258,22 @@ describe('v2 weixin settings', function () {
           name: 'Success',
           message: '成功！',
           data: {
-            base: { url: 'http://localhost/weixin' },
-            auth: { ack: 'http://localhost/weixin/auth/ack' },
-            jssdk: { config: 'http://localhost/weixin/jssdk/config' },
-            oauth:
-            {
+            base: {
+              url: 'http://localhost/weixin'
+            },
+            auth: {
+              ack: 'http://localhost/weixin/auth/ack'
+            },
+            jssdk: {
+              config: 'http://localhost/weixin/jssdk/config'
+            },
+            oauth: {
               access: 'http://localhost/weixin/oauth/access',
               success: 'http://localhost/weixin/oauth/success'
             },
-            pay: { callback: 'http://localhost/weixin/pay/callback' }
+            pay: {
+              callback: 'http://localhost/weixin/pay/callback'
+            }
           }
         }, res.body);
         done();
@@ -255,15 +294,22 @@ describe('v2 weixin settings', function () {
           name: 'Success',
           message: '成功！',
           data: {
-            base: { url: 'http://localhost/weixin' },
-            auth: { ack: 'http://localhost/weixin/auth/ack' },
-            jssdk: { config: 'http://localhost/weixin/jssdk/config' },
-            oauth:
-            {
+            base: {
+              url: 'http://localhost/weixin'
+            },
+            auth: {
+              ack: 'http://localhost/weixin/auth/ack'
+            },
+            jssdk: {
+              config: 'http://localhost/weixin/jssdk/config'
+            },
+            oauth: {
               access: 'http://localhost/weixin/oauth/access',
               success: 'http://localhost/weixin/oauth/success'
             },
-            pay: { callback: 'http://localhost/weixin/pay/callback' }
+            pay: {
+              callback: 'http://localhost/weixin/pay/callback'
+            }
           }
         }, res.body);
         done();
@@ -285,7 +331,10 @@ describe('v2 weixin settings', function () {
           code: 0,
           name: 'Success',
           message: '成功！',
-          data: { pfxKey: 'key', pfx: null }
+          data: {
+            pfxKey: 'key',
+            pfx: null
+          }
         }, res.body);
         done();
       });
@@ -307,7 +356,10 @@ describe('v2 weixin settings', function () {
           code: 0,
           name: 'Success',
           message: '成功！',
-          data: { pfxKey: 'key', pfx: content.toString('base64') }
+          data: {
+            pfxKey: 'key',
+            pfx: content.toString('base64')
+          }
         }, res.body);
         done();
       });
@@ -327,7 +379,10 @@ describe('v2 weixin settings', function () {
           code: 0,
           name: 'Success',
           message: '成功！',
-          data: { pfxKey: 'key', pfx: content.toString('base64') }
+          data: {
+            pfxKey: 'key',
+            pfx: content.toString('base64')
+          }
         }, res.body);
         done();
       });
