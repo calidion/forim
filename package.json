@@ -98,7 +98,7 @@
     "skipper": "^0.6.1",
     "utility": "^1.8.0",
     "validator": "^5.2.0",
-    "vig": "^0.4.0",
+    "vig": "^0.5.0",
     "waterline": "^0.12.2",
     "waterline-paginator": "0.0.8",
     "xmlbuilder": "^8.2.2",
