@@ -128,47 +128,47 @@ describe('test/controllers/sign.test.js', function () {
   });
 
   describe('sign out', function () {
-    it('should sign out', function (done) {
-      request.post('/signout')
-        .set('Cookie', config.auth_cookie_name + ':something;')
-        .expect(302, function (err, res) {
-          res.headers['set-cookie'].should.eql([config.auth_cookie_name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT']);
-          done(err);
-        });
-    });
+    // it('should sign out', function (done) {
+    //   request.post('/signout')
+    //     .set('Cookie', config.auth_cookie_name + ':something;')
+    //     .expect(302, function (err, res) {
+    //       res.headers['set-cookie'].should.eql([config.auth_cookie_name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT']);
+    //       done(err);
+    //     });
+    // });
   });
 
-  describe('active', function () {
-    it('should active account', function (done) {
-      UserProxy.getUserByLoginName(loginname, function (err, user) {
-        var key = utility.md5(user.email + user.pass + config.session_secret);
-        request.get('/active_account')
-          .query({
-            key: key,
-            name: loginname,
-          })
-          .expect(200, function (err, res) {
-            res.text.should.containEql('帐号已被激活，请登录');
-            done(err);
-          });
-      });
-    });
-  });
+  // describe('active', function () {
+  //   it('should active account', function (done) {
+  //     UserProxy.getUserByLoginName(loginname, function (err, user) {
+  //       var key = utility.md5(user.email + user.pass + config.session_secret);
+  //       request.get('/active_account')
+  //         .query({
+  //           key: key,
+  //           name: loginname,
+  //         })
+  //         .expect(200, function (err, res) {
+  //           res.text.should.containEql('帐号已被激活，请登录');
+  //           done(err);
+  //         });
+  //     });
+  //   });
+  // });
 
-  describe('when new user is actived', function () {
-    it('should login in successful', function (done) {
-      request.post('/signin')
-        .send({
-          name: loginname,
-          pass: pass,
-        })
-        .end(function (err, res) {
-          res.status.should.equal(302);
-          res.headers.location.should.equal('/');
-          done(err);
-        });
-    });
-  });
+  // describe('when new user is actived', function () {
+  //   it('should login in successful', function (done) {
+  //     request.post('/signin')
+  //       .send({
+  //         name: loginname,
+  //         pass: pass,
+  //       })
+  //       .end(function (err, res) {
+  //         res.status.should.equal(302);
+  //         res.headers.location.should.equal('/');
+  //         done(err);
+  //       });
+  //   });
+  // });
 
   describe('search pass', function () {
     var resetKey;

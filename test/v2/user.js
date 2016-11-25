@@ -30,7 +30,6 @@ describe('v2 user', function () {
     var req = http(app);
     req.get('/v2/user/register')
       .expect(200, function (err, res) {
-        console.log(err);
         assert(!err);
         res.text.should.containEql('确认密码');
         done();
@@ -46,7 +45,6 @@ describe('v2 user', function () {
         confirm: password
       })
       .expect(200, function (err, res) {
-        console.log(err);
         assert(!err);
         res.text.should.containEql('欢迎加入');
         done();
@@ -189,6 +187,33 @@ describe('v2 user', function () {
           done(err);
         });
     });
+  });
+
+  it('should login in successful', function (done) {
+    var req = http(app);
+    req.post('/signin')
+      .send({
+        username: username,
+        password: password
+      })
+      .end(function (err, res) {
+        res.status.should.equal(302);
+        res.headers.location.should.equal('/');
+        done(err);
+      });
+  });
+
+  it('should sign out', function (done) {
+    var req = http(app);
+    req.get('/signout')
+      .expect(302)
+      .end(done);
+  });
+  it('should sign out', function (done) {
+    var req = http(app);
+    req.post('/signout')
+      .expect(302)
+      .end(done);
   });
 
   it('should get user list', function (done) {
