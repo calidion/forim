@@ -22,28 +22,28 @@
       <% } else { %>
       <form id='signup_form' class='form-horizontal' action='/signup' method='post'>
         <div class='control-group'>
-          <label class='control-label' for='loginname'>用户名</label>
+          <label class='control-label' for='username'>用户名</label>
 
           <div class='controls'>
-            <% if (typeof(loginname) !== 'undefined') { %>
-            <input class='input-xlarge' id='loginname' name='loginname' size='30' type='text' value='<%= loginname %>'/>
+            <% if (typeof(username) !== 'undefined') { %>
+            <input class='input-xlarge' id='username' name='username' size='30' type='text' value='<%= username %>'/>
             <% } else { %>
-            <input class='input-xlarge' id='loginname' name='loginname' size='30' type='text' value=''/>
+            <input class='input-xlarge' id='username' name='username' size='30' type='text' value=''/>
             <% } %>
           </div>
         </div>
         <div class='control-group'>
-          <label class='control-label' for='pass'>密码</label>
+          <label class='control-label' for='password'>密码</label>
 
           <div class='controls'>
-            <input class='input-xlarge' id='pass' name='pass' size='30' type='password'/>
+            <input class='input-xlarge' id='password' name='password' size='30' type='password'/>
           </div>
         </div>
         <div class='control-group'>
-          <label class='control-label' for='re_pass'>确认密码</label>
+          <label class='control-label' for='confirm'>确认密码</label>
 
           <div class='controls'>
-            <input class='input-xlarge' id='re_pass' name='re_pass' size='30' type='password'/>
+            <input class='input-xlarge' id='confirm' name='confirm' size='30' type='password'/>
           </div>
         </div>
         <div class='control-group'>

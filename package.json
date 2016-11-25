@@ -49,6 +49,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
+    "bcrypt": "^0.8.7",
     "bcryptjs": "^2.3.0",
     "body-parser": "^1.5.2",
     "bytes": "^2.3.0",
