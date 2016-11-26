@@ -16,24 +16,14 @@ Node Forum Im 是基于[node club](https://github.com/cnodejs/nodeclub)修改的
 
 1. 支持个人与个人的交流
 2. 支持围绕话题讨论,即标签化话题，去中心化
-3. 支持订阅自己喜欢的话题
-4. 开发者可以自己维护
-5. 全面的API设计，基于EGG API
-6. 企业服务中立，优先支持用户多的
+3. 支持订阅自己喜欢的话题、作者
+4. 支持系统之间共享用户与数据
+5. 全面的API设计，基于EGG API（未来会重命名为vig api)
+6. 企业服务中立，优先支持用户多的以及价值观先进的
 
 ## 技术栈 
 
-服务器： Node.js, C/C++
-
-服务器依赖的技术栈：
-
-  1. [egg framework(整体框架)](演进中)
-  2. [egg messager(消息服务)](https://github.com/calidion/egg-messager) (已完成，支持邮件与短信)
-  3. [egg api(API规范)](https://github.com/calidion/egg) (已经完成 v0.1)
-  4. [file cloude uploader(云上传)](https://github.com/calidion/file-cloud-uploader)  (支持本地磁盘，阿里云，AWS，Cloudinary，可以很方便的扩展)
-  5. [node form validator(输入校验)](https://github.com/calidion/node-form-validator) (支持大多数类型的校验，同时支持递归校验)
-  6. [waterline-paginator(分页方案)](https://github.com/calidion/waterline-paginator) (基于waterline，可以很方便实现分页的模块)
-  7. [errorable (错误方案)](https://github.com/calidion/errorable) (一套通用的API错误方案，可以方便的定义，统一错误，同时支持多国语言i18n)
+服务器技术栈： Node.js，[vig](https://github.com/calidion/vig)轻量级Web框架
 
 客户端：
   1. Web: angular 2.x+
