@@ -1,9 +1,5 @@
-// var app = require('../../lib/app');
 var http = require('supertest');
-var mm = require('mm');
 var github = require('../../lib/v2/handlers/oauth/github/');
-// var Models = require('../../lib/models');
-// var User = Models.User;
 var config = require('../../lib/config');
 var support = require('../support/support');
 var assert = require('assert');
@@ -18,10 +14,6 @@ describe('test/controllers/github.test.js', function () {
         done();
       });
     });
-  });
-
-  afterEach(function () {
-    mm.restore();
   });
   it('should alert no github oauth', function (done) {
     var _clientID = config.oauth.github.clientID;

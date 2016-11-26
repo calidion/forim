@@ -29,25 +29,25 @@ describe('test/controllers/user.test.js', function () {
     });
   });
 
-  describe('#index', function () {
-    it('should show user index', function (done) {
-      request.get('/user/' + testUser.loginname)
-      .expect(200, function (err, res) {
-        var texts = [
-          '注册时间',
-          '这家伙很懒，什么个性签名都没有留下。',
-          '最近创建的话题',
-          '无话题',
-          '最近参与的话题',
-          '无话题'
-        ];
-        texts.forEach(function (text) {
-          res.text.should.containEql(text);
-        });
-        done(err);
-      });
-    });
-  });
+  // describe('#index', function () {
+  //   it('should show user index', function (done) {
+  //     request.get('/user/' + testUser.loginname)
+  //     .expect(200, function (err, res) {
+  //       var texts = [
+  //         '注册时间',
+  //         '这家伙很懒，什么个性签名都没有留下。',
+  //         '最近创建的话题',
+  //         '无话题',
+  //         '最近参与的话题',
+  //         '无话题'
+  //       ];
+  //       texts.forEach(function (text) {
+  //         res.text.should.containEql(text);
+  //       });
+  //       done(err);
+  //     });
+  //   });
+  // });
 
   describe('#listStars', function () {
     it('should show star uses', function (done) {

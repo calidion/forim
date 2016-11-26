@@ -295,6 +295,25 @@ describe('v2 user', function () {
     });
   });
 
+  it('should show user index', function (done) {
+    var req = http(app);
+    req.get('/user/' + username)
+      .expect(200, function (err, res) {
+        var texts = [
+          '注册时间',
+          '这家伙很懒，什么个性签名都没有留下。',
+          '最近创建的话题',
+          '无话题',
+          '最近参与的话题',
+          '无话题'
+        ];
+        texts.forEach(function (text) {
+          res.text.should.containEql(text);
+        });
+        done(err);
+      });
+  });
+
   it('should get user list', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 1;
     var req = http(app);
