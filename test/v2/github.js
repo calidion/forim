@@ -1,18 +1,18 @@
 var http = require('supertest');
 var github = require('../../lib/v2/handlers/oauth/github/');
 var config = require('../../lib/config');
-var support = require('../support/support');
+// var support = require('../support/support');
 var assert = require('assert');
-var server = require('../v2/app');
+var server = require('./app');
 var app;
 
 describe('test/controllers/github.test.js', function () {
   before(function (done) {
-    support.ready(function () {
+    // support.ready(function () {
       server(function (data) {
         app = data;
         done();
-      });
+      // });
     });
   });
   it('should alert no github oauth', function (done) {
@@ -85,25 +85,6 @@ describe('test/controllers/github.test.js', function () {
           done();
         });
     });
-
-    // it('should redirect to / when the user is registed', function (done) {
-    //   mm.data(User, 'findOne', {
-    //     save: function (callback) {
-    //       process.nextTick(callback);
-    //     }
-    //   });
-
-    //   var req = http(app);
-    //   req.get('/auth/github/test_callback?code=123456')
-    //     .expect(302, function (err, res) {
-    //       if (err) {
-    //         return done(err);
-    //       }
-    //       res.headers.should.have.property('location')
-    //         .with.endWith('/');
-    //       done();
-    //     });
-    // });
   });
 
   describe('get /auth/github/create', function () {
@@ -126,7 +107,6 @@ describe('test/controllers/github.test.js', function () {
       var displayName = 'alsotang' + +new Date();
       var username = 'alsotang' + +new Date();
       var email = 'alsotang' + Number(new Date()) + '@gmail.com';
-      console.log('inside before 1');
       app.post('/auth/github/test_create', function (req, res, next) {
         req.session.user = {
           displayName: displayName,

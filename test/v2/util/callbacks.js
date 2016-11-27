@@ -17,7 +17,6 @@ describe('v2 callbacks', function () {
     cb(true);
   });
 
-
   it('should failed', function (done) {
     var failed = callbacks.failed;
     var res = {

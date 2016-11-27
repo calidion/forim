@@ -1,15 +1,16 @@
 var http = require('supertest');
 var assert = require('assert');
 // var user = require('../../lib/v2/routers/user');
+var shared = require('./shared');
 var server = require('./app');
 var app;
 
 describe('v2 user', function () {
-  var now = Number(new Date());
-  var username = 'testuser' + now;
-  var email = 'testuser' + now + '@gmail.com';
-  var password = 'wtffffffffffff';
+  var username = shared.user.username;
+  var email = shared.user.email;
+  var password = shared.user.password;
   var id = 1;
+  var cookies;
 
   before(function (done) {
     server(function (data) {
@@ -197,8 +198,53 @@ describe('v2 user', function () {
         password: password
       })
       .end(function (err, res) {
+        var re = new RegExp('; path=/; httponly', 'gi');
+        cookies = res.headers['set-cookie']
+          .map(function (r) {
+            return r.replace(re, '');
+          }).join("; ");
+          shared.cookies = cookies;
         res.status.should.equal(302);
         res.headers.location.should.equal('/');
+        done(err);
+      });
+  });
+
+  it('should not show setting page', function (done) {
+    var req = http(app).get('/setting');
+    req
+      .expect(403, function (err, res) {
+        res.text.should.containEql('Forbidden!');
+        done(err);
+      });
+  });
+  it('should not show setting page', function (done) {
+    var req = http(app).post('/setting');
+    req
+      .expect(403, function (err, res) {
+        res.text.should.containEql('Forbidden!');
+        done(err);
+      });
+  });
+  it('should show setting page', function (done) {
+    var req = http(app).get('/setting');
+    req.cookies = cookies;
+    req
+      .expect(200, function (err, res) {
+        res.text.should.containEql('同时决定了 Gravatar 头像');
+        res.text.should.containEql('Access Token');
+        done(err);
+      });
+  });
+
+  it('should show success info', function (done) {
+    var req = http(app).get('/setting')
+    req.cookies = cookies;
+    req.query({
+        save: 'success'
+      })
+      .expect(200, function (err, res) {
+        res.text.should.containEql('保存成功。');
         done(err);
       });
   });
@@ -209,13 +255,13 @@ describe('v2 user', function () {
       .expect(302)
       .end(done);
   });
+
   it('should sign out', function (done) {
     var req = http(app);
     req.post('/signout')
       .expect(302)
       .end(done);
   });
-
 
   it('should 200 when get /search_pass', function (done) {
     var req = http(app);

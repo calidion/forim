@@ -1,7 +1,5 @@
 'use strict';
 
-require('./github.test');
-require('./message.test');
 require('./reply.test');
 require('./rss.test');
 require('./site.test');
