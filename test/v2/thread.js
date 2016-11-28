@@ -31,7 +31,7 @@ describe('v2 thread', function () {
   });
 
   it('should get the creating page', function (done) {
-    var req = http(app).get('/topic/create');
+    var req = http(app).get('/thread/create');
     req.cookies = cookies;
     req
       .expect(200)
@@ -41,7 +41,7 @@ describe('v2 thread', function () {
       });
   });
   it('should unable to create when info missing', function (done) {
-    var req = http(app).post('/topic/create');
+    var req = http(app).post('/thread/create');
     req.cookies = shared.cookies;
     req
       .send({
@@ -54,7 +54,7 @@ describe('v2 thread', function () {
       });
   });
   it('should create a thread', function (done) {
-    var req = http(app).post('/topic/create');
+    var req = http(app).post('/thread/create');
     req.cookies = shared.cookies;
     req
       .send({
@@ -63,7 +63,7 @@ describe('v2 thread', function () {
         content: '木耳敲回车'
       })
       .expect(302, function (err, res) {
-        var id = /^\/topic\/(\w+)$/.exec(res.headers.location);
+        var id = /^\/thread\/visit\/(\w+)$/.exec(res.headers.location);
         assert(id.length);
         assert(id[1]);
         shared.thread.id = id[1];
@@ -72,7 +72,7 @@ describe('v2 thread', function () {
   });
 
   it('should be able to get an edit page', function (done) {
-    var req = http(app).get('/topic/' + shared.thread.id + '/edit');
+    var req = http(app).get('/thread/edit/' + shared.thread.id);
     req.cookies = shared.cookies;
     req
       .expect(200, function (err, res) {
@@ -82,7 +82,7 @@ describe('v2 thread', function () {
   });
 
   it('should edit a thread', function (done) {
-    var req = http(app).post('/topic/' + shared.thread.id + '/edit');
+    var req = http(app).post('/thread/edit/' + shared.thread.id);
     req.cookies = shared.cookies;
     req
       .send({
@@ -91,14 +91,14 @@ describe('v2 thread', function () {
         content: '修改修改的内容!'
       })
       .expect(302, function (err, res) {
-        res.headers.location.should.match(/^\/topic\/\w+$/);
+        res.headers.location.should.match(/^\/thread\/visit\/\w+$/);
         done(err);
       });
   });
 
 
   it('should favorite a thread', function (done) {
-    var req = http(app).post('/topic/collect');
+    var req = http(app).post('/thread/favorite');
     req.cookies = shared.cookies;
     req.send({
         id: shared.thread.id
@@ -112,7 +112,7 @@ describe('v2 thread', function () {
   });
 
   it('should unfavorite a thread', function (done) {
-    var req = http(app).post('/topic/de_collect');
+    var req = http(app).post('/thread/unfavorite');
     req.cookies = shared.cookies;
     req.send({
         id: shared.thread.id
@@ -124,8 +124,29 @@ describe('v2 thread', function () {
         done(err);
       });
   });
+
+  it('should get /thread/visit/:id 200', function (done) {
+    var req = http(app).get('/thread/visit/' + shared.thread.id)
+    req
+      .expect(200, function (err, res) {
+        res.text.should.containEql('修改修改的内容!');
+        done(err);
+      });
+  });
+
+  it('should get /thread/visit/:id 200 when login in', function (done) {
+    var req = http(app).get('/thread/visit/' + shared.thread.id)
+    req.cookies = shared.cookies;
+    req
+      .expect(200, function (err, res) {
+        res.text.should.containEql('修改修改的内容!');
+        res.text.should.containEql(shared.user.username);
+        done(err);
+      });
+  });
+
   it('should not delete a thread', function (done) {
-    var req = http(app).post('/topic/' + shared.thread.id + '/delete');
+    var req = http(app).post('/thread/remove/' + shared.thread.id);
     req
       .expect(403, function (err, res) {
         assert(!err);
@@ -134,7 +155,7 @@ describe('v2 thread', function () {
       });
   });
   it('should delete a thread', function (done) {
-    var req = http(app).post('/topic/' + shared.thread.id + '/delete');
+    var req = http(app).post('/thread/remove/' + shared.thread.id);
     req.cookies = shared.cookies;
     req
       .expect(200, function (err, res) {
