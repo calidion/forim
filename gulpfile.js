@@ -23,32 +23,6 @@ gulp.task('static', function () {
     .pipe(excludeGitignore())
     .pipe(eslint({
       rules: {
-        "camelcase": 0,
-        "space-before-function-paren": 0,
-        "object-curly-spacing": 0,
-        "no-multi-spaces": 0,
-        "new-cap": 0,
-        "handle-callback-err": 0,
-        "spaced-comment": 0,
-        "no-else-return": 0,
-        "padded-blocks": 0,
-        "no-multiple-empty-lines": 0,
-        "comma-dangle": 0,
-        "indent": 0,
-        "max-params" : 0,
-        "no-mixed-operators" : 0,
-        "max-lines" : 0,
-        "brace-style": 0,
-        "no-extra-semi": 0,
-        "array-bracket-spacing": 0,
-        "semi": 0,
-        "dot-notation": 0,
-        "no-use-before-define": 0,
-        "no-warning-comments": 0,
-        "key-spacing": 0,
-        "no-negated-condition": 0,
-        "no-unneeded-ternary": 0,
-        "no-regex-spaces": 0
       }
     }))
     .pipe(eslint.format())

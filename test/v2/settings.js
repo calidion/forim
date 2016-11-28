@@ -16,7 +16,7 @@ describe('v2 settings', function () {
   it('should clear settings', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 1;
     var req = http(app);
-    req.post('/v2/settings')
+    req.post('/v2/weixin/settings')
       .send({
         action: 'delete'
       })
@@ -31,7 +31,7 @@ describe('v2 settings', function () {
   it('should create a settings item', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 1;
     var req = http(app);
-    req.post('/v2/settings/user')
+    req.post('/v2/weixin/settings/user')
       .send({
         action: 'create',
         key: 'weixin',
@@ -54,7 +54,7 @@ describe('v2 settings', function () {
   it('should not create a settings item 1', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 1;
     var req = http(app);
-    req.post('/v2/settings/user')
+    req.post('/v2/weixin/settings/user')
       .send({
         action: 'create',
         if: 'weixin',
@@ -77,7 +77,7 @@ describe('v2 settings', function () {
   it('should not create a settings item 2', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 0;
     var req = http(app);
-    req.post('/v2/settings/user')
+    req.post('/v2/weixin/settings/user')
       .send({
         action: 'create',
         key: 'weixin',
@@ -92,7 +92,7 @@ describe('v2 settings', function () {
   it('should not create a settings item 3', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 1;
     var req = http(app);
-    req.post('/v2/settings/user')
+    req.post('/v2/weixin/settings/user')
       .send({
         action: 'list',
         key: 'weixin',
@@ -107,7 +107,7 @@ describe('v2 settings', function () {
   it('should get settings list', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 1;
     var req = http(app);
-    req.get('/v2/settings?limit=10&page=1')
+    req.get('/v2/weixin/settings?limit=10&page=1')
       .end(function (error, res) {
         assert(!error);
         var body = res.body;
@@ -124,7 +124,7 @@ describe('v2 settings', function () {
   it('should get settings info', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 1;
     var req = http(app);
-    req.get('/v2/settings/' + id)
+    req.get('/v2/weixin/settings/' + id)
       .end(function (error, res) {
         assert(!error);
         var body = res.body;
@@ -138,7 +138,7 @@ describe('v2 settings', function () {
   it('should get settings info', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 0;
     var req = http(app);
-    req.get('/v2/settings/' + id)
+    req.get('/v2/weixin/settings/' + id)
       .expect(403)
       .end(done);
   });
@@ -146,7 +146,7 @@ describe('v2 settings', function () {
   it('should not get settings', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 1;
     var req = http(app);
-    req.get('/v2/settings/100000')
+    req.get('/v2/weixin/settings/100000')
       .end(function (error, res) {
         assert(!error);
         var body = res.body;

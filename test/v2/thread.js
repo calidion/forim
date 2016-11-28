@@ -161,7 +161,7 @@ describe('v2 thread', function () {
       .expect(200, function (err, res) {
         res.body.should.eql({
           success: true,
-          message: '话题已被删除。'
+          message: '话题删除成功！'
         });
         done(err);
       });

@@ -389,7 +389,7 @@ describe('v2 weixin settings', function () {
   });
 
   it('should get setting id', function (done) {
-    var req = request(express).post('/v2/settings/user');
+    var req = request(express).post('/v2/weixin/settings/user');
     req.cookies = cookies;
     req.field('action', 'id')
       .end(function (error, res) {
