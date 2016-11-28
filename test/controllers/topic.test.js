@@ -116,21 +116,21 @@ describe('test/controllers/topic.test.js', function () {
   //   });
   // });
 
-  describe('#update', function () {
-    it('should update a topic', function (done) {
-      request.post('/topic/' + support.testTopic._id + '/edit')
-      .send({
-        title: '修改后的 topic title',
-        tab: 'share',
-        t_content: '修改后的木耳敲回车'
-      })
-      .set('Cookie', support.normalUserCookie)
-      .expect(302, function (err, res) {
-        res.headers.location.should.match(/^\/topic\/\w+$/);
-        done(err);
-      });
-    });
-  });
+  // describe('#update', function () {
+  //   it('should update a topic', function (done) {
+  //     request.post('/topic/' + support.testTopic._id + '/edit')
+  //     .send({
+  //       title: '修改后的 topic title',
+  //       tab: 'share',
+  //       t_content: '修改后的木耳敲回车'
+  //     })
+  //     .set('Cookie', support.normalUserCookie)
+  //     .expect(302, function (err, res) {
+  //       res.headers.location.should.match(/^\/topic\/\w+$/);
+  //       done(err);
+  //     });
+  //   });
+  // });
 
   describe('#delete', function () {
     var wouldBeDeleteTopic;

@@ -96,4 +96,22 @@ describe('v2 thread', function () {
         done(err);
       });
   });
+  it('should not delete a thread', function (done) {
+    var req = http(app).post('/topic/' + shared.thread.id + '/delete');
+    req
+      .expect(403, function (err, res) {
+        assert(!err);
+        res.text.should.containEql('你无权删除当前话题');
+        done(err);
+      });
+  });
+  it('should delete a thread', function (done) {
+    var req = http(app).post('/topic/' + shared.thread.id + '/delete');
+    req.cookies = shared.cookies;
+    req
+      .expect(200, function (err, res) {
+        res.body.should.eql({ success: true, message: '话题已被删除。' });
+        done(err);
+      });
+  });
 });

@@ -40,7 +40,7 @@ describe('v2 message', function () {
     });
   });
 
-  it('should 200', function (done) {
+  it('should get my messages', function (done) {
     var req = http(app).get('/my/messages');
     req.cookies = shared.cookies;
     req
