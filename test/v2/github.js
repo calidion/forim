@@ -1,18 +1,18 @@
 var http = require('supertest');
 var github = require('../../lib/v2/handlers/oauth/github/');
 var config = require('../../lib/config');
-// var support = require('../support/support');
+var support = require('../support/support');
 var assert = require('assert');
 var server = require('./app');
 var app;
 
-describe('test/controllers/github.test.js', function () {
+describe('v2 github', function () {
   before(function (done) {
-    // support.ready(function () {
+    support.ready(function () {
       server(function (data) {
         app = data;
         done();
-      // });
+      });
     });
   });
   it('should alert no github oauth', function (done) {

@@ -7,7 +7,7 @@ var server = require('./app');
 var app;
 var shared = require('./shared');
 
-describe('messages testing', function () {
+describe('v2 message', function () {
   before(function (done) {
     server(function (data) {
       app = data;
@@ -17,10 +17,7 @@ describe('messages testing', function () {
   it('should login in successful', function (done) {
     var req = http(app);
     req.post('/signin')
-      .send({
-        username: username,
-        password: password
-      })
+      .send(shared.user)
       .end(function (err, res) {
         var re = new RegExp('; path=/; httponly', 'gi');
         cookies = res.headers['set-cookie']
@@ -35,10 +32,10 @@ describe('messages testing', function () {
   });
   it('should 403 without session', function (done) {
     var req = http(app);
-    req.get('/my/messages').end(function (err, res) {
+    req.get('/my/messages')
+    .end(function (err, res) {
       res.statusCode.should.equal(403);
-      res.type.should.equal('text/html');
-      res.text.should.containEql('forbidden!');
+      res.text.should.containEql('Access Denied!');
       done(err);
     });
   });

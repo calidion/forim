@@ -36,17 +36,11 @@ QQ群：312685910
 
 ## 最新改进
 
-使用gulp取代Makefile  
-删除Loader，使用gulp-less来生成结果文件  
-重新组织了目录结构  
-添加代码覆盖率  
-优化了代码，添加ESLINT  
+使用vig框架加速开发，采用waterline驱动数据库，可以方便用户自由的选择低层的数据库。
 
 ## 支持Nodejs版本
 
-全部主要版本(V6,V5,V4,V0.12,V0.10)
-V0.10将慢慢不再支持。
-
+V4.0+
 
 ## 参数配置
 
@@ -58,6 +52,8 @@ FORIM_XXX
 这样的参数。
 
 ## 安装部署
+
+说明：论坛使用的是mongodb数据库
 
 1. 安装 `Node.js[必须]` `MongoDB[必须]` `Redis[必须]`
 2. 启动 MongoDB 和 Redis

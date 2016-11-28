@@ -1,6 +1,5 @@
 var http = require('supertest');
 var assert = require('assert');
-// var user = require('../../lib/v2/routers/user');
 var shared = require('./shared');
 var server = require('./app');
 var app;
@@ -327,10 +326,11 @@ describe('v2 user', function () {
       username: username
     }).then(function (found) {
       var req = http(app);
+      shared.user.password = 'jkljkljkl';
       req.post('/reset_pass')
         .send({
-          password: 'jkljkljkl',
-          confirm: 'jkljkljkl',
+          password: shared.user.password,
+          confirm: shared.user.password,
           key: found.passwordRetrieveKey,
           username: username
         })
