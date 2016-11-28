@@ -91,8 +91,36 @@ describe('v2 thread', function () {
         content: '修改修改的内容!'
       })
       .expect(302, function (err, res) {
-        console.log(err, res.text);
         res.headers.location.should.match(/^\/topic\/\w+$/);
+        done(err);
+      });
+  });
+
+
+  it('should favorite a thread', function (done) {
+    var req = http(app).post('/topic/collect');
+    req.cookies = shared.cookies;
+    req.send({
+        id: shared.thread.id
+      })
+      .expect(200, function (err, res) {
+        res.body.should.eql({
+          status: 'success'
+        });
+        done(err);
+      });
+  });
+
+  it('should unfavorite a thread', function (done) {
+    var req = http(app).post('/topic/de_collect');
+    req.cookies = shared.cookies;
+    req.send({
+        id: shared.thread.id
+      })
+      .expect(200, function (err, res) {
+        res.body.should.eql({
+          status: 'success'
+        });
         done(err);
       });
   });
@@ -110,7 +138,10 @@ describe('v2 thread', function () {
     req.cookies = shared.cookies;
     req
       .expect(200, function (err, res) {
-        res.body.should.eql({ success: true, message: '话题已被删除。' });
+        res.body.should.eql({
+          success: true,
+          message: '话题已被删除。'
+        });
         done(err);
       });
   });

@@ -132,33 +132,33 @@ describe('test/controllers/topic.test.js', function () {
   //   });
   // });
 
-  describe('#delete', function () {
-    var wouldBeDeleteTopic;
-    before(function (done) {
-      support.createTopic(support.normalUser._id, function (err, topic) {
-        wouldBeDeleteTopic = topic;
-        done(err);
-      });
-    });
+  // describe('#delete', function () {
+  //   var wouldBeDeleteTopic;
+  //   before(function (done) {
+  //     support.createTopic(support.normalUser._id, function (err, topic) {
+  //       wouldBeDeleteTopic = topic;
+  //       done(err);
+  //     });
+  //   });
 
-    it('should not delete a topic when not author', function (done) {
-      request.post('/topic/' + wouldBeDeleteTopic._id + '/delete')
-      .set('Cookie', support.normalUser2Cookie)
-      .expect(403, function (err, res) {
-        res.body.should.eql({success: false, message: '无权限'});
-        done(err);
-      });
-    });
+  //   it('should not delete a topic when not author', function (done) {
+  //     request.post('/topic/' + wouldBeDeleteTopic._id + '/delete')
+  //     .set('Cookie', support.normalUser2Cookie)
+  //     .expect(403, function (err, res) {
+  //       res.body.should.eql({success: false, message: '无权限'});
+  //       done(err);
+  //     });
+  //   });
 
-    it('should delele a topic', function (done) {
-      request.post('/topic/' + wouldBeDeleteTopic._id + '/delete')
-      .set('Cookie', support.normalUserCookie)
-      .expect(200, function (err, res) {
-        res.body.should.eql({ success: true, message: '话题已被删除。' });
-        done(err);
-      });
-    });
-  });
+  //   it('should delele a topic', function (done) {
+  //     request.post('/topic/' + wouldBeDeleteTopic._id + '/delete')
+  //     .set('Cookie', support.normalUserCookie)
+  //     .expect(200, function (err, res) {
+  //       res.body.should.eql({ success: true, message: '话题已被删除。' });
+  //       done(err);
+  //     });
+  //   });
+  // });
 
   describe('#top', function () {
     it('should top a topic', function (done) {
