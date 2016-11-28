@@ -105,16 +105,16 @@ describe('test/controllers/topic.test.js', function () {
   //   });
   // });
 
-  describe('#showEdit', function () {
-    it('should show a edit page', function (done) {
-      request.get('/topic/' + support.testTopic._id + '/edit')
-      .set('Cookie', support.normalUserCookie)
-      .expect(200, function (err, res) {
-        res.text.should.containEql('编辑话题');
-        done(err);
-      });
-    });
-  });
+  // describe('#showEdit', function () {
+  //   it('should show a edit page', function (done) {
+  //     request.get('/topic/' + support.testTopic._id + '/edit')
+  //     .set('Cookie', support.normalUserCookie)
+  //     .expect(200, function (err, res) {
+  //       res.text.should.containEql('编辑话题');
+  //       done(err);
+  //     });
+  //   });
+  // });
 
   describe('#update', function () {
     it('should update a topic', function (done) {

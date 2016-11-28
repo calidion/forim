@@ -119,7 +119,9 @@ describe('v2 github', function () {
           id: 22
         };
         req.extracted = {
-          create: '1'
+          body: {
+            create: '1'
+          }
         };
         next();
       }, github.create.routers.post);

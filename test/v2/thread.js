@@ -71,12 +71,28 @@ describe('v2 thread', function () {
       });
   });
 
-  it('should unable to edit a thread', function (done) {
+  it('should be able to get an edit page', function (done) {
     var req = http(app).get('/topic/' + shared.thread.id + '/edit');
     req.cookies = shared.cookies;
     req
       .expect(200, function (err, res) {
         res.text.should.containEql('编辑话题');
+        done(err);
+      });
+  });
+
+  it('should edit a thread', function (done) {
+    var req = http(app).post('/topic/' + shared.thread.id + '/edit');
+    req.cookies = shared.cookies;
+    req
+      .send({
+        title: '修改后的Title',
+        tab: 'share',
+        content: '修改修改的内容!'
+      })
+      .expect(302, function (err, res) {
+        console.log(err, res.text);
+        res.headers.location.should.match(/^\/topic\/\w+$/);
         done(err);
       });
   });
