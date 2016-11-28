@@ -36,74 +36,74 @@ describe('test/controllers/topic.test.js', function () {
     });
   });
 
-  describe('#create', function () {
-    it('should show a create page', function (done) {
-      request.get('/topic/create')
-        .set('Cookie', support.normalUserCookie)
-        .expect(200, function (err, res) {
-          res.text.should.containEql('发布话题');
-          done(err);
-        });
-    });
-  });
+  // describe('#create', function () {
+  //   it('should show a create page', function (done) {
+  //     request.get('/topic/create')
+  //       .set('Cookie', support.normalUserCookie)
+  //       .expect(200, function (err, res) {
+  //         res.text.should.containEql('发布话题');
+  //         done(err);
+  //       });
+  //   });
+  // });
 
-  describe('#put', function () {
-    it('should not create a topic when no title', function (done) {
-      request.post('/topic/create')
-      .send({
-        title: '',
-        tab: config.tabs[0][0],
-        t_content: '木耳敲回车',
-      })
-      .set('Cookie', support.normalUserCookie)
-      .expect(422, function (err, res) {
-        res.text.should.containEql('标题不能是空的。');
-        done(err);
-      });
-    });
+  // describe('#put', function () {
+  //   it('should not create a topic when no title', function (done) {
+  //     request.post('/topic/create')
+  //     .send({
+  //       title: '',
+  //       tab: config.tabs[0][0],
+  //       t_content: '木耳敲回车',
+  //     })
+  //     .set('Cookie', support.normalUserCookie)
+  //     .expect(422, function (err, res) {
+  //       res.text.should.containEql('标题不能是空的。');
+  //       done(err);
+  //     });
+  //   });
 
-    it('should not create a topic when no tab', function (done) {
-      request.post('/topic/create')
-      .send({
-        title: '呵呵复呵呵',
-        tab: '',
-        t_content: '木耳敲回车'
-      })
-      .set('Cookie', support.normalUserCookie)
-      .expect(422, function (err, res) {
-        res.text.should.containEql('必须选择一个版块。');
-        done(err);
-      });
-    });
+  //   it('should not create a topic when no tab', function (done) {
+  //     request.post('/topic/create')
+  //     .send({
+  //       title: '呵呵复呵呵',
+  //       tab: '',
+  //       t_content: '木耳敲回车'
+  //     })
+  //     .set('Cookie', support.normalUserCookie)
+  //     .expect(422, function (err, res) {
+  //       res.text.should.containEql('必须选择一个版块。');
+  //       done(err);
+  //     });
+  //   });
 
-    it('should not create a topic when no content', function (done) {
-      request.post('/topic/create')
-      .send({
-        title: '呵呵复呵呵',
-        tab: config.tabs[0][0],
-        t_content: ''
-      })
-      .set('Cookie', support.normalUserCookie)
-      .expect(422, function (err, res) {
-        res.text.should.containEql('内容不可为空');
-        done(err);
-      });
-    });
+  //   it('should not create a topic when no content', function (done) {
+  //     request.post('/topic/create')
+  //     .send({
+  //       title: '呵呵复呵呵',
+  //       tab: config.tabs[0][0],
+  //       t_content: ''
+  //     })
+  //     .set('Cookie', support.normalUserCookie)
+  //     .expect(422, function (err, res) {
+  //       res.text.should.containEql('内容不可为空');
+  //       done(err);
+  //     });
+  //   });
 
-    it('should create a topic', function (done) {
-      request.post('/topic/create')
-      .send({
-        title: '呵呵复呵呵' + new Date(),
-        tab: config.tabs[0][0],
-        t_content: '木耳敲回车'
-      })
-      .set('Cookie', support.normalUserCookie)
-      .expect(302, function (err, res) {
-        res.headers.location.should.match(/^\/topic\/\w+$/);
-        done(err);
-      });
-    });
-  });
+  //   it('should create a topic', function (done) {
+  //     request.post('/topic/create')
+  //     .send({
+  //       title: '呵呵复呵呵' + new Date(),
+  //       tab: config.tabs[0][0],
+  //       t_content: '木耳敲回车'
+  //     })
+  //     .set('Cookie', support.normalUserCookie)
+  //     .expect(302, function (err, res) {
+  //       res.headers.location.should.match(/^\/topic\/\w+$/);
+  //       done(err);
+  //     });
+  //   });
+  // });
 
   describe('#showEdit', function () {
     it('should show a edit page', function (done) {
