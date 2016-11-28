@@ -49,7 +49,6 @@ describe('v2 thread', function () {
         content: '木耳敲回车'
       })
       .expect(403, function (err, res) {
-        console.log(err, res.text);
         res.text.should.containEql('发布话题');
         done(err);
       });

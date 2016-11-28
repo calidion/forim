@@ -25,7 +25,7 @@
       </div>
       <% }else{ %>
       <% if (typeof(action) !== 'undefined' && action === 'edit') { %>
-      <form id='create_topic_form' action='/topic/<%= topic_id %>/edit' method='post'>
+      <form id='create_topic_form' action='/topic/<%= thread.id %>/edit' method='post'>
         <% } else { %>
         <form id='create_topic_form' action='/topic/create' method='post'>
           <% } %>
@@ -49,13 +49,13 @@
             <span id="topic_create_warn"></span>
             <textarea autofocus class='span9' id='title' name='title' rows='1'
                       placeholder="标题字数 10 字以上"
-                    ><%= typeof(title) !== 'undefined' && title || '' %></textarea>
+                    ><%= typeof(thread) !== 'undefined' && thread.title || '' %></textarea>
 
             <div class='markdown_editor in_editor'>
               <div class='markdown_in_editor'>
                 <textarea class='editor' name='t_content' rows='20'
                           placeholder='文章支持 Markdown 语法, 请注意标记代码'
-                        ><%= typeof(content) !== 'undefined' && content || '' %></textarea>
+                        ><%= typeof(thread) !== 'undefined' && thread.content || '' %></textarea>
 
                 <div class='editor_buttons'>
                   <input type="submit" class='span-primary submit_btn' data-loading-text="提交中"
