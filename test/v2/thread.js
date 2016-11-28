@@ -63,7 +63,20 @@ describe('v2 thread', function () {
         content: '木耳敲回车'
       })
       .expect(302, function (err, res) {
-        res.headers.location.should.match(/^\/topic\/\w+$/);
+        var id = /^\/topic\/(\w+)$/.exec(res.headers.location);
+        assert(id.length);
+        assert(id[1]);
+        shared.thread.id = id[1];
+        done(err);
+      });
+  });
+
+  it('should unable to edit a thread', function (done) {
+    var req = http(app).get('/topic/' + shared.thread.id + '/edit');
+    req.cookies = shared.cookies;
+    req
+      .expect(200, function (err, res) {
+        res.text.should.containEql('编辑话题');
         done(err);
       });
   });

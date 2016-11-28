@@ -8,5 +8,8 @@ module.exports = {
     username: username,
     email: email,
     password: password
+  },
+  thread: {
+    
   }
 };
