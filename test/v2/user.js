@@ -445,4 +445,27 @@ describe('v2 user', function () {
       .expect(403)
       .end(done);
   });
+
+  it('should show lock a user', function (done) {
+    var req = http(app);
+    req.post('/user/block')
+      .send({
+        username: shared.user.username
+      })
+      .expect(200, function (err, res) {
+        res.body.isBlocked.should.eql(true);
+        done(err);
+      });
+  });
+  it('should show unlock a user', function (done) {
+    var req = http(app);
+    req.post('/user/block')
+      .send({
+        username: shared.user.username
+      })
+      .expect(200, function (err, res) {
+        res.body.isBlocked.should.eql(false);
+        done(err);
+      });
+  });
 });
