@@ -202,7 +202,7 @@ describe('v2 user', function () {
           .map(function (r) {
             return r.replace(re, '');
           }).join("; ");
-          shared.cookies = cookies;
+        shared.cookies = cookies;
         res.status.should.equal(302);
         res.headers.location.should.equal('/');
         done(err);
@@ -210,7 +210,7 @@ describe('v2 user', function () {
   });
 
   it('should not show setting page', function (done) {
-    var req = http(app).get('/setting');
+    var req = http(app).get('/user/settings');
     req
       .expect(403, function (err, res) {
         res.text.should.containEql('Forbidden!');
@@ -218,7 +218,7 @@ describe('v2 user', function () {
       });
   });
   it('should not show setting page', function (done) {
-    var req = http(app).post('/setting');
+    var req = http(app).post('/user/settings');
     req
       .expect(403, function (err, res) {
         res.text.should.containEql('Forbidden!');
@@ -226,7 +226,7 @@ describe('v2 user', function () {
       });
   });
   it('should show setting page', function (done) {
-    var req = http(app).get('/setting');
+    var req = http(app).get('/user/settings');
     req.cookies = cookies;
     req
       .expect(200, function (err, res) {
@@ -236,12 +236,44 @@ describe('v2 user', function () {
       });
   });
 
+  it('should show setting page', function (done) {
+    var req = http(app).get('/user/settings');
+    req.cookies = cookies;
+    req
+      .expect(200, function (err, res) {
+        res.text.should.containEql('同时决定了 Gravatar 头像');
+        res.text.should.containEql('Access Token');
+        done(err);
+      });
+  });
+
+  it('should change user setting', function (done) {
+    var userInfo = {
+      url: 'http://forum.webfullstack.me',
+      location: 'Sky world',
+      weibo: 'http://weibo.com/forim',
+      github: '@forim',
+      signature: '仍然很懒',
+      username: shared.user.username,
+      email: shared.user.email
+    };
+    var req = http(app).post('/user/settings');
+    req.cookies = cookies;
+    req
+      .send(userInfo)
+      .expect(302, function (err, res) {
+        console.log(err, res.text);
+        res.headers.location.should.equal('/user/settings?save=success');
+        done(err);
+      });
+  });
+
   it('should show success info', function (done) {
-    var req = http(app).get('/setting')
+    var req = http(app).get('/user/settings')
     req.cookies = cookies;
     req.query({
-        save: 'success'
-      })
+      save: 'success'
+    })
       .expect(200, function (err, res) {
         res.text.should.containEql('保存成功。');
         done(err);
@@ -343,11 +375,12 @@ describe('v2 user', function () {
 
   it('should show user index', function (done) {
     var req = http(app);
-    req.get('/user/' + username)
+    req.get('/user/page/' + shared.user.username)
       .expect(200, function (err, res) {
         var texts = [
           '注册时间',
-          '这家伙很懒，什么个性签名都没有留下。',
+          // '这家伙很懒，什么个性签名都没有留下。',
+          '仍然很懒',
           '最近创建的话题',
           '无话题',
           '最近参与的话题',
