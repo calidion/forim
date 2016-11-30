@@ -1,0 +1,13 @@
+  require('./github');
+  require('./user');
+  require('./message');
+  require('./thread');
+  require('./file');
+  require('./util/at');
+  require('./settings');
+  require('./express');
+  require('./mailer');
+  require('./weixin/settings');
+  require('./weixin/pages');
+  require('./weixin/api');
+  require('./weixin/settings.func');

@@ -19,7 +19,7 @@ gulp.task('less', function () {
 });
 
 gulp.task('static', function () {
-  return gulp.src('lib/**/*.js')
+  return gulp.src('lib/v2/**/*.js')
     .pipe(excludeGitignore())
     .pipe(eslint({
       rules: {
@@ -47,7 +47,7 @@ gulp.task('pre-test', function () {
 gulp.task('test', ['pre-test'], function (cb) {
   var mochaErr;
 
-  gulp.src(['test/**/*.js', 'test/**/*.test.js'])
+  gulp.src(['test/v2/**/*.js'])
     .pipe(plumber())
     .pipe(mocha({
       reporter: 'spec',

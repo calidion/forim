@@ -104,9 +104,9 @@ describe('v2 github', function () {
 
   describe('post /auth/github/create', function () {
     before(function () {
-      var displayName = 'alsotang' + +new Date();
-      var username = 'alsotang' + +new Date();
-      var email = 'alsotang' + Number(new Date()) + '@gmail.com';
+      var displayName = 'forim' + +new Date();
+      var username = 'forim' + +new Date();
+      var email = 'forim' + Number(new Date()) + '@gmail.com';
       app.post('/auth/github/test_create', function (req, res, next) {
         req.session.user = {
           displayName: displayName,
@@ -173,7 +173,7 @@ describe('v2 github', function () {
     });
 
     it('should link a old user', function (done) {
-      var username = 'alsotang' + +new Date();
+      var username = 'forim' + +new Date();
       var password = 'hehe';
       support.createUserByNameAndPwd(username, password, function (user) {
         var req = http(app);
