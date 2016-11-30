@@ -1,39 +1,39 @@
 <div class='cell'>
 
-  <a class="user_avatar pull-left" href="/user/<%= topic.author.loginname %>">
-    <img src="<%= proxy(topic.author.avatar_url) %>"
-         title="<%= topic.author.loginname %>"
+  <a class="user_avatar pull-left" href="/user/<%= thread.author.loginname %>">
+    <img src="<%= proxy(thread.author.avatar_url) %>"
+         title="<%= thread.author.loginname %>"
             />
   </a>
 
   <span class="reply_count pull-left">
     <span class="count_of_replies" title="回复数">
-      <%= topic.reply_count %>
+      <%= thread.reply_count %>
     </span>
     <span class="count_seperator">/</span>
     <span class="count_of_visits" title='点击数'>
-      <%= topic.visit_count %>
+      <%= thread.visit_count %>
     </span>
   </span>
 
-  <% if (topic.reply && topic.reply.author) {%>
-  <a class='last_time pull-right' href="/topic/<%= topic._id %><%- '#' + topic.reply._id %>">
-    <img class="user_small_avatar" src="<%= proxy(topic.reply.author.avatar_url) %>">
-    <span class="last_active_time"><%= topic.reply.create_at_ago() %></span>
+  <% if (thread.reply && thread.reply.author) {%>
+  <a class='last_time pull-right' href="/topic/<%= thread._id %><%- '#' + thread.reply._id %>">
+    <img class="user_small_avatar" src="<%= proxy(thread.reply.author.avatar_url) %>">
+    <span class="last_active_time"><%= thread.reply.create_at_ago() %></span>
   </a>
   <% } %>
-  <% if (!topic.reply) {%>
+  <% if (!thread.reply) {%>
     <span class='last_time pull-right'>
-      <span class="last_active_time"><%= topic.create_at_ago() %></span>
+      <span class="last_active_time"><%= thread.create_at_ago() %></span>
     </span>
   <% } %>
 
   <div class="topic_title_wrapper">
 
-    <%- partial('./_top_good', {topic: topic}) %>
+    <%- partial('./_top_good', {thread: thread}) %>
 
-    <a class='topic_title' href='/topic/<%= topic._id %>' title='<%= topic.title %>'>
-      <%= topic.title %>
+    <a class='topic_title' href='/topic/<%= thread._id %>' title='<%= thread.title %>'>
+      <%= thread.title %>
     </a>
   </div>
 </div>
