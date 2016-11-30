@@ -14,6 +14,7 @@ describe('forim', function () {
   require('./v2/message');
   require('./v2/thread');
   require('./v2/file');
+  require('./v2/password');
   require('./v2/util/at');
   require('./v2/settings');
   require('./v2/express');

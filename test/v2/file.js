@@ -6,9 +6,7 @@ var shared = require('./shared');
 
 describe('v2 file', function () {
   before(function (done) {
-    console.log('before v2 file');
     server(function (data) {
-      console.log('server error');
       app = data;
       done();
     });
@@ -37,7 +35,6 @@ describe('v2 file', function () {
       .attach('file', __filename)
       .expect(200)
       .end(function (err, res) {
-        console.log(err, res.text);
         res.body.success.should.eql(true);
         res.body.url.should.containEql('http://');
         done(err);

@@ -262,7 +262,6 @@ describe('v2 user', function () {
     req
       .send(userInfo)
       .expect(302, function (err, res) {
-        console.log(err, res.text);
         res.headers.location.should.equal('/user/settings?save=success');
         done(err);
       });

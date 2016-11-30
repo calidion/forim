@@ -1,6 +1,5 @@
 var http = require('supertest');
 var assert = require('assert');
-// var settings = require('../../lib/v2/routers/settings');
 var server = require('./app');
 var app;
 
@@ -30,6 +29,7 @@ describe('v2 settings', function () {
 
   it('should create a settings item', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 1;
+    process.env.FORIM_MOCK_USER = 1;
     var req = http(app);
     req.post('/v2/weixin/settings/user')
       .send({

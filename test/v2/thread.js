@@ -172,7 +172,6 @@ describe('v2 thread', function () {
     req.cookies = shared.cookies;
     req
       .expect(200, function (err, res) {
-        console.log()
         res.text.should.containEql('话题取消置顶成功！');
         done(err);
       });
@@ -206,7 +205,6 @@ describe('v2 thread', function () {
     req.cookies = shared.cookies;
     req
       .expect(200, function (err, res) {
-        console.log()
         res.text.should.containEql('话题锁定成功！');
         done(err);
       });
@@ -217,7 +215,6 @@ describe('v2 thread', function () {
     req.cookies = shared.cookies;
     req
       .expect(200, function (err, res) {
-        console.log()
         res.text.should.containEql('话题取消锁定成功！');
 
         done(err);
