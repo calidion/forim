@@ -468,4 +468,16 @@ describe('v2 user', function () {
         done(err);
       });
   });
+
+    it('should show unlock a user', function (done) {
+    var req = http(app);
+    req.post('/user/block')
+      .send({
+        username: 'abc'
+      })
+      .expect(200, function (err, res) {
+        res.text.should.containEql('用户未找到!');
+        done(err);
+      });
+  });
 });

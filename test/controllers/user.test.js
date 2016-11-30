@@ -198,34 +198,6 @@ describe('test/controllers/user.test.js', function () {
   });
 
   describe('#block', function () {
-    it('should block user', function (done) {
-      support.createUser(function (err, newuser) {
-        request.post('/user/' + newuser.loginname + '/block')
-        .send({
-          action: 'set_block'
-        })
-        .set('Cookie', support.adminUserCookie)
-        .expect(200, function (err, res) {
-          res.body.should.eql({status: 'success'});
-          UserProxy.getUserById(newuser._id, function (err, user) {
-            user.is_block.should.be.true();
-            done(err);
-          });
-        });
-      });
-    });
-
-    it('should unblock user', function (done) {
-      request.post('/user/' + support.normalUser.loginname + '/block')
-      .send({
-        action: 'cancel_block'
-      })
-      .set('Cookie', support.adminUserCookie)
-      .expect(200, function (err, res) {
-        res.body.should.eql({status: 'success'});
-        done(err);
-      })
-    })
 
     it('should wrong when user is not exists', function (done) {
       request.post('/user/not_exists_user/block')
