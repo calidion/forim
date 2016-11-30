@@ -197,21 +197,6 @@ describe('test/controllers/user.test.js', function () {
     });
   });
 
-  describe('#block', function () {
-
-    it('should wrong when user is not exists', function (done) {
-      request.post('/user/not_exists_user/block')
-      .send({
-        action: 'set_block'
-      })
-      .set('Cookie', support.adminUserCookie)
-      .expect(500, function (err, res) {
-        res.text.should.containEql('user is not exists')
-        done(err);
-      })
-    })
-  })
-
   describe('#delete_all', function () {
     it('should delele all ups', function (done) {
       support.createUser(function (err, user) {
