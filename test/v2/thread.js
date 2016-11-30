@@ -101,8 +101,8 @@ describe('v2 thread', function () {
     var req = http(app).post('/thread/favorite');
     req.cookies = shared.cookies;
     req.send({
-        id: shared.thread.id
-      })
+      id: shared.thread.id
+    })
       .expect(200, function (err, res) {
         res.body.should.eql({
           status: 'success'
@@ -115,8 +115,8 @@ describe('v2 thread', function () {
     var req = http(app).post('/thread/unfavorite');
     req.cookies = shared.cookies;
     req.send({
-        id: shared.thread.id
-      })
+      id: shared.thread.id
+    })
       .expect(200, function (err, res) {
         res.body.should.eql({
           status: 'success'
@@ -154,6 +154,76 @@ describe('v2 thread', function () {
         done(err);
       });
   });
+
+
+  it('should stick a thread', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 1;
+    var req = http(app).post('/thread/stick/' + shared.thread.id);
+    req.cookies = shared.cookies;
+    req
+      .expect(200, function (err, res) {
+        res.text.should.containEql('话题置顶成功！');
+        done(err);
+      });
+  });
+  it('should unstick a thread', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 1;
+    var req = http(app).post('/thread/stick/' + shared.thread.id);
+    req.cookies = shared.cookies;
+    req
+      .expect(200, function (err, res) {
+        console.log()
+        res.text.should.containEql('话题取消置顶成功！');
+        done(err);
+      });
+  });
+
+  it('should hightlight a thread', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 1;
+    var req = http(app).post('/thread/highlight/' + shared.thread.id);
+    req.cookies = shared.cookies;
+    req
+      .expect(200, function (err, res) {
+        res.text.should.containEql('话题加精成功！');
+
+        done(err);
+      });
+  });
+
+  it('should unhightlight a thread', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 1;
+    var req = http(app).post('/thread/highlight/' + shared.thread.id);
+    req.cookies = shared.cookies;
+    req
+      .expect(200, function (err, res) {
+        res.text.should.containEql('话题取消精华成功！');
+        done(err);
+      });
+  });
+  it('should lock a thread', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 1;
+    var req = http(app).post('/thread/lock/' + shared.thread.id);
+    req.cookies = shared.cookies;
+    req
+      .expect(200, function (err, res) {
+        console.log()
+        res.text.should.containEql('话题锁定成功！');
+        done(err);
+      });
+  });
+  it('should unlock a thread', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 1;
+    var req = http(app).post('/thread/lock/' + shared.thread.id);
+    req.cookies = shared.cookies;
+    req
+      .expect(200, function (err, res) {
+        console.log()
+        res.text.should.containEql('话题取消锁定成功！');
+
+        done(err);
+      });
+  });
+
   it('should delete a thread', function (done) {
     var req = http(app).post('/thread/remove/' + shared.thread.id);
     req.cookies = shared.cookies;

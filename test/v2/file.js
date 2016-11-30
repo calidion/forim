@@ -1,6 +1,4 @@
 var http = require('supertest');
-var github = require('../../lib/v2/handlers/oauth/github/');
-var config = require('../../lib/config');
 var assert = require('assert');
 var server = require('./app');
 var app;
@@ -8,7 +6,9 @@ var shared = require('./shared');
 
 describe('v2 file', function () {
   before(function (done) {
+    console.log('before v2 file');
     server(function (data) {
+      console.log('server error');
       app = data;
       done();
     });
@@ -31,12 +31,13 @@ describe('v2 file', function () {
   });
 
   it('should upload', function (done) {
-    var req = http(app).get('/upload');
+    var req = http(app).post('/upload');
     req.cookies = cookies;
     req
       .attach('file', __filename)
       .expect(200)
       .end(function (err, res) {
+        console.log(err, res.text);
         res.body.success.should.eql(true);
         res.body.url.should.containEql('http://');
         done(err);

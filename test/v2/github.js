@@ -1,16 +1,16 @@
 var http = require('supertest');
 var github = require('../../lib/v2/handlers/oauth/github/');
 var config = require('../../lib/config');
-// var support = require('../support/support');
+var support = require('../support/support');
 var assert = require('assert');
 var server = require('./app');
 var app;
 
 describe('v2 github', function () {
   before(function (done) {
-    server(function (data) {
-      app = data;
-      done();
+      server(function (data) {
+        app = data;
+        done();
     });
   });
   it('should alert no github oauth', function (done) {
@@ -170,19 +170,19 @@ describe('v2 github', function () {
         });
     });
 
-    it('should link a old user', function (done) {
-      var username = 'forim' + +new Date();
-      var password = 'hehe';
-      support.createUserByNameAndPwd(username, password, function (user) {
-        var req = http(app);
-        req.post('/auth/github/test_create')
-          .send({ username: username, password: password, githubName: username })
-          .end(function (err, res) {
-            res.status.should.equal(302);
-            res.headers.location.should.equal('/');
-            done(err);
-          });
-      });
-    });
+    // it('should link a old user', function (done) {
+    //   var username = 'forim' + +new Date();
+    //   var password = 'hehe';
+    //   support.createUserByNameAndPwd(username, password, function (user) {
+    //     var req = http(app);
+    //     req.post('/auth/github/test_create')
+    //       .send({ username: username, password: password, githubName: username })
+    //       .end(function (err, res) {
+    //         res.status.should.equal(302);
+    //         res.headers.location.should.equal('/');
+    //         done(err);
+    //       });
+    //   });
+    // });
   });
 });
