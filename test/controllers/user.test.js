@@ -29,133 +29,15 @@ describe('test/controllers/user.test.js', function () {
     });
   });
 
-  // describe('#index', function () {
-  //   it('should show user index', function (done) {
-  //     request.get('/user/' + testUser.loginname)
+  // describe('#listStars', function () {
+  //   it('should show star uses', function (done) {
+  //     request.get('/stars')
   //     .expect(200, function (err, res) {
-  //       var texts = [
-  //         '注册时间',
-  //         '这家伙很懒，什么个性签名都没有留下。',
-  //         '最近创建的话题',
-  //         '无话题',
-  //         '最近参与的话题',
-  //         '无话题'
-  //       ];
-  //       texts.forEach(function (text) {
-  //         res.text.should.containEql(text);
-  //       });
+  //       res.text.should.containEql('社区达人');
   //       done(err);
   //     });
   //   });
   // });
-
-  describe('#listStars', function () {
-    it('should show star uses', function (done) {
-      request.get('/stars')
-      .expect(200, function (err, res) {
-        res.text.should.containEql('社区达人');
-        done(err);
-      });
-    });
-  });
-
-  // describe('#setting', function () {
-  //   var userInfo;
-  //   before(function () {
-  //     userInfo = {
-  //       url: 'http://fxck.it',
-  //       location: 'west lake',
-  //       weibo: 'http://weibo.com/tangzhanli',
-  //       github: '@alsotang',
-  //       signature: '仍然很懒',
-  //       name: support.normalUser.loginname,
-  //       email: support.normalUser.email,
-  //     };
-  //   });
-
-  //   it('should change user setting', function (done) {
-  //     userInfo = _.cloneDeep(userInfo);
-  //     userInfo.action = 'change_setting';
-  //     request.post('/setting')
-  //     .set('Cookie', support.normalUserCookie)
-  //     .send(userInfo)
-  //     .expect(302, function (err, res) {
-  //       res.headers.location.should.equal('/setting?save=success');
-  //       done(err);
-  //     });
-  //   });
-
-  //   it('should change user password', function (done) {
-  //     userInfo = _.cloneDeep(userInfo);
-  //     userInfo.action = 'change_password';
-  //     userInfo.old_pass = 'pass';
-  //     userInfo.new_pass = 'passwordchanged';
-  //     request.post('/setting')
-  //     .set('Cookie', support.normalUserCookie)
-  //     .send(userInfo)
-  //     .expect(200, function (err, res) {
-  //       res.text.should.containEql('密码已被修改。');
-  //       done(err);
-  //     });
-  //   });
-
-  //   it('should not change user password when old_pass is wrong', function (done) {
-  //     userInfo = _.cloneDeep(userInfo);
-  //     userInfo.action = 'change_password';
-  //     userInfo.old_pass = 'wrong_old_pass';
-  //     userInfo.new_pass = 'passwordchanged';
-  //     request.post('/setting')
-  //     .set('Cookie', support.normalUserCookie)
-  //     .send(userInfo)
-  //     .expect(200, function (err, res) {
-  //       res.text.should.containEql('当前密码不正确。');
-  //       done(err);
-  //     });
-  //   });
-  // });
-
-  describe('#toggleStar', function () {
-    it('should not set star user when no user_id', function (done) {
-      request.post('/user/set_star')
-      .set('Cookie', support.adminUserCookie)
-      .expect(500, function (err, res) {
-        res.text.should.containEql('user is not exists');
-        done(err);
-      });
-    });
-
-    it('should set star user', function (done) {
-      request.post('/user/set_star')
-      .send({
-        user_id: support.normalUser._id
-      })
-      .set('Cookie', support.adminUserCookie)
-      .expect(200, function (err, res) {
-        res.body.should.eql({status: 'success'});
-
-        UserProxy.getUserById(support.normalUser._id, function (err, user) {
-          user.is_star.should.be.true();
-          done(err);
-        });
-      });
-    });
-
-    it('should unset star user', function (done) {
-      request.post('/user/set_star')
-      .send({
-        user_id: support.normalUser._id
-      })
-      .set('Cookie', support.adminUserCookie)
-      .expect(200, function (err, res) {
-        res.body.should.eql({status: 'success'});
-
-        UserProxy.getUserById(support.normalUser._id, function (err, user) {
-          user.is_star.should.be.false();
-          done(err);
-        });
-      });
-    });
-  });
 
   describe('#getCollectTopics', function () {
     it('should get /user/:name/collections ok', function (done) {

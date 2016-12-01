@@ -30,4 +30,24 @@ describe('v2 password', function () {
         done(err);
       });
   });
+
+  it('should login in successfully again', function (done) {
+    var req = http(app);
+    req.post('/signin')
+      .send({
+        username: shared.user.username,
+        password: shared.user.password
+      })
+      .end(function (err, res) {
+        var re = new RegExp('; path=/; httponly', 'gi');
+        cookies = res.headers['set-cookie']
+          .map(function (r) {
+            return r.replace(re, '');
+          }).join("; ");
+        shared.cookies = cookies;
+        res.status.should.equal(302);
+        res.headers.location.should.equal('/');
+        done(err);
+      });
+  });
 });

@@ -31,13 +31,14 @@ describe('v2 message', function () {
       });
   });
   it('should 403 without session', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 0;
     var req = http(app);
     req.get('/my/messages')
-    .end(function (err, res) {
-      res.statusCode.should.equal(403);
-      res.text.should.containEql('Access Denied!');
-      done(err);
-    });
+      .end(function (err, res) {
+        res.statusCode.should.equal(403);
+        res.text.should.containEql('Access Denied!');
+        done(err);
+      });
   });
 
   it('should get my messages', function (done) {

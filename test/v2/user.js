@@ -372,6 +372,26 @@ describe('v2 user', function () {
     });
   });
 
+  it('should login in successfully again', function (done) {
+    var req = http(app);
+    req.post('/signin')
+      .send({
+        username: username,
+        password: shared.user.password
+      })
+      .end(function (err, res) {
+        var re = new RegExp('; path=/; httponly', 'gi');
+        cookies = res.headers['set-cookie']
+          .map(function (r) {
+            return r.replace(re, '');
+          }).join("; ");
+        shared.cookies = cookies;
+        res.status.should.equal(302);
+        res.headers.location.should.equal('/');
+        done(err);
+      });
+  });
+
   it('should show user index', function (done) {
     var req = http(app);
     req.get('/user/page/' + shared.user.username)
@@ -445,8 +465,19 @@ describe('v2 user', function () {
       .expect(403)
       .end(done);
   });
-
-  it('should show lock a user', function (done) {
+  it('should not able to lock a user', function (done) {
+    var req = http(app);
+    req.post('/user/block')
+      .send({
+        username: shared.user.username
+      })
+      .expect(403, function (err, res) {
+        res.text.should.eql('Access Denied!');
+        done(err);
+      });
+  });
+  it('should lock a user', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 1;
     var req = http(app);
     req.post('/user/block')
       .send({
@@ -457,7 +488,7 @@ describe('v2 user', function () {
         done(err);
       });
   });
-  it('should show unlock a user', function (done) {
+  it('should unlock a user', function (done) {
     var req = http(app);
     req.post('/user/block')
       .send({
@@ -469,7 +500,7 @@ describe('v2 user', function () {
       });
   });
 
-    it('should show unlock a user', function (done) {
+  it('should not unlock a user not existed', function (done) {
     var req = http(app);
     req.post('/user/block')
       .send({
@@ -477,6 +508,47 @@ describe('v2 user', function () {
       })
       .expect(200, function (err, res) {
         res.text.should.containEql('用户未找到!');
+        done(err);
+      });
+  });
+  it('should star a user', function (done) {
+    var req = http(app);
+    req.post('/user/star')
+      .send({
+        username: shared.user.username
+      })
+      .expect(200, function (err, res) {
+        res.body.isStar.should.eql(true);
+        done(err);
+      });
+  });
+  it('should unstar a user', function (done) {
+    var req = http(app);
+    req.post('/user/star')
+      .send({
+        username: shared.user.username
+      })
+      .expect(200, function (err, res) {
+        res.body.isStar.should.eql(false);
+        done(err);
+      });
+  });
+  it('should not star a user not existed', function (done) {
+    var req = http(app);
+    req.post('/user/star')
+      .send({
+        username: 'abc'
+      })
+      .expect(200, function (err, res) {
+        res.text.should.containEql('用户未找到!');
+        done(err);
+      });
+  });
+  it('should show star uses', function (done) {
+    var req = http(app);
+    req.get('/user/star')
+      .expect(200, function (err, res) {
+        res.text.should.containEql('社区达人');
         done(err);
       });
   });
