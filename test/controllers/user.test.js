@@ -29,16 +29,6 @@ describe('test/controllers/user.test.js', function () {
     });
   });
 
-  // describe('#listStars', function () {
-  //   it('should show star uses', function (done) {
-  //     request.get('/stars')
-  //     .expect(200, function (err, res) {
-  //       res.text.should.containEql('社区达人');
-  //       done(err);
-  //     });
-  //   });
-  // });
-
   describe('#getCollectTopics', function () {
     it('should get /user/:name/collections ok', function (done) {
       request.get('/user/' + support.normalUser.loginname + '/collections')

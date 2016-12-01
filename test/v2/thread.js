@@ -145,6 +145,14 @@ describe('v2 thread', function () {
       });
   });
 
+  it('should get /thread/user/:username', function (done) {
+    var req = http(app).get('/thread/user/' + shared.user.username)
+    req.expect(200, function (err, res) {
+      res.text.should.containEql('创建的话题');
+      done(err);
+    });
+  });
+
   it('should not delete a thread', function (done) {
     var req = http(app).post('/thread/remove/' + shared.thread.id);
     req
