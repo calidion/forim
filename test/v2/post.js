@@ -96,6 +96,7 @@ describe('v2 post', function () {
         content: '@ssdf 木耳敲回车 @sfdsdf @forim new'
       })
       .expect(403, function (err, res) {
+        res.text.should.equal('Access Denied!');
         done(err);
       });
   });
