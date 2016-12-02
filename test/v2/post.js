@@ -13,6 +13,7 @@ describe('v2 post', function () {
     });
   });
   it('should login in successful', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 0;
     var req = http(app);
     req.post('/signin')
       .send(shared.user)
@@ -29,6 +30,17 @@ describe('v2 post', function () {
       });
   });
 
+  it('should not create a post when no login', function (done) {
+    var req = http(app).post('/post/create/' + shared.thread.id);
+    req
+      .send({
+        content: '木耳敲回车 @sfdsdf @forim'
+      })
+      .expect(403, function (err, res) {
+        res.text.should.equal('Access Denied!');
+        done(err);
+      });
+  });
   it('should create a post', function (done) {
     var req = http(app).post('/post/create/' + shared.thread.id);
     req.cookies = shared.cookies;
@@ -46,7 +58,7 @@ describe('v2 post', function () {
       });
   });
 
-    it('should create a post with parent', function (done) {
+  it('should create a post with parent', function (done) {
     var req = http(app).post('/post/create/' + shared.thread.id);
     req.cookies = shared.cookies;
     req
@@ -63,4 +75,5 @@ describe('v2 post', function () {
         done(err);
       });
   });
+
 });
