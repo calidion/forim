@@ -89,4 +89,31 @@ describe('v2 post', function () {
       });
   });
 
+  it('should not edit a post', function (done) {
+    var req = http(app).post('/post/edit/' + postId);
+    req
+      .send({
+        content: '@ssdf 木耳敲回车 @sfdsdf @forim new'
+      })
+      .expect(403, function (err, res) {
+        done(err);
+      });
+  });
+
+  it('should edit a post', function (done) {
+    var req = http(app).post('/post/edit/' + postId);
+    req.cookies = shared.cookies;
+    req
+      .send({
+        content: '@ssdf 木耳敲回车 @sfdsdf @forim new'
+      })
+      .expect(302, function (err, res) {
+        var ids = /^\/thread\/visit\/(\w+)#(\w+)$/.exec(res.headers.location);
+        var threadId = ids[1];
+        var post = ids[2];
+        threadId.should.equal(shared.thread.id);
+        post.should.equal(postId);
+        done(err);
+      });
+  });
 });
