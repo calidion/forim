@@ -10,11 +10,11 @@
     </div>
   </div>
   <div class='panel'>
-    <div class="header"><%= user.loginname %> 参与的话题</div>
+    <div class="header"><%= user.username %> 参与的话题</div>
     <div class="inner padding">
-    <% if(typeof(topics) !== 'undefined' && topics.length > 0){ %>
-    <%- partial('../topic/list',
-    {topics:topics,pages:pages,current_pages:current_page,base:'/user/'+user.loginname+'/replies'}) %>
+    <% if(typeof(threads) !== 'undefined' && threads.length > 0){ %>
+    <%- partial('../threads/list',
+    {threads:threads,total:total,page:page,base:'/post/user/'+user.username}) %>
     <% }else{ %>
     <div class='inner'>
       <p>无话题</p>
