@@ -117,4 +117,17 @@ describe('v2 post', function () {
         done(err);
       });
   });
+
+  it('should remove a post', function (done) {
+    var req = http(app).post('/post/remove');
+    req.cookies = shared.cookies;
+    req
+      .send({
+        id: postId
+      })
+      .expect(200, function (err, res) {
+        res.body.status.should.equal('success');
+        done(err);
+      });
+  });
 });
