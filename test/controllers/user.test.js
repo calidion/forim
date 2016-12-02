@@ -49,16 +49,6 @@ describe('test/controllers/user.test.js', function () {
     });
   });
 
-  describe('#list_topics', function () {
-    it('should get /user/:name/topics ok', function (done) {
-      request.get('/user/' + support.normalUser.loginname + '/topics')
-      .expect(200, function (err, res) {
-        res.text.should.containEql('创建的话题');
-        done(err);
-      });
-    });
-  });
-
   describe('#listReplies', function () {
     it('should get /user/:name/replies ok', function (done) {
       request.get('/user/' + support.normalUser.loginname + '/replies')

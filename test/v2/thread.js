@@ -111,6 +111,14 @@ describe('v2 thread', function () {
       });
   });
 
+  it('should get /thread/favorite/:username', function (done) {
+    var req = http(app).get('/thread/favorite/' + shared.user.username)
+      .expect(200, function (err, res) {
+        res.text.should.containEql('收藏的话题');
+        done(err);
+      });
+  });
+
   it('should unfavorite a thread', function (done) {
     var req = http(app).post('/thread/unfavorite');
     req.cookies = shared.cookies;
