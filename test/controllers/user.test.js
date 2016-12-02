@@ -29,16 +29,6 @@ describe('test/controllers/user.test.js', function () {
     });
   });
 
-  describe('#getCollectTopics', function () {
-    it('should get /user/:name/collections ok', function (done) {
-      request.get('/user/' + support.normalUser.loginname + '/collections')
-      .expect(200, function (err, res) {
-        res.text.should.containEql('收藏的话题');
-        done(err);
-      });
-    });
-  });
-
   describe('#top100', function () {
     it('should get /users/top100', function (done) {
       request.get('/users/top100')
