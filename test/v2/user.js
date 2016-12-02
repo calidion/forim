@@ -268,7 +268,7 @@ describe('v2 user', function () {
   });
 
   it('should show success info', function (done) {
-    var req = http(app).get('/user/settings')
+    var req = http(app).get('/user/settings');
     req.cookies = cookies;
     req.query({
       save: 'success'

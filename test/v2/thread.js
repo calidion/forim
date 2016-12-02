@@ -1,10 +1,10 @@
 var http = require('supertest');
-var github = require('../../lib/v2/handlers/oauth/github/');
 var config = require('../../lib/config');
 var assert = require('assert');
 var server = require('./app');
 var app;
 var shared = require('./shared');
+var cookies;
 
 describe('v2 thread', function () {
   before(function (done) {
@@ -96,7 +96,6 @@ describe('v2 thread', function () {
       });
   });
 
-
   it('should favorite a thread', function (done) {
     var req = http(app).post('/thread/favorite');
     req.cookies = shared.cookies;
@@ -112,11 +111,11 @@ describe('v2 thread', function () {
   });
 
   it('should get /thread/favorite/:username', function (done) {
-    var req = http(app).get('/thread/favorite/' + shared.user.username)
-      .expect(200, function (err, res) {
-        res.text.should.containEql('收藏的话题');
-        done(err);
-      });
+    var req = http(app).get('/thread/favorite/' + shared.user.username);
+    req.expect(200, function (err, res) {
+      res.text.should.containEql('收藏的话题');
+      done(err);
+    });
   });
 
   it('should unfavorite a thread', function (done) {
@@ -134,7 +133,7 @@ describe('v2 thread', function () {
   });
 
   it('should get /thread/visit/:id 200', function (done) {
-    var req = http(app).get('/thread/visit/' + shared.thread.id)
+    var req = http(app).get('/thread/visit/' + shared.thread.id);
     req
       .expect(200, function (err, res) {
         res.text.should.containEql('修改修改的内容!');
@@ -143,7 +142,7 @@ describe('v2 thread', function () {
   });
 
   it('should get /thread/visit/:id 200 when login in', function (done) {
-    var req = http(app).get('/thread/visit/' + shared.thread.id)
+    var req = http(app).get('/thread/visit/' + shared.thread.id);
     req.cookies = shared.cookies;
     req
       .expect(200, function (err, res) {
@@ -154,7 +153,7 @@ describe('v2 thread', function () {
   });
 
   it('should get /thread/user/:username', function (done) {
-    var req = http(app).get('/thread/user/' + shared.user.username)
+    var req = http(app).get('/thread/user/' + shared.user.username);
     req.expect(200, function (err, res) {
       res.text.should.containEql('创建的话题');
       done(err);
@@ -170,7 +169,6 @@ describe('v2 thread', function () {
         done(err);
       });
   });
-
 
   it('should stick a thread', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 1;

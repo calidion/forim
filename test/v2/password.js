@@ -1,8 +1,8 @@
 var http = require('supertest');
-var assert = require('assert');
 var server = require('./app');
 var app;
 var shared = require('./shared');
+var cookies;
 
 describe('v2 password', function () {
   before(function (done) {

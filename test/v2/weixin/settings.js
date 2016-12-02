@@ -76,9 +76,9 @@ describe('v2 weixin settings', function () {
       .post('/weixin/config/oauth');
     req.cookies = cookies;
     req.send({
-        state: 'state',
-        scope: 0
-      }).expect(200)
+      state: 'state',
+      scope: 0
+    }).expect(200)
       .end(function (error, res) {
         assert.equal(true, !error);
 
@@ -102,15 +102,14 @@ describe('v2 weixin settings', function () {
       });
   });
 
-
   it('should set merchant config', function (done) {
     var req = request(express)
       .post('/weixin/config/merchant');
     req.cookies = cookies;
     req.send({
-        id: 'id',
-        key: 'key'
-      })
+      id: 'id',
+      key: 'key'
+    })
       .expect(200)
       .end(function (error, res) {
         assert.equal(true, !error);

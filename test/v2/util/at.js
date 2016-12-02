@@ -4,26 +4,26 @@ var server = require('../app');
 var app;
 
 describe('v2 at', function () {
-    before(function (done) {
+  before(function (done) {
     server(function (data) {
       app = data;
       done();
     });
   });
   it('should be able to purify', function () {
-    var content = "```sdfsf```ooo"
+    var content = "```sdfsf```ooo";
     var purified = at.purify(content);
     assert(purified === 'ooo');
   });
 
   it('should be able to purify', function () {
-    var content = "```  pre   ```aaa"
+    var content = "```  pre   ```aaa";
     var purified = at.purify(content);
     assert(purified === 'aaa');
   });
 
   it('should be able to extract', function () {
-    var content = "```  pre   ```aaa@ccc @ccc @sdfsdf @sdfsdfs end"
+    var content = "```  pre   ```aaa@ccc @ccc @sdfsdf @sdfsdfs end";
     var extracted = at.extract(content);
     assert(extracted.length === 3);
     assert(extracted.indexOf('ccc') !== -1);
@@ -31,9 +31,8 @@ describe('v2 at', function () {
     assert(extracted.indexOf('sdfsdfs') !== -1);
   });
 
-
   it('should parse', function (done) {
-    var content = "```  pre   ```aaa@ccc @ccc @sdfsdf @sdfsdfs end"
+    var content = "```  pre   ```aaa@ccc @ccc @sdfsdf @sdfsdfs end";
     var req = {
       models: app.models
     };
@@ -50,7 +49,7 @@ describe('v2 at', function () {
         username: 'sdfsf2',
         id: '3'
       }
-    }, function(messages) {
+    }, function (messages) {
       assert(messages.length >= 0);
       done();
     });

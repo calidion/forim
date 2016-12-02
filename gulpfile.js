@@ -19,7 +19,7 @@ gulp.task('less', function () {
 });
 
 gulp.task('static', function () {
-  return gulp.src('lib/v2/**/*.js')
+  return gulp.src(['lib/v2/**/*.js', 'test/v2/**/*.js'])
     .pipe(excludeGitignore())
     .pipe(eslint({
       rules: {

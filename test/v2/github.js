@@ -1,20 +1,19 @@
 var http = require('supertest');
 var github = require('../../lib/v2/handlers/oauth/github/');
 var config = require('../../lib/config');
-var support = require('../support/support');
 var assert = require('assert');
 var server = require('./app');
 var app;
+/* eslint camelcase: ["error", {properties: "never"}] */
 
 describe('v2 github', function () {
   before(function (done) {
-      server(function (data) {
-        app = data;
-        done();
+    server(function (data) {
+      app = data;
+      done();
     });
   });
   it('should alert no github oauth', function (done) {
-    var _clientID = config.oauth.github.clientID;
     config.oauth.github.clientID = 'your GITHUB_CLIENT_ID';
     var req = http(app);
     req.get('/auth/github')
@@ -63,9 +62,13 @@ describe('v2 github', function () {
           req.user = {
             id: 'notexists',
             emails: [
-              { value: 'notexists@gmail.com' }
+              {
+                value: 'notexists@gmail.com'
+              }
             ],
-            _json: { avatar_url: 'http://avatar_url' }
+            _json: {
+              avatar_url: 'http://avatar_url'
+            }
           };
           next();
         },
@@ -102,8 +105,8 @@ describe('v2 github', function () {
 
   describe('post /auth/github/create', function () {
     before(function () {
-      var displayName = 'forim' + +new Date();
-      var username = 'forim' + +new Date();
+      var displayName = 'forim' + Number(new Date());
+      var username = 'forim' + Number(new Date());
       var email = 'forim' + Number(new Date()) + '@gmail.com';
       app.post('/auth/github/test_create', function (req, res, next) {
         req.session.user = {
@@ -111,9 +114,13 @@ describe('v2 github', function () {
           username: req.body.githubName || username,
           accessToken: 'a3l24j23lk5jtl35tkjglfdsf',
           emails: [
-            { value: email }
+            {
+              value: email
+            }
           ],
-          _json: { avatar_url: 'http://avatar_url.com/1.jpg' },
+          _json: {
+            avatar_url: 'http://avatar_url.com/1.jpg'
+          },
           id: 22
         };
         req.extracted = {
@@ -125,30 +132,38 @@ describe('v2 github', function () {
       }, github.create.routers.post);
     });
     it('should create a new user', function (done) {
-      var userCount;
-      app.models.User.count().then(function (count) {
-        userCount = count;
-        var req = http(app);
-        req.post('/auth/github/test_create')
-          .send({ create: '1' })
-          .expect(302, function (err, res) {
-            if (err) {
-              return done(err);
-            }
-            res.headers.should.have.property('location')
-              .with.endWith('/');
-            app.models.User.count().then(function (newCount) {
-              newCount.should.equal(userCount + 1);
-              done();
+      Promise.all([
+        app.models.User.count(),
+        new Promise(function (resolve) {
+          var req = http(app).post('/auth/github/test_create');
+          req
+            .send({
+              create: '1'
+            })
+            .expect(302, function (err, res) {
+              if (err) {
+                return done(err);
+              }
+              res.headers.should.have.property('location')
+                .with.endWith('/');
+              resolve(app.models.User.count());
             });
-          });
-      });
+        })
+      ])
+        .then(function (data) {
+          var userCount = data[0];
+          var count = data[1];
+          count.should.equal(userCount + 1);
+          done();
+        });
     });
 
     it('should reuse existing github account', function (done) {
       var req = http(app);
       req.post('/auth/github/test_create')
-        .send({ create: '1' })
+        .send({
+          create: '1'
+        })
         .expect(302, function (err, res) {
           if (err) {
             return done(err);
@@ -159,10 +174,14 @@ describe('v2 github', function () {
         });
     });
     it('should not found an old user', function (done) {
-      var password = 'hehe';
       var req = http(app);
       req.post('/auth/github/test_create')
-        .send({ created: 0, username: 'sdfi', password: 'sdff', githubName: 'sdfi' })
+        .send({
+          created: 0,
+          username: 'sdfi',
+          password: 'sdff',
+          githubName: 'sdfi'
+        })
         .end(function (err, res) {
           res.status.should.equal(302);
           res.headers.location.should.equal('/');

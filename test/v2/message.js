@@ -1,11 +1,8 @@
 var http = require('supertest');
-var github = require('../../lib/v2/handlers/oauth/github/');
-var config = require('../../lib/config');
-// var support = require('../support/support');
-var assert = require('assert');
 var server = require('./app');
 var app;
 var shared = require('./shared');
+var cookies;
 
 describe('v2 message', function () {
   before(function (done) {
