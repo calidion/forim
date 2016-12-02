@@ -148,6 +148,34 @@ describe('v2 post', function () {
         done(err);
       });
   });
+
+  it('should like a post', function (done) {
+    var req = http(app).post('/post/like');
+    req.cookies = shared.cookies;
+    req
+      .send({
+        id: postId
+      })
+      .expect(200, function (err, res) {
+        res.body.success.should.be.ok();
+        res.body.action.should.equal(1);
+        done(err);
+      });
+  });
+
+  it('should unlike a post', function (done) {
+    var req = http(app).post('/post/like');
+    req.cookies = shared.cookies;
+    req
+      .send({
+        id: postId
+      })
+      .expect(200, function (err, res) {
+        res.body.success.should.be.ok();
+        res.body.action.should.equal(0);
+        done(err);
+      });
+  });
   it('should remove a post', function (done) {
     var req = http(app).post('/post/remove');
     req.cookies = shared.cookies;
