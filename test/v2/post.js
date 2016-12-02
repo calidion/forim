@@ -89,6 +89,26 @@ describe('v2 post', function () {
       });
   });
 
+  it('should not show edit a post', function (done) {
+    var req = http(app).get('/post/edit/' + postId);
+    req
+      .expect(403, function (err, res) {
+        res.text.should.containEql('对不起，你不能编辑此回复。');
+        done(err);
+      });
+  });
+
+  it('should show edit a post', function (done) {
+    var req = http(app).get('/post/edit/' + postId);
+    req.cookies = shared.cookies;
+    req
+      .expect(200)
+      .end(function (err, res) {
+        res.text.should.containEql('木耳敲回车 @sfdsdf @forim');
+        done(err);
+      });
+  });
+
   it('should not edit a post', function (done) {
     var req = http(app).post('/post/edit/' + postId);
     req
@@ -96,7 +116,7 @@ describe('v2 post', function () {
         content: '@ssdf 木耳敲回车 @sfdsdf @forim new'
       })
       .expect(403, function (err, res) {
-        res.text.should.equal('Access Denied!');
+        res.text.should.containEql('对不起，你不能编辑此回复。');
         done(err);
       });
   });
@@ -117,7 +137,17 @@ describe('v2 post', function () {
         done(err);
       });
   });
-
+  it('should not remove a post', function (done) {
+    var req = http(app).post('/post/remove');
+    req
+      .send({
+        id: postId
+      })
+      .expect(403, function (err, res) {
+        res.text.should.containEql('对不起，你不能编辑此回复。');
+        done(err);
+      });
+  });
   it('should remove a post', function (done) {
     var req = http(app).post('/post/remove');
     req.cookies = shared.cookies;
