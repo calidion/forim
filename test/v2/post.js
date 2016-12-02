@@ -41,6 +41,19 @@ describe('v2 post', function () {
         done(err);
       });
   });
+
+  it('should not create a post when no login', function (done) {
+    var req = http(app).post('/post/create/' + shared.thread.id);
+    req.cookies = shared.cookies;
+    req
+      .send({
+        content: ''
+      })
+      .expect(403, function (err, res) {
+        res.text.should.equal('Access Denied!');
+        done(err);
+      });
+  });
   it('should create a post', function (done) {
     var req = http(app).post('/post/create/' + shared.thread.id);
     req.cookies = shared.cookies;
