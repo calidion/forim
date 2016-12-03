@@ -37,12 +37,13 @@
     </div>
   </div>
   <% } %>
-  <% if (typeof(no_reply_topics) !== 'undefined') { %>
   <div class='panel'>
     <div class='header'>
       <span class='col_fade'>无人回复的话题</span>
     </div>
     <div class='inner'>
+        <% if (typeof(no_reply_topics) !== 'undefined') { %>
+
       <% if (no_reply_topics.length > 0) { %>
       <ul class="unstyled">
         <%- partial('thread/small', { collection: no_reply_topics, as: 'topic' }) %>
@@ -50,18 +51,20 @@
       <% } else { %>
       <p>无</p>
       <% } %>
+        <% } %>
+
     </div>
   </div>
-  <% } %>
 
-  <% if (typeof(tops) !== 'undefined') { %>
   <div class='panel'>
     <div class='header'>
       <span class='col_fade'>积分榜</span>
       &nbsp;
-      <a class='dark' href='/users/top100'>TOP 100 &gt;&gt;</a>
+      <a class='dark' href='/user/top'>TOP 100 &gt;&gt;</a>
     </div>
     <div class='inner'>
+      <% if (typeof(tops) !== 'undefined') { %>
+
       <% if (tops.length > 0) { %>
       <ol>
         <%- partial('user/top', { collection: tops, as: 'user' }) %>
@@ -69,7 +72,8 @@
       <% } else { %>
       <p>无</p>
       <% } %>
+        <% } %>
+
     </div>
   </div>
-  <% } %>
 </div>

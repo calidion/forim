@@ -1,28 +1,28 @@
 <div class='cell'>
 
   <a class="user_avatar pull-left" href="/user/<%= thread.author.loginname %>">
-    <img src="<%= proxy(thread.author.avatar_url) %>"
-         title="<%= thread.author.loginname %>"
+    <img src="<%= thread.author.avatar %>"
+         title="<%= thread.author.username %>"
             />
   </a>
 
   <span class="reply_count pull-left">
     <span class="count_of_replies" title="回复数">
-      <%= thread.reply_count %>
+      <%= thread.replies %>
     </span>
     <span class="count_seperator">/</span>
     <span class="count_of_visits" title='点击数'>
-      <%= thread.visit_count %>
+      <%= thread.visits %>
     </span>
   </span>
 
-  <% if (thread.reply && thread.reply.author) {%>
-  <a class='last_time pull-right' href="/topic/<%= thread._id %><%- '#' + thread.reply._id %>">
-    <img class="user_small_avatar" src="<%= proxy(thread.reply.author.avatar_url) %>">
-    <span class="last_active_time"><%= thread.reply.create_at_ago() %></span>
+  <% if (thread.lastReplier) {%>
+  <a class='last_time pull-right' href="/thread/visit/<%= thread.id %>">
+    <img class="user_small_avatar" src="<%= thread.lastReplier.avatar %>">
+    <span class="last_active_time"><%= thread.lastReplyAt %></span>
   </a>
   <% } %>
-  <% if (!thread.reply) {%>
+  <% if (!thread.lastReplier) {%>
     <span class='last_time pull-right'>
       <span class="last_active_time"><%= thread.createdAt %></span>
     </span>
@@ -32,7 +32,7 @@
 
     <%- partial('./_top_good', {thread: thread}) %>
 
-    <a class='topic_title' href='/topic/<%= thread._id %>' title='<%= thread.title %>'>
+    <a class='topic_title' href='/thread/visit/<%= thread.id %>' title='<%= thread.title %>'>
       <%= thread.title %>
     </a>
   </div>

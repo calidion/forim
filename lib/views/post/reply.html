@@ -1,31 +1,30 @@
-<div class='cell reply_area reply_item
-  <%- reply.ups && reply.ups.length >= topic.reply_up_threshold ? 'reply_highlight' : '' %>'
-  id="reply<%= indexInCollection+1 %>" reply_id="<%= reply._id %>" reply_to_id="<%= reply.reply_id || '' %>">
-  <a class="anchor" id="<%= reply._id %>"></a>
+<div class='cell reply_area reply_item'
+  id="reply<%= indexInCollection+1 %>" reply_id="<%= post.id %>" reply_to_id="<%= post.reply_id || '' %>">
+  <a class="anchor" id="<%= post.id %>"></a>
 
   <div class='author_content'>
-    <a href="/user/<%= reply.author.loginname %>" class="user_avatar">
-      <img src="<%= proxy(reply.author.avatar_url) %>" title="<%= reply.author.loginname %>"/></a>
+    <a href="/user/<%= post.author.username %>" class="user_avatar">
+      <img src="<%= proxy(post.author.avatar_url) %>" title="<%= post.author.username %>"/></a>
 
     <div class='user_info'>
-      <a class='dark reply_author' href="/user/<%= reply.author.loginname %>"><%= reply.author.loginname %>
+      <a class='dark reply_author' href="/user/<%= post.author.username %>"><%= post.author.username %>
       </a>
-      <a class="reply_time" href="#<%= reply._id %>"><%= indexInCollection + 1 %>楼•<%= reply.create_at_ago()
+      <a class="reply_time" href="#<%= post.id %>"><%= indexInCollection + 1 %>楼•<%= post.createAt
         %></a>
     </div>
     <div class='user_action'>
       <span>
         <i class="fa up_btn
           <%= (current_user && is_uped(current_user, reply)) ? 'fa-thumbs-up uped' : 'fa-thumbs-o-up' %>
-          <%= (!reply.ups || !reply.ups.length) ? 'invisible' : '' %>" title="喜欢"></i>
+          <%= (!post.ups || !post.ups.length) ? 'invisible' : '' %>" title="喜欢"></i>
         <span class="up-count">
-          <%= reply.ups && reply.ups.length ? reply.ups.length : '' %>
+          <%= post.ups && post.ups.length ? post.ups.length : '' %>
         </span>
       </span>
       <% if (current_user && current_user.is_admin ||
-      (current_user && current_user._id.toString() == reply.author._id.toString())
+      (current_user && current_user.id.toString() == post.author.id.toString())
       ) { %>
-      <a href='/reply/<%= reply._id %>/edit' class='edit_reply_btn'>
+      <a href='/reply/<%= post.id %>/edit' class='edit_reply_btn'>
         <i class="fa fa-pencil-square-o" title='编辑'></i>
       </a>
       <a href='javascript:void(0);' class='delete_reply_btn'>
@@ -39,24 +38,24 @@
       </span>
     </div>
   </div>
-  <div class='reply_content from-<%= reply.author.loginname %>'>
-    <%- markdown(reply.content) %>
+  <div class='reply_content from-<%= post.author.username %>'>
+    <%- markdown(post.content) %>
   </div>
   <div class='clearfix'>
     <div class='reply2_area'>
       <% if (current_user) { %>
-      <form class='reply2_form' action='/<%= topic._id %>/reply' method='post'>
+      <form class='reply2_form' action='/<%= thread.id %>/reply' method='post'>
         <input type='hidden' name='_csrf' value='<%= csrf %>'/>
-        <input type='hidden' name='reply_id' value='<%= reply._id %>'/>
+        <input type='hidden' name='reply_id' value='<%= post.id %>'/>
 
         <div class='markdown_editor in_editor'>
           <div class='markdown_in_editor'>
             <textarea class='span8 editor reply_editor'
-                      id="reply2_editor_<%= reply._id %>" name='r_content' rows='4'></textarea>
+                      id="reply2_editor_<%= post.id %>" name='r_content' rows='4'></textarea>
 
             <div class='editor_buttons'>
               <input class='span-primary reply2_submit_btn submit_btn'
-                     type="submit" data-id='<%= reply._id %>' data-loading-text="回复中.." value="回复">
+                     type="submit" data-id='<%= post.id %>' data-loading-text="回复中.." value="回复">
             </div>
           </div>
 

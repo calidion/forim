@@ -125,7 +125,7 @@
     <div class='header'>
       <span class='col_fade'><%= thread.posts.length %> 回复</span>
     </div>
-    <%- partial('../reply/reply', thread.posts) %>
+    <%- partial('../post/reply', { collection: thread.posts, as: 'post' }) %>
   </div>
   <% } %>
   <% if (current_user && typeof(thread) !== 'undefined') { %>
