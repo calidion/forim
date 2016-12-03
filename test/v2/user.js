@@ -552,4 +552,12 @@ describe('v2 user', function () {
         done(err);
       });
   });
+  it('should get /user/top', function (done) {
+    var req = http(app);
+    req.get('/user/top')
+      .expect(200, function (err, res) {
+        res.text.should.containEql('Top100 积分榜');
+        done(err);
+      });
+  });
 });
