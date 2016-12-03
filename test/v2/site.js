@@ -1,8 +1,7 @@
 var http = require('supertest');
-// var assert = require('assert');
 var server = require('./app');
 var app;
-var shared = require('./shared');
+var config = require('../../lib/config');
 
 describe('v2 site', function () {
   before(function (done) {
@@ -33,5 +32,14 @@ describe('v2 site', function () {
         res.text.should.containEql('积分榜');
         done(err);
       });
+  });
+
+  it('should / status 200', function (done) {
+    var req = http(app).get('/');
+    req.end(function (err, res) {
+      res.status.should.equal(200);
+      res.text.should.containEql(config.description);
+      done(err);
+    });
   });
 });

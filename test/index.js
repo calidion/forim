@@ -1,7 +1,5 @@
 'use strict';
 
-// var forim = require('../lib');
-var app = require('./app.test.js');
 var env = require('./env');
 
 var api = require('./api/');
