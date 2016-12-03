@@ -176,7 +176,7 @@ describe('v2 post', function () {
         done(err);
       });
   });
-    it('should list user posted threads', function (done) {
+  it('should list user posted threads', function (done) {
     var req = http(app).get('/post/user/' + shared.user.username);
     req.cookies = shared.cookies;
     req
@@ -187,6 +187,7 @@ describe('v2 post', function () {
         done(err);
       });
   });
+
   it('should remove a post', function (done) {
     var req = http(app).post('/post/remove');
     req.cookies = shared.cookies;
