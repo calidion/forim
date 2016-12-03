@@ -29,16 +29,6 @@ describe('test/controllers/user.test.js', function () {
     });
   });
 
-  // describe('#top100', function () {
-  //   it('should get /users/top100', function (done) {
-  //     request.get('/users/top100')
-  //     .expect(200, function (err, res) {
-  //       res.text.should.containEql('Top100 积分榜');
-  //       done(err);
-  //     });
-  //   });
-  // });
-
   describe('#delete_all', function () {
     it('should delele all ups', function (done) {
       support.createUser(function (err, user) {

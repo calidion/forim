@@ -560,4 +560,16 @@ describe('v2 user', function () {
         done(err);
       });
   });
+
+  it('should clear a user', function (done) {
+    var req = http(app);
+    req.post('/user/clear')
+      .send({
+        username: shared.user.username
+      })
+      .expect(200, function (err, res) {
+        res.body.status.should.eql('success');
+        done(err);
+      });
+  });
 });
