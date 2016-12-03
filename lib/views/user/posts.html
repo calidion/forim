@@ -5,7 +5,7 @@
     <div class='header'>
       <ul class='breadcrumb'>
         <li><a href='/'>主页</a><span class='divider'>/</span></li>
-        <li class='active'><a href="/user/<%=user.loginname%>"><%=user.loginname%>的主页</a></li>
+        <li class='active'><a href="/user/<%=user.username%>"><%=user.username%>的主页</a></li>
       </ul>
     </div>
   </div>
@@ -13,7 +13,7 @@
     <div class="header"><%= user.username %> 参与的话题</div>
     <div class="inner padding">
     <% if(typeof(threads) !== 'undefined' && threads.length > 0){ %>
-    <%- partial('../threads/list',
+    <%- partial('../thread/list',
     {threads:threads,total:total,page:page,base:'/post/user/'+user.username}) %>
     <% }else{ %>
     <div class='inner'>

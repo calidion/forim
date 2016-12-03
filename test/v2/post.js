@@ -176,6 +176,17 @@ describe('v2 post', function () {
         done(err);
       });
   });
+    it('should list user posted threads', function (done) {
+    var req = http(app).get('/post/user/' + shared.user.username);
+    req.cookies = shared.cookies;
+    req
+      .expect(200, function (err, res) {
+        res.text.should.containEql('修改后的Title');
+        res.text.should.containEql('参与的话题');
+        res.text.should.containEql(shared.user.username);
+        done(err);
+      });
+  });
   it('should remove a post', function (done) {
     var req = http(app).post('/post/remove');
     req.cookies = shared.cookies;
