@@ -6,7 +6,7 @@
       <span class='col_fade'>个人信息</span>
     </div>
     <div class='inner'>
-      <%- partial('user/card',{ object: typeof(user) === 'undefined' ? current_user : user, as: 'user' }) %>
+      <%- partial('user/profile',{ object: typeof(user) === 'undefined' ? current_user : user, as: 'user' }) %>
     </div>
     <% } else { %>
     <div class='inner'>
@@ -42,11 +42,11 @@
       <span class='col_fade'>无人回复的话题</span>
     </div>
     <div class='inner'>
-        <% if (typeof(no_reply_topics) !== 'undefined') { %>
+        <% if (typeof(unanswered) !== 'undefined') { %>
 
-      <% if (no_reply_topics.length > 0) { %>
+      <% if (unanswered.length > 0) { %>
       <ul class="unstyled">
-        <%- partial('thread/small', { collection: no_reply_topics, as: 'topic' }) %>
+        <%- partial('thread/small', { collection: unanswered, as: 'thread' }) %>
       </ul>
       <% } else { %>
       <p>无</p>
@@ -63,11 +63,11 @@
       <a class='dark' href='/user/top'>TOP 100 &gt;&gt;</a>
     </div>
     <div class='inner'>
-      <% if (typeof(tops) !== 'undefined') { %>
+      <% if (typeof(highestScores) !== 'undefined') { %>
 
-      <% if (tops.length > 0) { %>
+      <% if (highestScores.length > 0) { %>
       <ol>
-        <%- partial('user/top', { collection: tops, as: 'user' }) %>
+        <%- partial('user/top', { collection: highestScores, as: 'user' }) %>
       </ol>
       <% } else { %>
       <p>无</p>

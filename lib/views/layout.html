@@ -95,10 +95,6 @@
               </a>
             </li>
             <% } %>
-              <!-- <li><a href='/getstart'>新手入门</a></li> -->
-              <li>
-                <a href='/api'>API</a>
-              </li>
               <!-- <%
         var site_navs = config.site_navs || [];
         for (var i = 0, l = site_navs.length; i < l; i++) {
@@ -111,17 +107,17 @@
                   <a href='/v2/settings/user'>微信公共号</a>
                 </li>
                 <li>
-                  <a href='/setting'>设置</a>
+                  <a href='/user/settings'>设置</a>
                 </li>
                 <li>
-                  <a href='/signout' data-method="post" rel="nofollow">退出</a>
+                  <a href='/user/logout' data-method="post" rel="nofollow">退出</a>
                 </li>
                 <% } else { %>
                   <li>
-                    <a href='/signup'>注册</a>
+                    <a href='/user/register'>注册</a>
                   </li>
                   <li>
-                    <a href='/signin'>登录</a>
+                    <a href='/user/login'>登录</a>
                   </li>
                   <% } %>
         </ul>

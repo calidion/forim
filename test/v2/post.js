@@ -15,7 +15,7 @@ describe('v2 post', function () {
   it('should login in successful', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 0;
     var req = http(app);
-    req.post('/signin')
+    req.post('/user/login')
       .send(shared.user)
       .end(function (err, res) {
         var re = new RegExp('; path=/; httponly', 'gi');

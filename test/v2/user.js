@@ -19,7 +19,7 @@ describe('v2 user', function () {
   });
   it('should visit sign up page', function (done) {
     var req = http(app);
-    req.get('/signup')
+    req.get('/user/register')
       .expect(200, function (err, res) {
         assert(!err);
         res.text.should.containEql('确认密码');
@@ -37,7 +37,7 @@ describe('v2 user', function () {
   });
   it('should signup', function (done) {
     var req = http(app);
-    req.post('/signup')
+    req.post('/user/register')
       .send({
         username: username,
         email: email,
@@ -52,7 +52,7 @@ describe('v2 user', function () {
   });
   it('should not signup with existing username', function (done) {
     var req = http(app);
-    req.post('/signup')
+    req.post('/user/register')
       .send({
         username: username,
         email: 'a' + email,
@@ -64,7 +64,7 @@ describe('v2 user', function () {
   });
   it('should not signup with existing email', function (done) {
     var req = http(app);
-    req.post('/signup')
+    req.post('/user/register')
       .send({
         username: 'a' + username,
         email: email,
@@ -76,7 +76,7 @@ describe('v2 user', function () {
   });
   it('should visit sign in page', function (done) {
     var req = http(app);
-    req.get('/signin').end(function (err, res) {
+    req.get('/user/login').end(function (err, res) {
       res.text.should.containEql('登录');
       res.text.should.containEql('通过 GitHub 登录');
       done(err);
@@ -94,7 +94,7 @@ describe('v2 user', function () {
 
   it('should get errors when there is no username or no password provided', function (done) {
     var req = http(app);
-    req.post('/signin')
+    req.post('/user/login')
       .send({
         username: username,
         password: ''
@@ -121,7 +121,7 @@ describe('v2 user', function () {
 
   it('should not login in when not actived', function (done) {
     var req = http(app);
-    req.post('/signin')
+    req.post('/user/login')
       .send({
         username: username,
         password: password
@@ -134,7 +134,7 @@ describe('v2 user', function () {
   });
   it('should activate no account', function (done) {
     var req = http(app);
-    req.get('/active_account')
+    req.get('/user/activate')
       .query({
         token: 'sdf',
         username: 'sdf'
@@ -146,7 +146,7 @@ describe('v2 user', function () {
   });
   it('should activate bad token', function (done) {
     var req = http(app);
-    req.get('/active_account')
+    req.get('/user/activate')
       .query({
         token: 'sdf',
         username: username
@@ -161,7 +161,7 @@ describe('v2 user', function () {
       username: username
     }).then(function (found) {
       var req = http(app);
-      req.get('/active_account')
+      req.get('/user/activate')
         .query({
           token: found.accessToken,
           username: username
@@ -177,7 +177,7 @@ describe('v2 user', function () {
       username: username
     }).then(function (found) {
       var req = http(app);
-      req.get('/active_account')
+      req.get('/user/activate')
         .query({
           token: found.accessToken,
           username: username
@@ -191,7 +191,7 @@ describe('v2 user', function () {
 
   it('should login in successful', function (done) {
     var req = http(app);
-    req.post('/signin')
+    req.post('/user/login')
       .send({
         username: username,
         password: password
@@ -281,14 +281,14 @@ describe('v2 user', function () {
 
   it('should sign out', function (done) {
     var req = http(app);
-    req.get('/signout')
+    req.get('/user/logout')
       .expect(302)
       .end(done);
   });
 
   it('should sign out', function (done) {
     var req = http(app);
-    req.post('/signout')
+    req.post('/user/logout')
       .expect(302)
       .end(done);
   });
@@ -374,7 +374,7 @@ describe('v2 user', function () {
 
   it('should login in successfully again', function (done) {
     var req = http(app);
-    req.post('/signin')
+    req.post('/user/login')
       .send({
         username: username,
         password: shared.user.password

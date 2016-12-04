@@ -24,11 +24,7 @@
         <strong><%= error %></strong>
       </div>
       <% }else{ %>
-      <% if (typeof(action) !== 'undefined' && action === 'edit') { %>
-      <form id='create_topic_form' action='/topic/<%= thread.id %>/edit' method='post'>
-        <% } else { %>
-        <form id='create_topic_form' action='/topic/create' method='post'>
-          <% } %>
+        <form id='create_topic_form' action='' method='post'>
           <fieldset>
             <span class="tab-selector">选择版块：</span>
             <select name="tab" id="tab-value">
@@ -53,7 +49,7 @@
 
             <div class='markdown_editor in_editor'>
               <div class='markdown_in_editor'>
-                <textarea class='editor' name='t_content' rows='20'
+                <textarea class='editor' name='content' rows='20'
                           placeholder='文章支持 Markdown 语法, 请注意标记代码'
                         ><%= typeof(thread) !== 'undefined' && thread.content || '' %></textarea>
 

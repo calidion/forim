@@ -15,7 +15,7 @@ describe('v2 thread', function () {
   });
   it('should login in successful', function (done) {
     var req = http(app);
-    req.post('/signin')
+    req.post('/user/login')
       .send(shared.user)
       .end(function (err, res) {
         var re = new RegExp('; path=/; httponly', 'gi');

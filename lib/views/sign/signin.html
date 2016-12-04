@@ -17,17 +17,17 @@
       <% } %>
       <form id='signin_form' class='form-horizontal' action='/signin' method='post'>
         <div class='control-group'>
-          <label class='control-label' for='name'>用户名</label>
+          <label class='control-label' for='username'>用户名</label>
 
           <div class='controls'>
-            <input class='input-xlarge' id='name' name='name' size='30' type='text'/>
+            <input class='input-xlarge' id='username' name='username' size='30' type='text'/>
           </div>
         </div>
         <div class='control-group'>
-          <label class='control-label' for='pass'>密码</label>
+          <label class='control-label' for='password'>密码</label>
 
           <div class='controls'>
-            <input class='input-xlarge' id='pass' name='pass' size='30' type='password'/>
+            <input class='input-xlarge' id='password' name='password' size='30' type='password'/>
           </div>
         </div>
         <input type='hidden' name='_csrf' value='<%= csrf %>'/>

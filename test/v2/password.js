@@ -33,7 +33,7 @@ describe('v2 password', function () {
 
   it('should login in successfully again', function (done) {
     var req = http(app);
-    req.post('/signin')
+    req.post('/user/login')
       .send({
         username: shared.user.username,
         password: shared.user.password

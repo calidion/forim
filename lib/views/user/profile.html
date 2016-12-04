@@ -1,9 +1,9 @@
 <div class='user_card'>
   <div>
-    <a class='user_avatar' href="/user/<%= user.loginname %>">
-      <img src="<%= proxy(user.avatar_url) %>" title="<%= user.loginname %>"/>
+    <a class='user_avatar' href="/user/page/<%= user.username %>">
+      <img src="<%= user.avatar %>" title="<%= user.username %>"/>
     </a>
-    <span class='user_name'><a class='dark' href="/user/<%= user.loginname %>"><%= user.loginname %></a></span>
+    <span class='user_name'><a class='dark' href="/user/page/<%= user.username %>"><%= user.username %></a></span>
 
     <div class='board clearfix'>
       <div class='floor'>
@@ -30,7 +30,7 @@
       var $me = $(this);
       var action = $me.attr('action');
       var params = {
-        follow_id: '<%= user._id %>',
+        follow_id: '<%= user.id %>',
         _csrf: '<%- csrf %>'
       };
       $.post('/user/' + action, params, function (data) {
