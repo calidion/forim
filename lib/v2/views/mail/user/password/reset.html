@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+    crossorigin="anonymous">
+  <title>[
+    <%=site.name%>]密码重置</title>
+
+</head>
+
+<body>
+  <div class="container-fluid">
+    <h4>亲爱的[
+      <%=user.name%>]用户，您好</h4>
+    <h2恭喜您!</h2>
+      <h1>您在[
+        <%=site.name%>]发起的重置密码的请求已经成功！</h1>
+      <p>您需要点击下面的链接地址进行密码重置。</p>
+      <p class="alert alert-success">
+        重置链接：
+        <a class="btn btn-danger  btn-xs" href="<%=url%>">重置</a>
+      </p>
+      <p>
+        如果无法打开重置链接，请复制下面的地址到浏览器上：
+      </p>
+      <p class="alert alert-info">
+        <%=url%>
+      </p>
+      <p>如果您没有在[
+        <%=site.name%>]重置过，请忽略本邮件。</p>
+      <p class="text-right">
+        <%=site.name%> 谨上</p>
+  </div>
+</body>
+
+</html>

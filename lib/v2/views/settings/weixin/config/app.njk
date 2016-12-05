@@ -1,0 +1,33 @@
+{% extends '../layout.njk' %}
+
+{% block main %} 
+<h4 class="text-center">App基本设置</h4>
+
+<div class="alert alert-success hidden" role="alert">更新成功!</div>
+
+<form class="form-horizontal app" method="post" action=""  enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="id" class="col-sm-2 control-label">App Id</label>
+    <div class="col-sm-10">
+      <input type="text" name="id" class="form-control" id="id" placeholder="App Id" value="{{data.id}}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="secret" class="col-sm-2 control-label">App Secret</label>
+      <div class="col-sm-10">
+        <input type="text" name="secret" class="form-control" id="secret" placeholder="App Secret" value="{{data.secret}}">
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="token" class="col-sm-2 control-label">App Token</label>
+    <div class="col-sm-10">
+      <input type="text" name="token" class="form-control" id="token" placeholder="App Token" value="{{data.token}}">
+    </div>
+  </div>
+  <hr/>
+  <div class="text-center">
+      <button type="submit" class="btn btn-danger">提交</button>
+  </div>
+  <hr/>
+</form>
+{% endblock %}

@@ -1,0 +1,57 @@
+<div id="topic_list">
+  <%- partial('./abstract', {collection: threads, as:'thread'}) %>
+</div>
+<div class='pagination' page='<%= page %>'>
+  <ul>
+    <% var base_url = base + (base.indexOf('?') < 0 ? '?' : '&')
+      + 'tab=' + (typeof tab !== 'undefined' ? tab : '') + '&page='; %>
+    <% if (page == 1) { %>
+    <li class='disabled'><a>«</a></li>
+    <% } else { %>
+    <li><a href="<%= base_url %>1">«</a></li>
+    <% } %>
+
+    <%
+    var page_start = page - 2 > 0 ? page - 2 : 1;
+    var page_end = page_start + 4 >= total ? total : page_start + 4;
+    %>
+
+    <% if (page_start > 1) { %>
+    <li><a>...</a></li>
+    <% } %>
+
+    <% for(var i = page_start; i <= page_end; i++) { %>
+    <% if (i === page) { %>
+    <li class='disabled'><a><%= i %></a></li>
+    <% } else { %>
+    <li><a href='<%= base_url + i %>'><%= i %></a></li>
+    <% } %>
+    <% } %>
+
+    <% if (page_end < total ) { %>
+    <li><a>...</a></li>
+    <% } %>
+
+    <% if (page == total) { %>
+    <li class='disabled'><a>»</a></li>
+    <% } else { %>
+    <li><a href='<%= base_url + total %>'>»</a></li>
+    <% } %>
+  </ul>
+</div>
+<script>
+  $(document).ready(function () {
+    var $nav = $('.pagination');
+    var page = $nav.attr('page');
+    if (page) {
+      $nav.find('li').each(function () {
+        var $li = $(this);
+        var $a = $li.find('a');
+        if ($a.html() == page) {
+          $li.addClass('active');
+          $a.removeAttr('href');
+        }
+      });
+    }
+  });
+</script>

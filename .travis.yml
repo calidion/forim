@@ -1,0 +1,11 @@
+language: node_js
+services:
+  - mongodb
+  - redis-server
+node_js:
+  - v6
+  - v5
+  - v4
+
+env:
+  -TRAVIS_ENV=1

@@ -1,0 +1,68 @@
+{% extends './layout.njk' %}
+{% block nav %}
+{% endblock %}
+
+{% block sidebar %}
+    
+{% endblock %}
+
+{% block main %} 
+<h4 class="text-center">访问微信URL</h4>
+{% if updated %}
+<div class="alert alert-success" role="alert" ng-show="updated">更新成功!</div>
+{% endif %}
+
+   <form class="form-horizontal pages" method="post">
+     <div class="form-group">
+       <label for="host" class="col-sm-2 control-label">当前网站的基地址URL</label>
+       <div class="col-sm-10">
+       <input type="text" name="host" class="form-control" id="host"
+              value="{{url}}"
+              placeholder="请配置您的主机域名">
+       </div>
+     </div>
+     <div class="form-group">
+       <label class="col-sm-2 control-label">服务器校验地址</label>
+       <div class="col-sm-10">
+         <p class="form-control-static"><a href="{{url}}/auth/ack" target="_blank">http://localhost/wx0cf777e00460d938/weixin/auth/ack</a></p>
+       </div>
+     </div>
+     <div class="form-group">
+       <label class="col-sm-2 control-label">JSSDK配置请求地址</label>
+       <div class="col-sm-10">
+         <p class="form-control-static"><a href="{{url}}/jssdk/config" target="_blank">http://localhost/wx0cf777e00460d938/weixin/jssdk/config</a></p>
+       </div>
+     </div>
+       <div class="form-group">
+         <label class="col-sm-2 control-label">Oauth访问地址</label>
+         <div class="col-sm-10">
+           <p class="form-control-static"><a href="{{url}}/oauth/access" target="_blank">http://localhost/wx0cf777e00460d938/weixin/oauth/access</a></p>
+         </div>
+       </div>
+     <div class="form-group">
+       <label class="col-sm-2 control-label">Oauth访问成功请求地址</label>
+       <div class="col-sm-10">
+         <p class="form-control-static"><a href="{{url}}/weixin/oauth/success" target="_blank">http://localhost/wx0cf777e00460d938/weixin/oauth/success</a></p>
+       </div>
+     </div>
+     <div class="form-group">
+       <label class="col-sm-2 control-label">Oauth成功重定向页面地址</label>
+       <div class="col-sm-10">
+         <p class="form-control-static"><a href="{{url}}/pages/oauth" target="_blank">http://localhost/wx0cf777e00460d938/pages/oauth</a></p>
+       </div>
+     </div>
+     <div class="form-group">
+       <label class="col-sm-2 control-label">支付回调地址</label>
+       <div class="col-sm-10">
+         <p class="form-control-static"><a href="{{url}}/weixin/pay/callback" target="_blank">http://localhost/wx0cf777e00460d938/weixin/pay/callback</a></p>
+       </div>
+     </div>
+     <div class="form-group">
+       <label class="col-sm-2 control-label">支付页面</label>
+       <div class="col-sm-10">
+         <p class="form-control-static"><a href="{{url}}/pages/pay" target="_blank">http://localhost/wx0cf777e00460d938/pages/pay</a></p>
+       </div>
+     </div>
+   </form>
+   
+{% endblock %}

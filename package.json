@@ -1,12 +1,98 @@
 {
-  "name": "openshift-cartridge-nodejs-template",
-  "version": "1.0.1",
-  "description": "Custom Node.js cartridge for OpenShift - sample application",
-  "private": true,
-  "main": "start.js",
-  "scripts": {
-    "start": "node --use_strict start.js"
+  "name": "forim",
+  "version": "0.1.0",
+  "description": "一个基于node的论坛,im系统,简称forim",
+  "homepage": "http://forum.webfullstack.me",
+  "author": {
+    "name": "calidion",
+    "email": "caldiion@gmail.com",
+    "url": "blog.3gcneta.com"
   },
-  "author": "Ionut-Cristian Florescu <ionut.florescu@gmail.com>",
-  "license": "ISC"
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "keywords": [
+    ""
+  ],
+  "devDependencies": {
+    "eslint": "^2.1.0",
+    "eslint-config-xo-space": "^0.12.0",
+    "gulp": "^3.9.0",
+    "gulp-coveralls": "^0.1.0",
+    "gulp-eslint": "^2.0.0",
+    "gulp-exclude-gitignore": "^1.0.0",
+    "gulp-istanbul": "^0.10.3",
+    "gulp-less": "^3.1.0",
+    "gulp-line-ending-corrector": "^1.0.1",
+    "gulp-mocha": "^2.0.0",
+    "gulp-nsp": "^2.1.0",
+    "gulp-plumber": "^1.0.0",
+    "handlebars": "^4.0.5",
+    "should": "^8.3.1",
+    "supertest": "^1.2.0"
+  },
+  "eslintConfig": {
+    "extends": "xo-space",
+    "env": {
+      "mocha": true
+    }
+  },
+  "repository": "calidion/forim",
+  "scripts": {
+    "prepublish": "gulp prepublish",
+    "test": "gulp"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "bcrypt": "^0.8.7",
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.5.2",
+    "bytes": "^2.3.0",
+    "colors": "^1.1.2",
+    "compression": "^1.6.2",
+    "connect-busboy": "0.0.2",
+    "connect-redis": "^3.0.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.7.1",
+    "csurf": "^1.8.3",
+    "data2xml": "^1.2.5",
+    "egg-messager": "0.0.1",
+    "ejs-mate": "^2.3.0",
+    "errorable": "^0.3.1",
+    "errorable-common": "^0.1.0",
+    "errorable-express": "0.0.4",
+    "errorhandler": "^1.4.3",
+    "eventproxy": "^0.3.4",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "file-cloud-uploader": "0.0.5",
+    "lodash": "^4.12.0",
+    "log4js": "^0.6.36",
+    "markdown-it": "^6.0.1",
+    "moment": "^2.13.0",
+    "node-form-validator": "^1.0.1",
+    "node-uuid": "^1.4.7",
+    "node-weixin-express-config": "^0.1.0",
+    "node-weixin-router": "^0.5.3",
+    "node-weixin-session": "0.0.2",
+    "node-weixin-settings": "^0.2.1",
+    "nodemailer": "^2.4.1",
+    "nodemailer-smtp-transport": "^2.5.0",
+    "nunjucks": "^2.4.2",
+    "passport": "^0.3.2",
+    "passport-github": "^1.1.0",
+    "request": "^2.72.0",
+    "response-time": "^2.3.1",
+    "sails-mongo": "^0.12.0",
+    "sails-mysql": "^0.11.5",
+    "skipper": "^0.6.1",
+    "utility": "^1.8.0",
+    "validator": "^5.2.0",
+    "vig": "^0.6.0",
+    "waterline": "^0.12.2",
+    "waterline-paginator": "0.0.8",
+    "xmlbuilder": "^8.2.2",
+    "xss": "^0.2.13"
+  }
 }
