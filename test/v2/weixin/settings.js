@@ -4,7 +4,7 @@ var assert = require('assert');
 var path = require('path');
 var fs = require('fs');
 var cache = require('./cache');
-var support = require('../../support/support');
+var shared = require('../shared');
 
 var filePath = path.resolve(__dirname, './fixtures/cert.p12');
 var server = require('../app');
@@ -19,7 +19,7 @@ describe('v2 weixin settings', function () {
     });
   });
   it('should set app config', function (done) {
-    cookies = support.normalUserCookie;
+    cookies = shared.cookies;
     var req = request(express)
       .post('/weixin/config/app');
     req.cookies = cookies;
@@ -31,8 +31,6 @@ describe('v2 weixin settings', function () {
       })
       .expect(200)
       .end(function (error, res) {
-        cookies = res.headers['set-cookie'];
-        cache.cookies = cookies;
         assert.equal(true, !error);
         assert.deepEqual({
           code: 0,
