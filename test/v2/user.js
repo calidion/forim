@@ -381,6 +381,7 @@ describe('v2 user', function () {
       })
       .end(function (err, res) {
         var re = new RegExp('; path=/; httponly', 'gi');
+        console.log(res.headers);
         cookies = res.headers['set-cookie']
           .map(function (r) {
             return r.replace(re, '');
