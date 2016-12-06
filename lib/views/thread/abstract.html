@@ -19,12 +19,12 @@
   <% if (thread.lastReplier) {%>
   <a class='last_time pull-right' href="/thread/visit/<%= thread.id %>">
     <img class="user_small_avatar" src="<%= thread.lastReplier.avatar %>">
-    <span class="last_active_time"><%= thread.lastReplyAt %></span>
+    <span class="last_active_time"><%= ago(thread.lastReplyAt) %></span>
   </a>
   <% } %>
   <% if (!thread.lastReplier) {%>
     <span class='last_time pull-right'>
-      <span class="last_active_time"><%= thread.createdAt || '' %></span>
+      <span class="last_active_time"><%= ago(thread.createdAt) || '' %></span>
     </span>
   <% } %>
 
