@@ -80,7 +80,7 @@
     "sails-mysql": "^0.11.5",
     "skipper": "^0.6.1",
     "utility": "^1.9.0",
-    "vig": "^0.6.0",
+    "vig": "^0.7.0",
     "waterline": "^0.12.2",
     "waterline-paginator": "0.0.8"
   }
