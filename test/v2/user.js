@@ -45,7 +45,6 @@ describe('v2 user', function () {
         confirm: password
       })
       .expect(200, function (err, res) {
-        console.log(err, res.text);
         assert(!err);
         res.text.should.containEql('欢迎加入');
         done();

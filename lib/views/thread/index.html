@@ -50,17 +50,17 @@
       </span>
       <div class="changes">
         <span>
-          发布于 <%= thread.createdAt %>
+          发布于 <%= ago(thread.createdAt) %>
         </span>
         <span>
-          作者 <a href="/user/<%= thread.author.username %>"><%= thread.author.username %></a>
+          作者 <a href="/user/page/<%= thread.author.username %>"><%= thread.author.username %></a>
         </span>
         <span>
           <%= thread.visits %> 次浏览
         </span>
         <% if (thread.createdAt != thread.updatedAt) { %>
           <span>
-            最后一次编辑是 <%= thread.updatedAt %>
+            最后一次编辑是 <%= ago(thread.updatedAt) %>
           </span>
         <% } %>
         <% if (thread.tab) { %>
@@ -69,7 +69,7 @@
       </div>
       <% if (current_user) { %>
       <div id="manage_topic">
-        <% if (current_user.is_admin) { %>
+        <% if (current_user.isAdmin) { %>
 
         <a href='/thread/top/<%= thread.id %>' data-method="post">
           <% if (thread.top) { %>
@@ -95,7 +95,7 @@
           <% } %>
         </a>
 
-        <a href='/thread/edit/<%= thread.id %>/edit'>
+        <a href='/thread/edit/<%= thread.id %>'>
           <i class="fa fa-lg fa-pencil-square-o" title='编辑'></i></a>
         <a href='javascript:;'
            data-id="<%= thread.id %>"
@@ -134,11 +134,11 @@
       <span class='col_fade'>添加回复</span>
     </div>
     <div class='inner reply'>
-      <form id='reply_form' action='/<%= thread.id %>/reply' method='post'>
+      <form id='reply_form' action='/post/create/<%= thread.id %>' method='post'>
 
         <div class='markdown_editor in_editor'>
           <div class='markdown_in_editor'>
-            <textarea class='editor' name='r_content' rows='8'></textarea>
+            <textarea class='editor' name='content' rows='8'></textarea>
 
             <div class='editor_buttons'>
               <input class='span-primary submit_btn' type="submit" data-loading-text="回复中.." value="回复<%= thread.lock ? '(此主题已锁定)' : ''%>" <%= thread.lock ? 'disabled="disabled"' : ''%>>
@@ -291,7 +291,7 @@
           reply_id: reply_id,
           _csrf: "<%- csrf %>"
         };
-        $.post('/reply/' + reply_id + '/delete', data, function (data) {
+        $.post('/post/remove/' + reply_id, data, function (data) {
           if (data.status === 'success') {
             if ($me.hasClass('delete_reply_btn')) {
               $me.closest('.reply_item').remove();

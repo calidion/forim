@@ -3,4 +3,3 @@ coverage
 logs
 public/upload
 .tmp
-env.sh
