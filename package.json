@@ -40,7 +40,8 @@
   "repository": "calidion/forim",
   "scripts": {
     "prepublish": "gulp prepublish",
-    "test": "gulp"
+    "test": "gulp",
+    "start": "node lib/index.js"
   },
   "license": "Apache-2.0",
   "dependencies": {
