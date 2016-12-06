@@ -86,7 +86,7 @@
       <span class='col_fade'>最近创建的话题</span>
     </div>
     <% if (typeof(threads) !== 'undefined' && threads.length > 0) { %>
-    <%- partial('../thread/abstract', { collection: threads, as: 'thread' }) %>
+    <%- partial('../thread/abstract', { collection: created, as: 'thread' }) %>
     <div class='cell more'>
       <a class='dark' href="/user/<%= user.username %>/topics">查看更多»</a>
     </div>
@@ -101,8 +101,8 @@
     <div class='header'>
       <span class='col_fade'>最近参与的话题</span>
     </div>
-    <% if (typeof(posts) !== 'undefined' && posts.length > 0) { %>
-    <%- partial('../thread/abstract', { collection: posts, as: 'posts' }) %>
+    <% if (typeof(attended) !== 'undefined' && attended.length > 0) { %>
+    <%- partial('../thread/abstract', { collection: attended, as: 'thread' }) %>
     <div class='cell more'>
       <a class='dark' href="/user/<%= user.username %>/replies">查看更多»</a>
     </div>
