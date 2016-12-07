@@ -61,6 +61,8 @@ describe('v2 github', function () {
         function (req, res, next) {
           req.user = {
             id: 'notexists',
+            username: 'sdfsdf',
+            accessToken: 'asdfsff',
             emails: [
               {
                 value: 'notexists@gmail.com'
@@ -82,7 +84,7 @@ describe('v2 github', function () {
             return done(err);
           }
           res.headers.should.have.property('location')
-            .with.endWith('/auth/github/create');
+            .with.endWith('/');
           done();
         });
     });
