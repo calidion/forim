@@ -28,9 +28,9 @@
       <span class='col_fade'>无人回复的话题</span>
     </div>
     <div class='inner'>
-      <% if (typeof(replies) !== 'undefined' && replies.length > 0) { %>
+      <% if (typeof(unanswered) !== 'undefined' && unanswered.length > 0) { %>
       <ul class='unstyled'>
-        <%- partial('../thread/small', { collection: replies, as: 'topic' }) %>
+        <%- partial('../thread/small', { collection: unanswered, as: 'thread' }) %>
       </ul>
       <% } else { %>
       <p>无</p>
