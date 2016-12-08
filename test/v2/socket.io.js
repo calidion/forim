@@ -27,17 +27,4 @@ describe('v2 socket.io', function () {
         done(err);
       });
   });
-
-  it('should upload', function (done) {
-    var req = http(app).post('/upload');
-    req.cookies = shared.cookies;
-    req
-      .attach('file', __filename)
-      .expect(200)
-      .end(function (err, res) {
-        res.body.success.should.eql(true);
-        res.body.url.should.containEql('http://');
-        done(err);
-      });
-  });
 });

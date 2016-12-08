@@ -84,6 +84,7 @@
     "utility": "^1.9.0",
     "vig": "^0.7.0",
     "waterline": "^0.12.2",
-    "waterline-paginator": "0.0.8"
+    "waterline-paginator": "0.0.8",
+    "xss": "^0.3.2"
   }
 }
