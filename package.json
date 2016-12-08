@@ -63,6 +63,7 @@
     "file-cloud-uploader": "0.0.5",
     "lodash": "^4.12.0",
     "log4js": "^0.6.36",
+    "markdown-it": "^8.2.1",
     "moment": "^2.13.0",
     "mongoose": "^4.4.17",
     "node-form-validator": "^1.0.1",
