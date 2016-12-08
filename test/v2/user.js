@@ -5,11 +5,7 @@ var server = require('./app');
 var app;
 
 describe('v2 user', function () {
-  var username = shared.user.username;
-  var email = shared.user.email;
-  var password = shared.user.password;
   var id = 1;
-  var cookies;
 
   before(function (done) {
     server(function (data) {
@@ -24,50 +20,9 @@ describe('v2 user', function () {
   require('./user/settings');
   require('./user/logout');
   require('./user/password');
+  require('./user/page');
 
   describe('#main', function () {
-    it('should login in successfully again', function (done) {
-      var req = http(app);
-      req.post('/user/login')
-        .send({
-          username: username,
-          password: shared.user.password
-        })
-        .end(function (err, res) {
-          console.log(err, res.text);
-          var re = new RegExp('; path=/; httponly', 'gi');
-          console.log(res.headers);
-          cookies = res.headers['set-cookie']
-            .map(function (r) {
-              return r.replace(re, '');
-            }).join("; ");
-          shared.cookies = cookies;
-          res.status.should.equal(302);
-          res.headers.location.should.equal('/');
-          done(err);
-        });
-    });
-
-    it('should show user index', function (done) {
-      var req = http(app);
-      req.get('/user/page/' + shared.user.username)
-        .expect(200, function (err, res) {
-          var texts = [
-            '注册时间',
-            // '这家伙很懒，什么个性签名都没有留下。',
-            '仍然很懒',
-            '最近创建的话题',
-            '无话题',
-            '最近参与的话题',
-            '无话题'
-          ];
-          texts.forEach(function (text) {
-            res.text.should.containEql(text);
-          });
-          done(err);
-        });
-    });
-
     it('should get user list', function (done) {
       process.env.FORIM_BY_PASS_POLICIES = 1;
       var req = http(app);

@@ -76,7 +76,7 @@ describe('v2 github', function () {
         },
         github.callback.routers.get);
     });
-    it('should redirect to /auth/github/create when the github id not in database', function (done) {
+    it('should create user when the github id not in database', function (done) {
       var req = http(app);
       req.get('/auth/github/test_callback?code=123456')
         .expect(302, function (err, res) {
@@ -105,91 +105,91 @@ describe('v2 github', function () {
     });
   });
 
-  describe('post /auth/github/create', function () {
-    before(function () {
-      var displayName = 'forim' + Number(new Date());
-      var username = 'forim' + Number(new Date());
-      var email = 'forim' + Number(new Date()) + '@gmail.com';
-      app.post('/auth/github/test_create', function (req, res, next) {
-        req.session.user = {
-          displayName: displayName,
-          username: req.body.githubName || username,
-          accessToken: 'a3l24j23lk5jtl35tkjglfdsf',
-          emails: [
-            {
-              value: email
-            }
-          ],
-          _json: {
-            avatar_url: 'http://avatar_url.com/1.jpg'
-          },
-          id: 22
-        };
-        req.extracted = {
-          body: {
-            create: '1'
-          }
-        };
-        next();
-      }, github.create.routers.post);
-    });
-    it('should create a new user', function (done) {
-      Promise.all([
-        app.models.User.count(),
-        new Promise(function (resolve) {
-          var req = http(app).post('/auth/github/test_create');
-          req
-            .send({
-              create: '1'
-            })
-            .expect(302, function (err, res) {
-              if (err) {
-                return done(err);
-              }
-              res.headers.should.have.property('location')
-                .with.endWith('/');
-              resolve(app.models.User.count());
-            });
-        })
-      ])
-        .then(function (data) {
-          var userCount = data[0];
-          var count = data[1];
-          count.should.equal(userCount + 1);
-          done();
-        });
-    });
+  // describe('post /auth/github/create', function () {
+  //   before(function () {
+  //     var displayName = 'forim' + Number(new Date());
+  //     var username = 'forim' + Number(new Date());
+  //     var email = 'forim' + Number(new Date()) + '@gmail.com';
+  //     app.post('/auth/github/test_create', function (req, res, next) {
+  //       req.session.user = {
+  //         displayName: displayName,
+  //         username: req.body.githubName || username,
+  //         accessToken: 'a3l24j23lk5jtl35tkjglfdsf',
+  //         emails: [
+  //           {
+  //             value: email
+  //           }
+  //         ],
+  //         _json: {
+  //           avatar_url: 'http://avatar_url.com/1.jpg'
+  //         },
+  //         id: 22
+  //       };
+  //       req.extracted = {
+  //         body: {
+  //           create: '1'
+  //         }
+  //       };
+  //       next();
+  //     }, github.create.routers.post);
+  //   });
+  //   it('should create a new user', function (done) {
+  //     Promise.all([
+  //       app.models.User.count(),
+  //       new Promise(function (resolve) {
+  //         var req = http(app).post('/auth/github/test_create');
+  //         req
+  //           .send({
+  //             create: '1'
+  //           })
+  //           .expect(302, function (err, res) {
+  //             if (err) {
+  //               return done(err);
+  //             }
+  //             res.headers.should.have.property('location')
+  //               .with.endWith('/');
+  //             resolve(app.models.User.count());
+  //           });
+  //       })
+  //     ])
+  //       .then(function (data) {
+  //         var userCount = data[0];
+  //         var count = data[1];
+  //         count.should.equal(userCount + 1);
+  //         done();
+  //       });
+  //   });
 
-    it('should reuse existing github account', function (done) {
-      var req = http(app);
-      req.post('/auth/github/test_create')
-        .send({
-          create: '1'
-        })
-        .expect(302, function (err, res) {
-          if (err) {
-            return done(err);
-          }
-          res.headers.should.have.property('location')
-            .with.endWith('/');
-          done();
-        });
-    });
-    it('should not found an old user', function (done) {
-      var req = http(app);
-      req.post('/auth/github/test_create')
-        .send({
-          created: 0,
-          username: 'sdfi',
-          password: 'sdff',
-          githubName: 'sdfi'
-        })
-        .end(function (err, res) {
-          res.status.should.equal(302);
-          res.headers.location.should.equal('/');
-          done(err);
-        });
-    });
+  //   it('should reuse existing github account', function (done) {
+  //     var req = http(app);
+  //     req.post('/auth/github/test_create')
+  //       .send({
+  //         create: '1'
+  //       })
+  //       .expect(302, function (err, res) {
+  //         if (err) {
+  //           return done(err);
+  //         }
+  //         res.headers.should.have.property('location')
+  //           .with.endWith('/');
+  //         done();
+  //       });
+  //   });
+  //   it('should not found an old user', function (done) {
+  //     var req = http(app);
+  //     req.post('/auth/github/test_create')
+  //       .send({
+  //         created: 0,
+  //         username: 'sdfi',
+  //         password: 'sdff',
+  //         githubName: 'sdfi'
+  //       })
+  //       .end(function (err, res) {
+  //         res.status.should.equal(302);
+  //         res.headers.location.should.equal('/');
+  //         done(err);
+  //       });
+  //   });
 
     // it('should link a old user', function (done) {
     //   var username = 'forim' + +new Date();
@@ -205,5 +205,5 @@ describe('v2 github', function () {
     //       });
     //   });
     // });
-  });
+  // });
 });

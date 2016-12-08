@@ -38,7 +38,7 @@
     </div>
   </div>
   <div class='reply_content from-<%= post.author.username %>'>
-    <%- post.content %>
+    <%- markdown(post.content) %>
   </div>
   <div class='clearfix'>
     <div class='reply2_area'>

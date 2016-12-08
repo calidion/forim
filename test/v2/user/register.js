@@ -8,8 +8,6 @@ describe('v2 user#register', function () {
   var username = shared.user.username;
   var email = shared.user.email;
   var password = shared.user.password;
-  var id = 1;
-  var cookies;
 
   before(function (done) {
     server(function (data) {

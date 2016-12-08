@@ -1,5 +1,4 @@
 var http = require('supertest');
-var assert = require('assert');
 var shared = require('../shared');
 var server = require('../app');
 var app;
@@ -7,9 +6,6 @@ var app;
 describe('v2 user#login', function () {
   var username = shared.user.username;
   var email = shared.user.email;
-  var password = shared.user.password;
-  var id = 1;
-  var cookies;
 
   before(function (done) {
     server(function (data) {
@@ -95,5 +91,25 @@ describe('v2 user#login', function () {
           done(err);
         });
     });
+  });
+  it('should login in successfully again', function (done) {
+    var req = http(app);
+    req.post('/user/login')
+      .send({
+        username: username,
+        password: shared.user.password
+      })
+      .end(function (err, res) {
+        console.log(err, res.text);
+        var re = new RegExp('; path=/; httponly', 'gi');
+        var cookies = res.headers['set-cookie']
+          .map(function (r) {
+            return r.replace(re, '');
+          }).join("; ");
+        shared.cookies = cookies;
+        res.status.should.equal(302);
+        res.headers.location.should.equal('/');
+        done(err);
+      });
   });
 });
