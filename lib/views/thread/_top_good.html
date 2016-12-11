@@ -1,6 +1,6 @@
-<% if (thread.top) { %>
+<% if (thread.sticky) { %>
 <span class='put_top'>置顶</span>
-<% } else if (thread.good) { %>
+<% } else if (thread.highlighted) { %>
 <span class='put_good'>精华</span>
 <% } else if (typeof(tab) !== 'undefined' &&  tab === 'all' && thread.tab) { %>
 <span class="topiclist-tab"><%= thread.tab %></span>

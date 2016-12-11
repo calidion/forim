@@ -29,6 +29,7 @@
     "gulp-nsp": "^2.1.0",
     "gulp-plumber": "^1.0.0",
     "should": "^8.3.1",
+    "socket.io-client": "^1.7.1",
     "supertest": "^1.2.0"
   },
   "eslintConfig": {
@@ -46,6 +47,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "bcryptjs": "^2.3.0",
+    "bluebird": "^3.4.6",
     "body-parser": "^1.5.2",
     "compression": "^1.6.2",
     "connect-busboy": "0.0.2",
@@ -61,6 +63,7 @@
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "file-cloud-uploader": "0.0.5",
+    "github": "^7.0.1",
     "lodash": "^4.12.0",
     "log4js": "^0.6.36",
     "markdown-it": "^8.2.1",
@@ -82,7 +85,8 @@
     "skipper": "^0.6.1",
     "socket.io": "^1.7.1",
     "utility": "^1.9.0",
-    "vig": "^0.7.0",
+    "validator": "^6.2.0",
+    "vig": "^0.7.2",
     "waterline": "^0.12.2",
     "waterline-paginator": "0.0.8",
     "xss": "^0.3.2"
