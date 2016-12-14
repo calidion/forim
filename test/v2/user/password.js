@@ -100,7 +100,6 @@ describe('v2 user#login', function () {
         password: shared.user.password
       })
       .end(function (err, res) {
-        console.log(err, res.text);
         var re = new RegExp('; path=/; httponly', 'gi');
         var cookies = res.headers['set-cookie']
           .map(function (r) {

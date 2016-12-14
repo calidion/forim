@@ -4,16 +4,16 @@ var http = require('supertest');
 
 var io = require('../../lib/socket.io');
 var ioc = require('socket.io-client');
-var url = 'ws://localhost';
-
-
+// var url = 'ws://localhost';
 var server = require('./app');
 
 var app;
 var shared = require('./shared');
 
 var port = 10086;
-var options = { reconnection: false };
+var options = {
+  reconnection: false
+};
 var url = 'ws://localhost:' + port;
 
 describe('v2 socket.io', function () {
@@ -41,27 +41,23 @@ describe('v2 socket.io', function () {
   });
 
   it('Should connect to server', function (done) {
-    var http = require('http').Server(server);
+    var net = require('http').Server;
+    var http = net(server);
     var sio = io(http, {
       onConnect: function (socket) {
         socket.on('message', function (data) {
-          console.log()
           data.should.be.eql('user1');
           done();
-        })
+        });
       }
     });
     sio.listen(port);
     sio.once('listening', function () {
-      sio.close(function (error) {
+      sio.close(function () {
       });
     });
     var client1 = ioc.connect(url, options);
-    console.log(client1);
-    client1.on('connect', function (data) {
-      console.log(data);
-      console.log(client1);
-
+    client1.on('connect', function () {
       client1.emit('message', 'user1');
     });
   });
