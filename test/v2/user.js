@@ -21,6 +21,7 @@ describe('v2 user', function () {
   require('./user/password');
   require('./user/page');
   require('./user/list');
+  require('./user/detail');
 
   describe('#main', function () {
 
