@@ -17,7 +17,6 @@ describe('#list', function () {
     var req = http(app);
     req.get('/user/list?limit=10&page=1')
       .end(function (error, res) {
-        console.log(error, res.text);
         assert(!error);
         var body = res.body;
         assert(body.code === 0);
