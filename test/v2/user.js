@@ -23,6 +23,7 @@ describe('v2 user', function () {
   require('./user/block');
   require('./user/star');
   require('./user/profile');
+  require('./user/search');
 
   describe('#main', function () {
     it('should get /user/top', function (done) {
