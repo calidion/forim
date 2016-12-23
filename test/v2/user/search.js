@@ -1,5 +1,4 @@
 var http = require('supertest');
-var shared = require('../shared');
 var server = require('../app');
 var app;
 

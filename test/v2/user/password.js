@@ -14,18 +14,9 @@ describe('v2 user#login', function () {
     });
   });
 
-  it('should 200 when get /search_pass', function (done) {
+  it('should 200 when get /password/retrieve', function (done) {
     var req = http(app);
-    req.get('/search_pass')
-      .expect(200, function (err, res) {
-        res.text.should.containEql('找回密码');
-        done(err);
-      });
-  });
-
-  it('should 200 when get /search_pass', function (done) {
-    var req = http(app);
-    req.get('/v2/password/retrieve')
+    req.get('/password/retrieve')
       .expect(200, function (err, res) {
         res.text.should.containEql('找回密码');
         done(err);
@@ -34,7 +25,7 @@ describe('v2 user#login', function () {
 
   it('should update search pass', function (done) {
     var req = http(app);
-    req.post('/search_pass')
+    req.post('/password/retrieve')
       .send({
         email: email
       })
@@ -44,12 +35,12 @@ describe('v2 user#login', function () {
       });
   });
 
-  it('should 200 when get /reset_pass', function (done) {
+  it('should 200 when get /password/reset', function (done) {
     app.models.User.findOne({
       username: username
     }).then(function (found) {
       var req = http(app);
-      req.get('/reset_pass')
+      req.get('/password/reset')
         .query({
           key: found.passwordRetrieveKey,
           username: username
@@ -60,9 +51,9 @@ describe('v2 user#login', function () {
         });
     });
   });
-  it('should 403 get /reset_pass when with wrong resetKey', function (done) {
+  it('should 403 get /password/reset when with wrong resetKey', function (done) {
     var req = http(app);
-    req.get('/reset_pass')
+    req.get('/password/reset')
       .query({
         key: 'wrongkey',
         username: username
@@ -79,7 +70,7 @@ describe('v2 user#login', function () {
     }).then(function (found) {
       var req = http(app);
       shared.user.password = 'jkljkljkl';
-      req.post('/reset_pass')
+      req.post('/password/reset')
         .send({
           password: shared.user.password,
           confirm: shared.user.password,
