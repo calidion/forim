@@ -17,7 +17,7 @@ describe('#starring', function () {
         username: shared.user.username
       })
       .expect(200, function (err, res) {
-        res.body.isStar.should.eql(true);
+        res.body.starred.should.eql(true);
         done(err);
       });
   });
@@ -28,7 +28,7 @@ describe('#starring', function () {
         username: shared.user.username
       })
       .expect(200, function (err, res) {
-        res.body.isStar.should.eql(false);
+        res.body.starred.should.eql(false);
         done(err);
       });
   });

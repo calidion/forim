@@ -30,7 +30,7 @@ describe('#block', function () {
         username: shared.user.username
       })
       .expect(200, function (err, res) {
-        res.body.isBlocked.should.eql(true);
+        res.body.blocked.should.eql(true);
         done(err);
       });
   });
@@ -41,7 +41,7 @@ describe('#block', function () {
         username: shared.user.username
       })
       .expect(200, function (err, res) {
-        res.body.isBlocked.should.eql(false);
+        res.body.blocked.should.eql(false);
         done(err);
       });
   });

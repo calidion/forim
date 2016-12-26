@@ -1,14 +1,14 @@
 <div class='user'>
   <div>
-    <a href="/user/<%= user.loginname %>">
-      <img class='user_avatar' src="<%= proxy(user.avatar_url) %>" title="<%= user.loginname %>"/>
+    <a href="/user/<%= user.username %>">
+      <img class='user_avatar' src="<%= proxy(user.avatar) %>" title="<%= user.username %>"/>
     </a>
-    <span class='user_name'><a class='dark' href="/user/<%= user.loginname %>"><%= user.loginname %></a></span>
+    <span class='user_name'><a class='dark' href="/user/<%= user.username %>"><%= user.username %></a></span>
 
     <div class='space'></div>
-    <span class='col_fade'><%= user.follower_count %> 粉丝 </span>
+    <span class='col_fade'><%= user.followers %> 粉丝 </span>
     <span class='space'></span>
-    <span class='col_fade'><%= user.following_count %> 关注 </span>
+    <span class='col_fade'><%= user.followees %> 关注 </span>
   </div>
   <div>
 		<span>
