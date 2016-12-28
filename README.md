@@ -5,8 +5,8 @@
 
 ## 介绍
 
-Node Forum Im 是基于[node club](https://github.com/cnodejs/nodeclub)修改的社区系统。
-未来将会移除全部的nodeclub代码。
+xiv.im 是基于vig框架编写的社区IM系统。
+已经移除后端全部的nodeclub代码，目前只保留有模板的代码。
 实例布署在[forum.webfullstack.com](http://forum.webfullstack.me)上
 
 
@@ -14,7 +14,7 @@ Node Forum Im 是基于[node club](https://github.com/cnodejs/nodeclub)修改的
 
 一个只提供API的论坛IM系统，支持cors，支持多客户端访问，支持Socket.io。
 
-1. 支持个人与个人的交流
+1. 支持个人与个人的交流，支持群组交流，支持基于标签的交流
 2. 支持围绕话题讨论,即标签化话题，去中心化
 3. 支持订阅自己喜欢的话题、作者
 4. 支持系统之间共享用户与数据
@@ -32,7 +32,7 @@ Node Forum Im 是基于[node club](https://github.com/cnodejs/nodeclub)修改的
 
 ## 支持与交流
 
-QQ群：312685910
+QQ群：312685910，
 
 ## 最新改进
 
@@ -55,9 +55,9 @@ FORIM_XXX
 
 说明：论坛使用的是mongodb数据库
 
-1. 安装 `Node.js[必须]` `MongoDB[必须]` `Redis[必须]`
-2. 启动 MongoDB 和 Redis
-3. `$ npm i` 安装 node weixin forum 的依赖包
+1. 安装 `Node.js[必须]` `Redis[必须]` `数据库(MongoDB, Mysql, PostGRE等)`
+2. 启动 数据库 和 Redis
+3. `$ npm i` 安装 xiv.im 的依赖包
 5. `$ gulp` 确保各项服务都正常
 6. `$ node lib/index.js`
 7. visit `http://localhost:3000`
@@ -85,13 +85,11 @@ $ gulp coveralls
 
 ## 说明
 
-由于差异过大，本项目的源代码可能不会再与原项目合并
+本项目的源代码已经与原项目完全没有关系。
 
 ## License
 
 Apache-2.0 © [calidion](blog.3gcneta.com)  
-MIT (旧代码)
-
 
 [npm-image]: https://badge.fury.io/js/forim.svg
 [npm-url]: https://npmjs.org/package/forim
