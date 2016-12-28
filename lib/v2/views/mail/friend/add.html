@@ -12,9 +12,20 @@
 
 <body>
   <div class="container-fluid">
-    <h4>您好</h4>
-    <h2>您的好友[sender.username]通过github搜索找到了你，并在<a href="http://xiv.im/">xiv.im</a>上添加了您。</h2>
-    <p class="">xiv.im是程序员交流与沟通的IM网站或者App，你只需要通过浏览器打开xiv.im即可以从任何设备登录访问。</p>
+    <h2>github好友添加通知</h2>
+    <h2>您好，github网友[<%=sender.username%>]通过github搜索找到了你，并在
+      <a href="http://<%=im%>">
+        <%=im%>
+      </a>上添加了您为他的好友。</h2>
+    <p>点击[<a href="<%=url%>">同意</a>]接受请求，否则请忽略当前邮件。</p>
+    <p>惹无法打开，请复制链接：
+      <%=url%>到浏览器打开</p>
+    <p class="">
+      <a href="http://<%=im%>">
+        <%=im%>
+      </a>是一个开源的程序员交流与沟通的IM,它的目标是为开发人员提供便捷的维护，交流，分享知识与代码的服务。
+    </p>
+    <p>你只需要通过Chrome浏览器打开，并添加到手机桌面即可实现来自网站的推送了。</p>
   </div>
 </body>
 

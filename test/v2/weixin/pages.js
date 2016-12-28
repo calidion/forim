@@ -12,6 +12,8 @@ describe('v2 weixin pages', function () {
     });
   });
   it('should be able to visit api', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 1;
+
     var req = request(express)
       .get('/v2/weixin/settings/user?type=app');
     req.cookies = cache.cookes;
