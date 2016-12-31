@@ -43,12 +43,51 @@ describe('v2 friend', function () {
       status: 'accept'
     });
     req.cookies = shared.cookies;
-    req.expect(302, function (err, res) {
+    req.expect(302, function (err) {
       done(err);
     });
   });
+
   it('should add a friend not registerred', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 0;
+    var req = http(app).post('/friend/add');
+    req.cookies = shared.cookies;
+    req.send({
+      email: 'abcc@sdfsfdf.com'
+    }).expect(200, function (err, res) {
+      res.body.should.containDeepOrdered({
+        code: 0,
+        name: 'Success',
+        message: '成功！',
+        data: {
+          email: 'abcc@sdfsfdf.com'
+        }
+      });
+      token = res.body.data.token;
+      done(err);
+    });
+  });
+
+  it('should reject an invitation', function (done) {
+    process.env.FORIM_INVITATION_IGNORE = 1;
+    var req = http(app).get('/friend/ack').query({
+      token: token,
+      email: 'abcc@sdfsfdf.com',
+      status: 'reject'
+    });
+    req.cookies = shared.cookies;
+    req.expect(200, function (err, res) {
+      res.body.should.containDeepOrdered({
+        code: 0,
+        message: '成功！',
+        name: 'Success'
+      });
+      done(err);
+    });
+  });
+
+  it('should add a friend not registerred', function (done) {
+    process.env.FORIM_INVITATION_IGNORE = 0;
     var req = http(app).post('/friend/add');
     req.cookies = shared.cookies;
     req.send({
