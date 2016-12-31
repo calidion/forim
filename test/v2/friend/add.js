@@ -2,18 +2,49 @@ var http = require('supertest');
 var shared = require('../shared');
 var server = require('../app');
 var app;
-
-var email = 'calidion@gmail.com';
 var token;
 
 describe('v2 friend', function () {
   before(function (done) {
     server(function (data) {
       app = data;
-      var MessageFriend = app.models.MessageFriend;
-      MessageFriend.destroy({}).exec(function () {
+      var MessageFriendInvite = app.models.MessageFriendInvite;
+      MessageFriendInvite.destroy({}).exec(function () {
         done();
       });
+    });
+  });
+
+  it('should add a friend not registerred', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 0;
+    var req = http(app).post('/friend/add');
+    req.cookies = shared.cookies;
+    req.send({
+      email: 'abc@sdfsfdf.com'
+    }).expect(200, function (err, res) {
+      res.body.should.containDeepOrdered({
+        code: 0,
+        name: 'Success',
+        message: '成功！',
+        data: {
+          email: 'abc@sdfsfdf.com'
+        }
+      });
+      token = res.body.data.token;
+      done(err);
+    });
+  });
+
+  it('should accept an invitation', function (done) {
+    process.env.FORIM_INVITATION_IGNORE = 0;
+    var req = http(app).get('/friend/ack').query({
+      token: token,
+      email: 'abc1@sdfsfdf.com',
+      status: 'accept'
+    });
+    req.cookies = shared.cookies;
+    req.expect(302, function (err, res) {
+      done(err);
     });
   });
   it('should add a friend not registerred', function (done) {
@@ -21,25 +52,26 @@ describe('v2 friend', function () {
     var req = http(app).post('/friend/add');
     req.cookies = shared.cookies;
     req.send({
-      email: email
+      email: shared.user.email
     }).expect(200, function (err, res) {
       res.body.should.containDeepOrdered({
         code: 0,
         name: 'Success',
         message: '成功！',
         data: {
-          email: email
+          email: shared.user.email
         }
       });
       token = res.body.data.token;
       done(err);
     });
   });
-  it('should acceptable an invitation', function (done) {
+  it('should accept an invitation', function (done) {
     process.env.FORIM_INVITATION_IGNORE = 1;
     var req = http(app).get('/friend/ack').query({
       token: token,
-      email: email
+      email: shared.user.email,
+      status: 'accept'
     });
     req.cookies = shared.cookies;
     req.expect(200, function (err, res) {
@@ -52,14 +84,15 @@ describe('v2 friend', function () {
   it('should not acceptable more than once', function (done) {
     var req = http(app).get('/friend/ack').query({
       token: token,
-      email: email
+      email: shared.user.email,
+      status: 'accept'
     });
     req.cookies = shared.cookies;
     req.expect(200, function (err, res) {
       res.body.should.containDeepOrdered({
-        code: 'MessageProcessed',
-        message: '消息已经处理过！',
-        name: 'MessageProcessed'
+        code: 'MessageNotFound',
+        message: '消息未找到！',
+        name: 'MessageNotFound'
       });
       done(err);
     });
@@ -67,11 +100,16 @@ describe('v2 friend', function () {
   it('should not acceptable wrong email', function (done) {
     var req = http(app).get('/friend/ack').query({
       token: token,
-      email: 'email@sdfsdf.com'
+      email: 'email@sdfsdf.com',
+      status: 'accept'
     });
     req.cookies = shared.cookies;
     req.expect(200, function (err, res) {
-      console.log(err, res.text);
+      res.body.should.containDeepOrdered({
+        code: 'MessageNotFound',
+        name: 'MessageNotFound',
+        message: '消息未找到！'
+      });
       done(err);
     });
   });
@@ -79,11 +117,17 @@ describe('v2 friend', function () {
     process.env.FORIM_INVITATION_IGNORE = 0;
     var req = http(app).get('/friend/ack').query({
       token: token,
-      email: email
+      email: shared.user.email,
+      status: 'accept'
+
     });
     req.cookies = shared.cookies;
-    req.expect(302, function (err, res) {
-      console.log(err, res.text);
+    req.expect(200, function (err, res) {
+      res.body.should.containDeepOrdered({
+        code: 'MessageNotFound',
+        name: 'MessageNotFound',
+        message: '消息未找到！'
+      });
       done(err);
     });
   });

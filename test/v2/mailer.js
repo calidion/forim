@@ -6,7 +6,6 @@ describe('vig mailer', function () {
     mailer.user.activate(process.env.FORIM_MAIL_EMAIL,
       'activate-token', 'activate-name',
       function (error) {
-        console.log(error);
         assert(!error);
         done();
       });
