@@ -187,6 +187,80 @@ describe('v2 friend', function () {
     });
   });
 
+  it('should list friends', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 0;
+    var req = http(app).get('/friend/list');
+    req.cookies = shared.cookies;
+    req.expect(200, function (err, res) {
+      console.log(res.body.data);
+      res.body.data.length.should.aboveOrEqual(1);
+      shared.friend = res.body.data[0];
+      // for(var i = 0; i < res.body.data.length; i++) {
+      //   var friend = res.body.data[i];
+      //   friend.user.id.should.eql(shared.user.id);
+      // }
+      res.body.should.containDeepOrdered({
+        code: 0,
+        message: '成功！',
+        name: 'Success'
+      });
+      done(err);
+    });
+  });
+
+  it('should not remove friends', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 0;
+    var req = http(app).post('/friend/remove');
+    req.cookies = shared.cookies;
+    req.send({
+      id: 'abcd'
+    }).expect(200, function (err, res) {
+      console.log(res.text);
+      res.body.should.containDeepOrdered(
+        {
+          code: 33554437,
+          message: '用户未找到！',
+          name: 'UserNotFound'
+        }
+      );
+      done(err);
+    });
+  });
+
+  it('should remove friends', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 0;
+    var req = http(app).post('/friend/remove');
+    req.cookies = shared.cookies;
+    req.send({
+      id: shared.friend.friend.id
+    }).expect(200, function (err, res) {
+      console.log(res.text);
+      res.body.should.containDeepOrdered({
+        code: 0,
+        message: '成功！',
+        name: 'Success'
+      });
+      done(err);
+    });
+  });
+
+  it('should not remove friends agagin', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 0;
+    var req = http(app).post('/friend/remove');
+    req.cookies = shared.cookies;
+    req.send({
+      id: shared.friend.friend.id
+    }).expect(200, function (err, res) {
+      console.log(res.text);
+      res.body.should.containDeepOrdered({
+        code: 'FriendNotFound',
+        message: '好友未找到！',
+        name: 'FriendNotFound'
+      });
+      done(err);
+    });
+  });
+
   it('should add a friend registerred', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 0;
     var Friend = app.models.Friend;
