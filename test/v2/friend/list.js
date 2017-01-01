@@ -16,7 +16,6 @@ describe('friend#list', function () {
     var req = http(app).get('/friend/list');
     req.cookies = shared.cookies;
     req.expect(200, function (err, res) {
-      console.log(res.text);
       res.body.should.containDeepOrdered({
         code: 0,
         message: '成功！',

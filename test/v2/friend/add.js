@@ -192,13 +192,10 @@ describe('v2 friend', function () {
     var req = http(app).get('/friend/list');
     req.cookies = shared.cookies;
     req.expect(200, function (err, res) {
-      console.log(res.body.data);
       res.body.data.length.should.aboveOrEqual(1);
-      shared.friend = res.body.data[0];
-      // for(var i = 0; i < res.body.data.length; i++) {
-      //   var friend = res.body.data[i];
-      //   friend.user.id.should.eql(shared.user.id);
-      // }
+      for (var i = 0; i < res.body.data.length; i++) {
+        shared.friend = res.body.data[i];
+      }
       res.body.should.containDeepOrdered({
         code: 0,
         message: '成功！',
@@ -215,7 +212,6 @@ describe('v2 friend', function () {
     req.send({
       id: 'abcd'
     }).expect(200, function (err, res) {
-      console.log(res.text);
       res.body.should.containDeepOrdered(
         {
           code: 33554437,
@@ -234,7 +230,6 @@ describe('v2 friend', function () {
     req.send({
       id: shared.friend.friend.id
     }).expect(200, function (err, res) {
-      console.log(res.text);
       res.body.should.containDeepOrdered({
         code: 0,
         message: '成功！',
@@ -251,7 +246,6 @@ describe('v2 friend', function () {
     req.send({
       id: shared.friend.friend.id
     }).expect(200, function (err, res) {
-      console.log(res.text);
       res.body.should.containDeepOrdered({
         code: 'FriendNotFound',
         message: '好友未找到！',
