@@ -276,4 +276,83 @@ describe('v2 friend', function () {
       });
     });
   });
+
+  it('should add a friend registerred', function (done) {
+    var req = http(app).post('/friend/add');
+    req.cookies = shared.cookies;
+    req.send({
+      email: shared.user.email
+    }).expect(200, function (err, res) {
+      res.body.should.containDeepOrdered({
+        code: 0,
+        data: {
+          email: shared.user.email
+        },
+        message: '成功！',
+        name: 'Success'
+      });
+      token = res.body.data.token;
+      done(err);
+    });
+  });
+  it('should accept an invitation', function (done) {
+    process.env.FORIM_INVITATION_IGNORE = 1;
+    var req = http(app).get('/friend/ack').query({
+      token: token,
+      email: shared.user.email,
+      status: 'accept'
+    });
+    req.cookies = shared.cookies;
+    req.expect(200, function (err, res) {
+      res.body.should.containDeepOrdered({
+        code: 0, name: 'Success', message: '成功！'
+      });
+      done(err);
+    });
+  });
+
+  it('clear friends', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 0;
+    var Friend = app.models.Friend;
+    Friend.destroy({}).exec(function () {
+      done();
+    });
+  });
+
+  it('should add a friend registerred', function (done) {
+    var req = http(app).post('/friend/add');
+    req.cookies = shared.cookies;
+    req.send({
+      email: shared.user.email
+    }).expect(200, function (err, res) {
+      res.body.should.containDeepOrdered({
+        code: 0,
+        data: {
+          email: shared.user.email
+        },
+        message: '成功！',
+        name: 'Success'
+      });
+      token = res.body.data.token;
+      done(err);
+    });
+  });
+
+  it('should reject an invitation', function (done) {
+    process.env.FORIM_INVITATION_IGNORE = 1;
+    var req = http(app).get('/friend/ack').query({
+      token: token,
+      email: shared.user.email,
+      status: 'reject'
+    });
+    req.cookies = shared.cookies;
+    req.expect(200, function (err, res) {
+      res.body.should.containDeepOrdered({
+        code: 0,
+        message: '成功！',
+        name: 'Success'
+      });
+      done(err);
+    });
+  });
 });
