@@ -16,6 +16,8 @@ describe('forim', function () {
   require('./v2/site');
   require('./v2/socket.io');
   require('./v2/friend');
+  require('./v2/im');
+
   require('./v2/weixin/settings');
   require('./v2/weixin/pages');
   require('./v2/weixin/api');

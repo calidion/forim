@@ -1,10 +1,10 @@
 var http = require('supertest');
-var server = require('./app');
+var server = require('../app');
 var app;
-var shared = require('./shared');
+var shared = require('../shared');
 var cookies;
 
-describe('v2 message', function () {
+describe('#my', function () {
   before(function (done) {
     server(function (data) {
       app = data;
