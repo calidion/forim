@@ -53,7 +53,6 @@ describe('#new', function () {
       })
       .expect(200)
       .end(function (err, res) {
-        console.log(res.body);
         shared.message = res.body.data;
         res.body.should.containDeepOrdered({
           code: 0,

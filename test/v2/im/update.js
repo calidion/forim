@@ -19,7 +19,6 @@ describe('#update', function () {
         text: 'hello new world'
       })
       .end(function (err, res) {
-        console.log(err, res.text);
         res.statusCode.should.equal(403);
         res.text.should.containEql('Access Denied!');
         done(err);
@@ -30,7 +29,6 @@ describe('#update', function () {
     process.env.FORIM_BY_PASS_POLICIES = 0;
     var req = http(app).post('/message/update');
     req.cookies = shared.cookies;
-    console.log(shared.message.id);
     req
       .send({
         id: shared.message.id,
@@ -38,7 +36,6 @@ describe('#update', function () {
       })
       .expect(200)
       .end(function (err, res) {
-        console.log(res.body);
         shared.message = res.body.data;
         res.body.should.containDeepOrdered({
           code: 0,
