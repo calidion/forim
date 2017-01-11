@@ -1,10 +1,8 @@
 var http = require('supertest');
-var assert = require('supertest');
 var server = require('../app');
 var app;
 var shared = require('../shared');
 var cookies;
-var tempUser;
 
 describe('#new', function () {
   before(function (done) {
@@ -55,6 +53,8 @@ describe('#new', function () {
       })
       .expect(200)
       .end(function (err, res) {
+        console.log(res.body);
+        shared.message = res.body.data;
         res.body.should.containDeepOrdered({
           code: 0,
           message: '成功！',
@@ -76,12 +76,15 @@ describe('#new', function () {
       })
       .expect(200)
       .end(function (err, res) {
-        res.body.should.containDeepOrdered({ code: 33554437, message: '用户未找到！', name: 'UserNotFound' });
+        res.body.should.containDeepOrdered({
+          code: 33554437, message: '用户未找到！',
+          name: 'UserNotFound'
+        });
         done(err);
       });
   });
 
-    it('should create new message', function (done) {
+  it('should create new message', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 0;
 
     var req = http(app).post('/message/new');
@@ -94,7 +97,11 @@ describe('#new', function () {
       })
       .expect(200)
       .end(function (err, res) {
-        res.body.should.containDeepOrdered({ code: 2, message: '输入无效!', name: 'InputInvalid' });
+        res.body.should.containDeepOrdered({
+          code: 2,
+          message: '输入无效!',
+          name: 'InputInvalid'
+        });
         done(err);
       });
   });
