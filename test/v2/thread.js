@@ -235,6 +235,48 @@ describe('v2 thread', function () {
       });
   });
 
+  it('should get a thread list', function (done) {
+    var req = http(app).get('/thread/list');
+    req
+      .expect(200, function (err, res) {
+        console.log(err, res.body);
+        res.body.data.results.length.should.aboveOrEqual(1);
+        res.body.should.containDeepOrdered(
+          {
+            code: 0,
+            name: 'Success',
+            message: '成功！'
+          });
+        done(err);
+      });
+  });
+
+  it('should get a thread list', function (done) {
+    var req = http(app).get('/thread/list').query({
+      limit: 'asdf'
+    });
+    req
+      .expect(200, function (err, res) {
+        console.log(err, res.body);
+        res.body.should.containDeepOrdered(
+          {
+            code: 2,
+            name: 'InputInvalid',
+            message: '输入无效!',
+            data:
+            {
+              code: -1,
+              key: 'limit',
+              message: 'Not validate key limit',
+              data: {
+                limit: 'asdf'
+              }
+            }
+          });
+        done(err);
+      });
+  });
+
   it('should delete a thread', function (done) {
     var req = http(app).post('/thread/remove/' + shared.thread.id);
     req.cookies = shared.cookies;
