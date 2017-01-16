@@ -5,8 +5,9 @@
   <meta charset='utf-8'>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<title>您有新的好友添加请求！</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <title>您有新的好友添加请求！</title>
 </head>
 
 <body>
@@ -21,30 +22,30 @@
             <p>您好，亲爱的github网友:</p>
             <p>
               <code><%=sender.username%></code>通过github搜索找到了您。
-              <p>
-                <p>并在
-                  <a href="http://<%=im%>">
-                    <%=im%>
-                  </a>上添加了您为他的好友。</p>
-                <h3>点击<a class="btn btn-success" href="<%=url.accept%>">同意</a>接受请求，立刻跟他使用markdown聊天。</h3>
-                <p>惹无法打开，请复制链接：
-                  <br/>
-                  <%=url.accept%><br/> 到浏览器打开.
-                </p>
-                <p>点击<a href="<%=url.reject%>">不同意</a>拒绝请求，或者忽略此邮件。</p>
+            </p>
+            <p>并在
+              <a href="http://<%=im%>">
+                <%=im%>
+              </a>上添加了您为他的好友。</p>
+            <h3>点击<a class="btn btn-success" href="<%=url.accept%>">同意</a>接受请求，立刻跟他使用markdown聊天。</h3>
+            <p>惹无法打开，请复制链接：
+              <br/>
+              <%=url.accept%><br/> 到浏览器打开.
+            </p>
+            <p>点击<a href="<%=url.reject%>">不同意</a>拒绝请求，或者忽略此邮件。</p>
 
-                <p class="">
-                  <a href="http://<%=im%>">
-                    <%=im%>
-                  </a>是一个开源的程序员交流与沟通的IM。</p>
-                <p>它的目标是为开发人员提供便捷的维护，交流，分享知识与代码的服务。
-                </p>
-                <p>你只需要通过Chrome浏览器打开，并添加到手机桌面即可实现来自网站的推送了。</p>
-                <p>
-                  也可手机扫描二维码直接打开网站：
-                </p>
-                <p class="text-center">
-                  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAIAAAD2HxkiAAAFV0lEQVR4nO3dQY7jOBAAwfZi///lnttgTyMNxK0k1RFnw5JlJXgpkJ/v7+8voPNPfQPw04kQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGL/Xn7i8/kM3Efuzvje5aO4/JKBh3nKHKL36jcrIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAix67G1S0fMSS0ZktphKm3AzLMa+IYBS56VlRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKE2IKxtUuv2WJsh6m0gdG5I+bFvl70XlkJISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQohNjK29xvORsedjUAMHlQ78Cv7LSggxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCzNjaXxgYGbv8hh12W7tzCaNt91kJISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQohNjK29ZoJpYGTs0iZTaTt4zXtlJYSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghtmBs7ZQpp+cGdlt7bmDHt5l//Oe8V1ZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGLXY2uv2dOKm57Ptd3hvfrNSggxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQmzipd8DA+bV3PjOwm+DAyOXMVOcOz2qHb/iyEkJOhBATIcRECDERQkyEEBMhxEQIMRFCTIQQ+wwcy3rErNYdA/d5xFG+b7qNh5a8mVZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGILxtYGZsqOmGBaYpMBvT/b5O/YYTO1S3ZbgwOIEGIihJgIISZCiIkQYiKEmAghJkKIiRBiCw4J3WE46NKScbCZIaaHTnmYz+3wS5fcg5UQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihNiCsbWBIaaBwzfvXOKIM0AvveNXfG0zPfeclRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKE2IKxtR3M7Pi2w7Zxp3jHcNzMCblWQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiZ4ytDUyl3Zk/mhli+r/v4fk3zDyrTbbYG7iElRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKE2GdgymmHaa9T7LDF2KXX/F+bvNtWQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiW+y2NnPE58NL3LnK83muHc4h3eEelhgYr3NIKLyBCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIXc+ODsxDPnfKJnw77P4486x2OLT4FFZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGLXY2uvGQ76sztjVjucSTywH+HMPz7wrE65hJUQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihNiCk3qP2OlsySjWDnulDZg5qfeIfeVmJvishBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHEFoytXRqY/Tnl4Mvng2877CA29iX738OSF89KCDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJsYmzt5xg4oPMdG7otccSIn0NC4QAihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYsbW97LBX2pJDQt/xQ2aGBK2EEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcQmxtZsELaV1/wdz4fONnkUVkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYgvG1p7vivUaz7f3GniYm2wxdsoJngOshBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHEPptM7sCPZSWEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiP0CUOuRVhMFr3cAAAAASUVORK5CYII=
+            <p class="">
+              <a href="http://<%=im%>">
+                <%=im%>
+              </a>是一个开源的程序员交流与沟通的IM。</p>
+            <p>它的目标是为开发人员提供便捷的维护，交流，分享知识与代码的服务。
+            </p>
+            <p>你只需要通过Chrome浏览器打开，并添加到手机桌面即可实现来自网站的推送了。</p>
+            <p>
+              也可手机扫描二维码直接打开网站：
+            </p>
+            <p class="text-center">
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAIAAAD2HxkiAAAFV0lEQVR4nO3dQY7jOBAAwfZi///lnttgTyMNxK0k1RFnw5JlJXgpkJ/v7+8voPNPfQPw04kQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGL/Xn7i8/kM3Efuzvje5aO4/JKBh3nKHKL36jcrIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAix67G1S0fMSS0ZktphKm3AzLMa+IYBS56VlRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKE2IKxtUuv2WJsh6m0gdG5I+bFvl70XlkJISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQohNjK29xvORsedjUAMHlQ78Cv7LSggxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCzNjaXxgYGbv8hh12W7tzCaNt91kJISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQohNjK29ZoJpYGTs0iZTaTt4zXtlJYSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghtmBs7ZQpp+cGdlt7bmDHt5l//Oe8V1ZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGLXY2uv2dOKm57Ptd3hvfrNSggxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQmzipd8DA+bV3PjOwm+DAyOXMVOcOz2qHb/iyEkJOhBATIcRECDERQkyEEBMhxEQIMRFCTIQQ+wwcy3rErNYdA/d5xFG+b7qNh5a8mVZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGILxtYGZsqOmGBaYpMBvT/b5O/YYTO1S3ZbgwOIEGIihJgIISZCiIkQYiKEmAghJkKIiRBiCw4J3WE46NKScbCZIaaHTnmYz+3wS5fcg5UQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihNiCsbWBIaaBwzfvXOKIM0AvveNXfG0zPfeclRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKE2IKxtR3M7Pi2w7Zxp3jHcNzMCblWQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiZ4ytDUyl3Zk/mhli+r/v4fk3zDyrTbbYG7iElRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKE2GdgymmHaa9T7LDF2KXX/F+bvNtWQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiW+y2NnPE58NL3LnK83muHc4h3eEelhgYr3NIKLyBCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIXc+ODsxDPnfKJnw77P4486x2OLT4FFZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGLXY2uvGQ76sztjVjucSTywH+HMPz7wrE65hJUQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihNiCk3qP2OlsySjWDnulDZg5qfeIfeVmJvishBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHEFoytXRqY/Tnl4Mvng2877CA29iX738OSF89KCDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJsYmzt5xg4oPMdG7otccSIn0NC4QAihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYsbW97LBX2pJDQt/xQ2aGBK2EEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcQmxtZsELaV1/wdz4fONnkUVkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYgvG1p7vivUaz7f3GniYm2wxdsoJngOshBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHEPptM7sCPZSWEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiP0CUOuRVhMFr3cAAAAASUVORK5CYII=
                 " / style="width:200px"></p>》
 </div>
 </div>
