@@ -54,6 +54,7 @@ describe('v2 socket.io', function () {
 
   it('Should connect to server', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 0;
+    process.env.SOCKETIO_DEBUG = 1;
     var net = require('http').Server;
     var http = net(server);
     var sio = io(http, function (data) {
