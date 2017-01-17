@@ -47,7 +47,7 @@ describe('#new', function () {
     req.cookies = shared.cookies;
     req
       .send({
-        to: shared.id,
+        to: shared.friend.friend.id,
         text: 'hello world',
         time: new Date()
       })

@@ -239,7 +239,6 @@ describe('v2 thread', function () {
     var req = http(app).get('/thread/list');
     req
       .expect(200, function (err, res) {
-        console.log(err, res.body);
         res.body.data.results.length.should.aboveOrEqual(1);
         res.body.should.containDeepOrdered(
           {
@@ -257,7 +256,6 @@ describe('v2 thread', function () {
     });
     req
       .expect(200, function (err, res) {
-        console.log(err, res.body);
         res.body.should.containDeepOrdered(
           {
             code: 2,
