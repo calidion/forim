@@ -66,7 +66,7 @@ describe('#remove', function () {
       });
   });
 
-  it('should create new message', function (done) {
+  it('should not remove with wrong params', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 0;
 
     var req = http(app).post('/message/remove');

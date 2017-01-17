@@ -71,12 +71,12 @@ describe('friend#block', function () {
     var req = http(app).post('/friend/unblock');
     req.cookies = shared.cookies;
     req.send({
-      id: shared.friend.id
+      id: shared.friend.friend.id
     }).expect(200, function (err, res) {
       res.body.should.containDeepOrdered({
-        code: 33554437,
-        message: '用户未找到！',
-        name: 'UserNotFound'
+        code: 'BlockedUserNotFound',
+        message: '屏蔽的用户没有找到！',
+        name: 'BlockedUserNotFound'
       });
       done(err);
     });

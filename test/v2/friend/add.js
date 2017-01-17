@@ -115,6 +115,7 @@ describe('v2 friend', function () {
             return r.replace(re, '');
           }).join('; ');
         cookie1 = cookies;
+        shared.cookie1 = cookie1;
         res.status.should.equal(302);
         res.headers.location.should.equal('/');
         done(err);
