@@ -3,7 +3,6 @@ var server = require('../app');
 var app;
 var shared = require('../shared');
 
-
 describe('#list', function () {
   before(function (done) {
     server(function (data) {
@@ -20,7 +19,7 @@ describe('#list', function () {
         var cookies = res.headers['set-cookie']
           .map(function (r) {
             return r.replace(re, '');
-          }).join("; ");
+          }).join('; ');
         shared.cookies = cookies;
         res.status.should.equal(302);
         res.headers.location.should.equal('/');
@@ -56,6 +55,27 @@ describe('#list', function () {
           code: 0,
           message: '成功！',
           name: 'Success'
+        });
+        done(err);
+      });
+  });
+
+  it('should get error when with wrong params', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 0;
+    var req = http(app).get('/message/list');
+    req.cookies = shared.cookies;
+    req
+      .query({
+        id: shared.friend.friend.id,
+        limit: 'sdfsdf'
+      })
+      .end(function (err, res) {
+        res.statusCode.should.equal(200);
+        console.log(err, res.text);
+        res.body.should.containDeepOrdered({
+          code: 2,
+          name: 'InputInvalid',
+          message: '输入无效!'
         });
         done(err);
       });
