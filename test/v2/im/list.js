@@ -46,11 +46,13 @@ describe('#list', function () {
     req.cookies = shared.cookies;
     req
       .query({
-        id: shared.friend.friend.id
+        id: shared.friend.friend.id,
+        page: 0
       })
       .end(function (err, res) {
         res.statusCode.should.equal(200);
         res.body.data.length.should.aboveOrEqual(1);
+        shared.messages = res.body.data;
         res.body.should.containDeepOrdered({
           code: 0,
           message: '成功！',

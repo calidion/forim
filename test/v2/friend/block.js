@@ -81,4 +81,20 @@ describe('friend#block', function () {
       done(err);
     });
   });
+
+  it('should unblock a user', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 0;
+    var req = http(app).post('/friend/unblock');
+    req.cookies = shared.cookies;
+    req.send({
+      id: '123132'
+    }).expect(200, function (err, res) {
+      res.body.should.containDeepOrdered({
+        code: 33554437,
+        message: '用户未找到！',
+        name: 'UserNotFound'
+      });
+      done(err);
+    });
+  });
 });
