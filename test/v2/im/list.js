@@ -85,6 +85,26 @@ describe('#list', function () {
       });
   });
 
+  it('should get message breath', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 0;
+    var req = http(app).get('/message/breath');
+    req.cookies = shared.cookies;
+    req
+      .query({
+        id: shared.friend.friend.id
+      })
+      .end(function (err, res) {
+        res.statusCode.should.equal(200);
+        res.body.data.should.aboveOrEqual(1);
+        res.body.should.containDeepOrdered({
+          code: 0,
+          message: '成功！',
+          name: 'Success'
+        });
+        done(err);
+      });
+  });
+
   it('should get error when with wrong params', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 0;
     var req = http(app).get('/message/list');
@@ -96,7 +116,6 @@ describe('#list', function () {
       })
       .end(function (err, res) {
         res.statusCode.should.equal(200);
-        console.log(err, res.text);
         res.body.should.containDeepOrdered({
           code: 2,
           name: 'InputInvalid',
