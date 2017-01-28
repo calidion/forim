@@ -62,6 +62,29 @@ describe('#list', function () {
       });
   });
 
+  it('should get message list', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 0;
+    var req = http(app).get('/message/list');
+    req.cookies = shared.cookies;
+    req
+      .query({
+        id: shared.friend.friend.id,
+        page: 0,
+        unread: true
+      })
+      .end(function (err, res) {
+        res.statusCode.should.equal(200);
+        res.body.data.length.should.aboveOrEqual(1);
+        shared.messages = res.body.data;
+        res.body.should.containDeepOrdered({
+          code: 0,
+          message: '成功！',
+          name: 'Success'
+        });
+        done(err);
+      });
+  });
+
   it('should get error when with wrong params', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 0;
     var req = http(app).get('/message/list');
