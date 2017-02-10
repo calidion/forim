@@ -84,7 +84,22 @@ describe('#list', function () {
         done(err);
       });
   });
-
+  it('should get message breath', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 0;
+    var req = http(app).get('/message/breath');
+    req.cookies = shared.cookies;
+    req
+      .end(function (err, res) {
+        res.statusCode.should.equal(200);
+        res.body.data.should.aboveOrEqual(0);
+        res.body.should.containDeepOrdered({
+          code: 0,
+          message: '成功！',
+          name: 'Success'
+        });
+        done(err);
+      });
+  });
   it('should get message breath', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 0;
     var req = http(app).get('/message/breath');
