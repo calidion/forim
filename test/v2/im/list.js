@@ -91,7 +91,7 @@ describe('#list', function () {
     req
       .end(function (err, res) {
         res.statusCode.should.equal(200);
-        res.body.data.should.aboveOrEqual(0);
+        res.body.data.should.aboveOrEqual(1);
         res.body.should.containDeepOrdered({
           code: 0,
           message: '成功！',
